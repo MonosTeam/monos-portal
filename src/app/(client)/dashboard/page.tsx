@@ -19,7 +19,10 @@ export default async function Dashboard() {
   const paid = pay.filter((p) => p.status === "paid").reduce((s, p) => s + p.amount_pence, 0);
   const current = st.find((s) => s.status === "in_progress") ?? st.find((s) => s.status === "todo");
 
+  const callLink = process.env.CALL_BOOKING_URL;
+  const firstStage = st[0];
   const todos = [
+    project.package_id === "launch490" && callLink && firstStage?.status !== "done" && { href: callLink, text: "Book your 30-minute 1-1 with Aisha" },
     project.modules.consultation && !consult?.submitted_at && { href: "/brief", text: "Complete your consultation form" },
     project.modules.agreement && (agreements ?? []).some((a) => !a.signed_at) && { href: "/agreement", text: "Sign your website agreement" },
     project.modules.payments && pay.some((p) => p.status !== "paid") && { href: "/payments", text: "Make your next payment" },
@@ -37,7 +40,7 @@ export default async function Dashboard() {
           <h2 className="h2 mb-3">Your next steps</h2>
           <ul className="space-y-2">
             {todos.map((t) => (
-              <li key={t.href}><Link href={t.href} className="flex items-center justify-between rounded-lg bg-panel border border-line px-4 py-3 hover:border-brand"><span>{t.text}</span><span className="text-brand">→</span></Link></li>
+              <li key={t.href}><Link href={t.href} {...(t.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="flex items-center justify-between rounded-lg bg-panel border border-line px-4 py-3 hover:border-brand"><span>{t.text}</span><span className="text-brand">→</span></Link></li>
             ))}
           </ul>
         </div>

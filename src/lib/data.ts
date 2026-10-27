@@ -5,12 +5,10 @@ export type Stage = { id: string; position: number; name: string; status: "todo"
 export type Payment = { id: string; label: string; amount_pence: number; due_date: string | null; status: "due" | "paid" | "overdue"; payment_url: string | null; paid_at: string | null };
 export type Agreement = { id: string; title: string; body: string; signed_name: string | null; signed_at: string | null };
 export type Project = {
-  id: string; name: string; package: string; price_pence: number; start_date: string; notes: string | null;
+  id: string; name: string; package_id: string; package: string; offer_code: string | null; price_pence: number; start_date: string; notes: string | null;
   modules: { consultation: boolean; agreement: boolean; payments: boolean; uploads: boolean };
   brief_sections: string[];
 };
-
-export const DEFAULT_STAGES = ["Discovery", "Design", "Build", "Review", "Launch"];
 
 export async function requireUser() {
   const supabase = await createClient();
@@ -36,11 +34,7 @@ export async function getClientProject() {
   return { ...ctx, project: project as Project | null };
 }
 
-export const gbp = (pence: number) =>
-  new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }).format(pence / 100);
-
-export const ukDate = (d: string | null) =>
-  d ? new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+export { gbp, ukDate } from "./format";
 
 export function progressOf(stages: Stage[]) {
   if (!stages.length) return 0;

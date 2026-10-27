@@ -2,58 +2,46 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import { requireAdmin, DEFAULT_STAGES, gbp, ukDate } from "@/lib/data";
-import { createServiceClient } from "@/lib/supabase-server";
-import { defaultAgreement } from "@/lib/agreement";
-
-const addDays = (iso: string, n: number) => {
-  const d = new Date(iso);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0, 10);
-};
-
-// Days into the 7-day build each stage is due.
-const STAGE_DAY = [1, 2, 5, 6, 7];
+import { requireAdmin } from "@/lib/data";
+import { provisionClient } from "@/lib/provision";
+import { PACKAGES, type PackageId } from "@/lib/packages";
 
 export async function createClientProject(form: FormData) {
-  const { supabase } = await requireAdmin();
-  const email = String(form.get("email")).trim().toLowerCase();
-  const fullName = String(form.get("full_name")).trim();
-  const company = String(form.get("company") ?? "").trim();
-  const projectName = String(form.get("project_name") || `${company || fullName} website`).trim();
-  const pricePence = Math.round(Number(form.get("price") || 1000) * 100);
-  const start = String(form.get("start_date") || new Date().toISOString().slice(0, 10));
+  await requireAdmin();
+  const packageId = (String(form.get("package_id")) in PACKAGES ? form.get("package_id") : "retail") as PackageId;
+  const price = form.get("price") ? Math.round(Number(form.get("price")) * 100) : undefined;
+  const { projectId } = await provisionClient({
+    email: String(form.get("email")).trim().toLowerCase(),
+    fullName: String(form.get("full_name")).trim(),
+    company: String(form.get("company") ?? "").trim(),
+    projectName: String(form.get("project_name") ?? "").trim() || undefined,
+    packageId,
+    pricePence: price,
+    startDate: String(form.get("start_date") || "") || undefined,
+    origin: (await headers()).get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL!,
+  });
+  redirect(`/admin/projects/${projectId}`);
+}
 
-  const origin = (await headers()).get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL;
-  const admin = createServiceClient();
-  const { data: invited, error } = await admin.auth.admin.inviteUserByEmail(email, {
-    data: { full_name: fullName, company },
-    redirectTo: `${origin}/auth/callback?next=/set-password`,
+export async function createOfferCode(form: FormData) {
+  const { supabase } = await requireAdmin();
+  const code = String(form.get("code")).trim().toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  const { error } = await supabase.from("offer_codes").insert({
+    code,
+    package_id: String(form.get("package_id")),
+    label: form.get("label") || null,
+    max_uses: form.get("max_uses") ? Number(form.get("max_uses")) : null,
+    email: String(form.get("email") ?? "").trim().toLowerCase() || null,
+    expires_at: form.get("expires_at") ? `${form.get("expires_at")}T23:59:59Z` : null,
   });
   if (error) throw new Error(error.message);
+  revalidatePath("/admin/offers");
+}
 
-  const { data: project, error: pErr } = await supabase
-    .from("projects")
-    .insert({ client_id: invited.user.id, name: projectName, price_pence: pricePence, start_date: start })
-    .select().single();
-  if (pErr) throw new Error(pErr.message);
-
-  const half = Math.round(pricePence / 2);
-  await Promise.all([
-    supabase.from("stages").insert(DEFAULT_STAGES.map((name, i) => ({
-      project_id: project.id, position: i, name, due_date: addDays(start, STAGE_DAY[i] - 1),
-      status: i === 0 ? "in_progress" : "todo",
-    }))),
-    supabase.from("payments").insert([
-      { project_id: project.id, label: "50% deposit", amount_pence: half, due_date: start },
-      { project_id: project.id, label: "Balance on approval", amount_pence: pricePence - half, due_date: addDays(start, 6) },
-    ]),
-    supabase.from("agreements").insert({
-      project_id: project.id, title: "Website Design Agreement",
-      body: defaultAgreement({ clientName: fullName, company, price: gbp(pricePence), startDate: ukDate(start) }),
-    }),
-  ]);
-  redirect(`/admin/projects/${project.id}`);
+export async function toggleOfferCode(form: FormData) {
+  const { supabase } = await requireAdmin();
+  await supabase.from("offer_codes").update({ active: form.get("active") === "true" }).eq("code", String(form.get("code")));
+  revalidatePath("/admin/offers");
 }
 
 export async function updateStage(form: FormData) {

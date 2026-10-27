@@ -19,6 +19,23 @@ Stack: Next.js 15 (App Router), Supabase (auth, Postgres with row-level security
 - Add a client: sends the invite and creates the project, the five stages with due dates, a 50/50 deposit and balance, and the agreement, all in one step.
 - Per client: update stages and client-visible notes, switch portal sections on and off, choose consultation sections, add or mark payments, edit the agreement until it's signed, and read their brief and files.
 
+## Packages and private offers
+
+Packages live in `src/lib/packages.ts`:
+
+| | Retail | Exclusive launch offer |
+|---|---|---|
+| Price | £1,000 | £490 (invite-only) |
+| Payment | 50% on booking, 50% on delivery | 75% on signing/booking, 25% on delivery |
+| Pages | Up to 5 of the client's choice | Home, About, Services, Gallery, Contact |
+| Revisions | 2 rounds | 1 round |
+| Extras | | 30-min 1-1 with Aisha, connection to their existing domain |
+| Turnaround | 7 days | 7 days |
+
+The **£490 offer can only be booked with an offer code**, so it never appears on the public site. In the admin **Offers** tab, create a code (by default `LAUNCH490`, 20 places, expiring 15 Nov). Copy its link, `https://portal.monostechnology.co.uk/book?offer=LAUNCH490`, into the email campaign. You can also lock a code to a single email address for a personal invite.
+
+`/book` without a code is the retail booking page (£1,000), so the website's "Book now" button can link there. Bookings create the client's account, send their portal invite, and set up the stages, 75/25 or 50/50 payments, and a package-specific agreement. The admin dashboard tracks progress against 20 sites by 15 Nov.
+
 ## Set up (about 20 minutes)
 
 1. **Supabase:** create a free project at supabase.com (region: London). In the SQL editor, run `supabase/schema.sql`.
@@ -32,7 +49,9 @@ Stack: Next.js 15 (App Router), Supabase (auth, Postgres with row-level security
    ```sql
    update profiles set role = 'admin' where email = 'you@monostechnology.co.uk';
    ```
-5. Sign in at the portal, and you land on the admin screen. Add your first client.
+5. Sign in at the portal, and you land on the admin screen. Create the `LAUNCH490` offer code in the Offers tab, and add your first client.
+
+Upgrading from the first version? Run `supabase/migration-001-offers.sql` instead of the full schema.
 
 ## Payments
 

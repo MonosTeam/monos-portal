@@ -17,7 +17,9 @@ create table projects (
   id uuid primary key default gen_random_uuid(),
   client_id uuid not null references profiles on delete cascade,
   name text not null,
-  package text not null default 'Website (7-day build)',
+  package_id text not null default 'retail',
+  package text not null default 'Website: 7-day build',
+  offer_code text,
   price_pence integer not null default 100000,
   start_date date not null default current_date,
   -- Per-client customisation: which portal sections and brief questions this client sees.
@@ -74,6 +76,19 @@ create table files (
   created_at timestamptz not null default now()
 );
 
+-- Private offer codes, e.g. an email-only campaign. Only usable on the booking page.
+create table offer_codes (
+  code text primary key,
+  package_id text not null,
+  label text,
+  max_uses integer,
+  used_count integer not null default 0,
+  email text, -- when set, only this email address can redeem the code
+  expires_at timestamptz,
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
 -- Helpers
 create function is_admin() returns boolean language sql stable security definer set search_path = public as $$
   select exists (select 1 from profiles where id = auth.uid() and role = 'admin')
@@ -100,6 +115,7 @@ alter table consultations enable row level security;
 alter table agreements enable row level security;
 alter table payments enable row level security;
 alter table files enable row level security;
+alter table offer_codes enable row level security;
 
 create policy "own profile" on profiles for select using (id = auth.uid() or is_admin());
 create policy "admin profiles" on profiles for all using (is_admin()) with check (is_admin());
@@ -121,6 +137,8 @@ create policy "admin agreements" on agreements for all using (is_admin()) with c
 create policy "read payments" on payments for select using (owns_project(project_id) or is_admin());
 create policy "admin payments" on payments for all using (is_admin()) with check (is_admin());
 
+create policy "admin offer codes" on offer_codes for all using (is_admin()) with check (is_admin());
+
 create policy "read files" on files for select using (owns_project(project_id) or is_admin());
 create policy "add files" on files for insert with check (owns_project(project_id) or is_admin());
 
@@ -137,3 +155,17 @@ create policy "client upload" on storage.objects for insert
   with check (bucket_id = 'client-files' and (owns_project(((storage.foldername(name))[1])::uuid) or is_admin()));
 create policy "client read" on storage.objects for select
   using (bucket_id = 'client-files' and (owns_project(((storage.foldername(name))[1])::uuid) or is_admin()));
+
+-- Atomically claim one use of an offer code. Called by the booking page with the service role.
+create function redeem_offer_code(c text, e text) returns text language plpgsql security definer set search_path = public as $$
+declare pkg text;
+begin
+  update offer_codes set used_count = used_count + 1
+  where upper(code) = upper(c) and active
+    and (expires_at is null or expires_at > now())
+    and (max_uses is null or used_count < max_uses)
+    and (email is null or lower(email) = lower(e))
+  returning package_id into pkg;
+  return pkg;
+end $$;
+revoke execute on function redeem_offer_code(text, text) from public, anon, authenticated;

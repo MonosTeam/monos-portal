@@ -21,6 +21,16 @@ export const BRIEF_SECTIONS: Section[] = [
     ],
   },
   {
+    id: "fixed_pages", title: "Your 5 pages", intro: "Your offer includes Home, About, Services, Gallery and Contact. Tell us what goes on each.",
+    questions: [
+      { id: "page_home", label: "Home: your main message and what visitors should do (call, book, enquire)", type: "textarea", required: true },
+      { id: "page_about", label: "About: your story, team and experience", type: "textarea" },
+      { id: "page_services", label: "Services: list each service with a line or two (and prices if you show them)", type: "textarea", required: true },
+      { id: "page_gallery", label: "Gallery: what should we show? (upload photos on the Files tab)", type: "textarea" },
+      { id: "page_contact", label: "Contact: phone, email, address, opening hours, areas covered", type: "textarea", required: true },
+    ],
+  },
+  {
     id: "style", title: "Look and feel", intro: "Your brand on your new website.",
     questions: [
       { id: "has_logo", label: "Do you have a logo?", type: "select", options: ["Yes, I'll upload it", "No, I need one", "Not sure"] },
