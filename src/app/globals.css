@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
+/* MONOS brand tokens. Swap these to match monostechnology.co.uk exactly. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand: #4f46e5;
+  --brand-ink: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --panel: #ffffff;
+  --page: #f8fafc;
+  --ok: #059669;
+  --warn: #d97706;
+  --bad: #dc2626;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-panel: var(--panel);
+  --color-page: var(--page);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page);
+  color: var(--ink);
 }
+
+.card { @apply bg-panel border border-line rounded-xl p-5 sm:p-6; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand text-brand-ink px-4 py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50; }
+.btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-4 py-2 text-sm font-medium hover:bg-page; }
+.input { @apply w-full rounded-lg border border-line bg-panel px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20; }
+.label { @apply block text-sm font-medium mb-1; }
+.h1 { @apply text-2xl font-semibold tracking-tight; }
+.h2 { @apply text-lg font-semibold; }
