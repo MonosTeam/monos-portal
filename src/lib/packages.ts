@@ -18,7 +18,7 @@ export const PACKAGES: Record<PackageId, Package> = {
   retail: {
     id: "retail",
     name: "Website: 7-day build",
-    pricePence: 100000,
+    pricePence: 350000,
     depositPct: 50,
     revisions: 2,
     pages: null,

@@ -20,7 +20,7 @@ create table projects (
   package_id text not null default 'retail',
   package text not null default 'Website: 7-day build',
   offer_code text,
-  price_pence integer not null default 100000,
+  price_pence integer not null default 350000,
   start_date date not null default current_date,
   -- Per-client customisation: which portal sections and brief questions this client sees.
   modules jsonb not null default '{"consultation":true,"agreement":true,"payments":true,"uploads":true}',
