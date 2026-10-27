@@ -26,7 +26,7 @@ Packages live in `src/lib/packages.ts`:
 | | Retail | Exclusive launch offer |
 |---|---|---|
 | Price | £3,500 (RRP) | £490 (invite-only) |
-| Payment | 50% on booking, 50% on delivery | 75% on signing/booking, 25% on delivery |
+| Payment | 75% on signing/booking, 25% on delivery | 75% on signing/booking, 25% on delivery |
 | Pages | Up to 5 of the client's choice | Home, About, Services, Gallery, Contact |
 | Revisions | 2 rounds | 1 round |
 | Extras | | 30-min 1-1 with Aisha, connection to their existing domain |
@@ -34,7 +34,7 @@ Packages live in `src/lib/packages.ts`:
 
 The **£490 offer can only be booked with an offer code**, so it never appears on the public site. In the admin **Offers** tab, create a code (by default `LAUNCH490`, 20 places, expiring 15 Nov). Copy its link, `https://portal.monostechnology.co.uk/book?offer=LAUNCH490`, into the email campaign. You can also lock a code to a single email address for a personal invite.
 
-`/book` without a code is the retail booking page (£3,500), so the website's "Book now" button can link there. Bookings create the client's account, send their portal invite, and set up the stages, 75/25 or 50/50 payments, and a package-specific agreement. The admin dashboard tracks progress against 20 sites by 15 Nov.
+`/book` without a code is the retail booking page (£3,500), so the website's "Book now" button can link there. Bookings create the client's account, send their portal invite, and set up the stages, 75/25 payments, and a package-specific agreement. The admin dashboard tracks progress against 20 sites by 15 Nov.
 
 ## Set up (about 20 minutes)
 

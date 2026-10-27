@@ -19,7 +19,7 @@ export const PACKAGES: Record<PackageId, Package> = {
     id: "retail",
     name: "Website: 7-day build",
     pricePence: 350000,
-    depositPct: 50,
+    depositPct: 75,
     revisions: 2,
     pages: null,
     extras: [],
