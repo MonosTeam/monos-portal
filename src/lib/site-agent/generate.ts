@@ -3,7 +3,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { QUESTIONS } from "../brief";
-import { SiteContentSchema, type Answers, type SiteContent } from "./schema";
+import { CopySchema, PlanSchema, type Answers, type SiteContent } from "./schema";
 
 export const MODEL = process.env.SITE_AGENT_MODEL || "claude-opus-5-5";
 
@@ -63,22 +63,42 @@ export async function generateContent(o: {
     content.push({ type: "text", text: `Write the complete website content for this business. ${o.uploads.length} image(s) were uploaded.` });
   }
 
-  const stream = client.beta.messages.stream({
-    model: MODEL,
-    max_tokens: 32000,
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
-    thinking: { type: "adaptive" },
-    output_config: { effort: "high", format: betaZodOutputFormat(SiteContentSchema) },
-    system: SYSTEM,
-    messages: [{ role: "user", content }],
-  });
-  const msg = await stream.finalMessage();
-  if (msg.stop_reason === "refusal") throw new Error("The model declined to write this site. Check the brief for anything unusual.");
-  if (msg.stop_reason === "max_tokens") throw new Error("The site content was cut off (max_tokens). Try again.");
-  const parsed = msg.parsed_output;
-  if (!parsed) throw new Error("The model's reply could not be read as site content.");
-  return { content: tidy(parsed, o.answers), usage: { input: msg.usage.input_tokens, output: msg.usage.output_tokens } };
+  // Mark the brief (and photos) for caching: both steps send the same opening message.
+  const last = content[content.length - 1] as Anthropic.Beta.BetaTextBlockParam;
+  last.cache_control = { type: "ephemeral" };
+
+  const messages: Anthropic.Beta.BetaMessageParam[] = [
+    { role: "user", content: [...content, { type: "text", text: "Step 1 of 2: decide the design, brand tagline, image plan, the Gallery and Contact page text, the reviews and your notes for Aisha." }] },
+  ];
+  const usage = { input: 0, output: 0 };
+  async function step<T>(format: ReturnType<typeof betaZodOutputFormat<typeof PlanSchema>> | ReturnType<typeof betaZodOutputFormat<typeof CopySchema>>) {
+    const stream = client.beta.messages.stream({
+      model: MODEL,
+      max_tokens: 32000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      thinking: { type: "adaptive" },
+      output_config: { effort: "high", format },
+      system: SYSTEM,
+      messages,
+    });
+    const msg = await stream.finalMessage();
+    usage.input += msg.usage.input_tokens + (msg.usage.cache_read_input_tokens ?? 0) + (msg.usage.cache_creation_input_tokens ?? 0);
+    usage.output += msg.usage.output_tokens;
+    if (msg.stop_reason === "refusal") throw new Error("The model declined to write this site. Check the brief for anything unusual.");
+    if (msg.stop_reason === "max_tokens") throw new Error("The site content was cut off (max_tokens). Try again.");
+    if (!msg.parsed_output) throw new Error("The model's reply could not be read as site content.");
+    messages.push({ role: "assistant", content: msg.content as Anthropic.Beta.BetaContentBlockParam[] });
+    return msg.parsed_output as T;
+  }
+
+  const plan = await step<import("zod").infer<typeof PlanSchema>>(betaZodOutputFormat(PlanSchema));
+  messages.push({ role: "user", content: "Step 2 of 2: now write the Home, About and Services pages, consistent with your plan." });
+  const copy = await step<import("zod").infer<typeof CopySchema>>(betaZodOutputFormat(CopySchema));
+
+  const { extraNotes, ...pages } = copy;
+  const site: SiteContent = { ...plan, ...pages, notesForAisha: [...plan.notesForAisha, ...extraNotes] };
+  return { content: tidy(site, o.answers), usage };
 }
 
 const HEX = /^#[0-9a-f]{6}$/i;
@@ -94,6 +114,7 @@ export function tidy(c: SiteContent, answers: Answers): SiteContent {
   c.services.items = c.services.items.slice(0, 9);
   c.services.process = c.services.process.slice(0, 4);
   c.services.faq = c.services.faq.slice(0, 6);
+  c.notesForAisha = c.notesForAisha.slice(0, 6);
   if (!answers.reviews?.trim()) c.reviews = []; // reviews can only come from the client
   if (!answers.team?.trim()) c.about.team = []; // team members only when the client named them
   if (!answers.accreditations?.trim()) c.about.accreditations = [];

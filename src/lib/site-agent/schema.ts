@@ -94,10 +94,21 @@ export const SiteContentSchema = z.object({
       gallery: z.array(z.string()).describe("6 search phrases for gallery photos"),
     }),
   }),
-  notesForAisha: z.array(z.string()).describe("Short list of gaps, assumptions or things to check with the client before publishing"),
+  notesForAisha: z.array(z.string()).describe("At most 5 short notes, most important first: real gaps or risky assumptions Aisha must check before publishing. Skip minor wording checks."),
 });
 
 export type SiteContent = z.infer<typeof SiteContentSchema>;
+
+// The full schema is too big to enforce in a single structured-output request, so the agent
+// works in two steps: a plan (design, images, short pages) and then the main page copy.
+const S = SiteContentSchema.shape;
+export const PlanSchema = z.object({
+  design: S.design, brand: S.brand, gallery: S.gallery, contact: S.contact, reviews: S.reviews, images: S.images, notesForAisha: S.notesForAisha,
+});
+export const CopySchema = z.object({
+  home: S.home, about: S.about, services: S.services,
+  extraNotes: z.array(z.string()).describe("At most 2 further important gaps found while writing; usually empty"),
+});
 export type Answers = Record<string, string>;
 
 export type SiteImage = { src: string; alt: string; credit?: { name: string; url: string } };

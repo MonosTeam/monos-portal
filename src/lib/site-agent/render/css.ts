@@ -2,7 +2,7 @@
 import type { SiteContent } from "../schema";
 
 type RGB = [number, number, number];
-const rgb = (hex: string): RGB => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as RGB;
+const rgb = (h: string): RGB => { const x = h.length === 4 ? "#" + [...h.slice(1)].map((c) => c + c).join("") : h; return [1, 3, 5].map((i) => parseInt(x.slice(i, i + 2), 16)) as RGB; };
 const hex = (c: RGB) => "#" + c.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0")).join("");
 const mix = (a: string, b: string, t: number) => { const x = rgb(a), y = rgb(b); return hex([0, 1, 2].map((i) => x[i] + (y[i] - x[i]) * t) as RGB); };
 const lum = (h: string) => { const [r, g, b] = rgb(h).map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
@@ -38,7 +38,8 @@ export function css(d: SiteContent["design"]) {
   const btn = darkPrimary ? (contrast(d.accent, bg) >= 3 ? d.accent : mix(primary, "#ffffff", 0.45)) : primary;
   const link = readable(darkPrimary ? btn : primary, bg);
   const accentText = readable(d.accent, bg, 3);
-  const band = t === "bold" ? `linear-gradient(120deg, ${mix(primary, "#000", 0.1)}, ${mix(primary, "#ffffff", 0.12)} 50%, ${mix(d.accent, primary, 0.25)})` : t === "warm" ? mix(primary, "#1a1410", 0.55) : mix(primary, "#0b1020", 0.35);
+  const bandBase = darkPrimary ? btn : primary;
+  const band = t === "bold" ? `linear-gradient(120deg, ${mix(bandBase, "#000000", 0.35)}, ${mix(bandBase, "#000000", 0.1)} 55%, ${mix(bandBase, "#ffffff", 0.1)})` : t === "warm" ? mix(primary, "#1a1410", 0.55) : mix(primary, "#0b1020", 0.35);
   const radius = t === "clean" ? "14px" : t === "warm" ? "22px" : "18px";
 
   return `
