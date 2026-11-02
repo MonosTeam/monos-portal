@@ -39,11 +39,7 @@ The **£490 offer can only be booked with an offer code**, so it never appears o
 ## Set up (about 20 minutes)
 
 1. **Supabase:** create a free project at supabase.com (region: London). In the SQL editor, run `supabase/schema.sql`.
-2. **Auth settings:** in Authentication → URL configuration, set Site URL to `https://portal.monostechnology.co.uk` and add it to redirect URLs. In Authentication → Email templates:
-   - **Invite user:** link to `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
-   - **Magic link:** link to `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email`
-   - **Reset password:** link to `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
-   For reliable delivery, add your own SMTP (for example your Google Workspace or Resend) under Project settings → Auth → SMTP.
+2. **Auth settings:** in Authentication → URL configuration, set Site URL to `https://portal.monostechnology.co.uk` and add it to redirect URLs. The default Supabase email templates work as they are: `/auth/callback` handles both link styles. For reliable delivery, add your own SMTP (for example your Google Workspace or Resend) under Project settings → Auth → SMTP.
 3. **Netlify:** Add new site → Import from GitHub → `MonosTeam/monos-portal`. Netlify detects Next.js automatically, so no extra config is needed. Add the environment variables from `.env.example` under Site configuration → Environment variables (the Supabase values are in Supabase → Project settings → API). Add the domain `portal.monostechnology.co.uk` under Domain management and create the CNAME it shows at your DNS provider.
    **Email from info@monos.ai:** create a Google app password for info@monos.ai (Google account → Security → App passwords) and put it in `SMTP_PASS`. Use the same SMTP details in Supabase → Project settings → Auth → SMTP, so login and invite emails also come from info@monos.ai.
 4. **Make yourself admin:** invite yourself from Supabase → Authentication → Users, set a password, then run in the SQL editor:
