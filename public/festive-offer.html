@@ -49,8 +49,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);ov
   background:rgba(21,21,23,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);padding:9px 14px;border-radius:999px}
 .hero-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1200px;width:100%;margin:0 auto;
   padding-block:20px 70px;padding-left:var(--gut-l);padding-right:var(--gut-r)}
-.hero-body > *{max-width:640px}
-h1{font:400 clamp(60px,12.5vw,150px)/.88 var(--display);text-transform:uppercase;margin:20px 0 22px;text-shadow:0 4px 40px rgba(0,0,0,.5)}
+.hero-body > *{max-width:760px}
+.hero-body > .pill,.hero-body > .price{align-self:flex-start}
+h1{font:400 clamp(54px,9.2vw,124px)/.9 var(--display);text-transform:uppercase;margin:20px 0 22px;text-shadow:0 4px 40px rgba(0,0,0,.5)}
 h1 em{font-style:normal;color:var(--signal);display:block}
 .lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);margin:0}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
@@ -96,7 +97,9 @@ h1 em{font-style:normal;color:var(--signal);display:block}
 .phone img{display:block;width:100%;will-change:transform}
 .label{max-width:1100px;width:100%;margin:18px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
 .label b{color:var(--ink)}
-@media (max-width:760px){.phone{display:none}.show{height:360vh}}
+@media (max-width:760px){.phone{display:none}.show{height:360vh}
+  .shade{background:linear-gradient(180deg,rgba(11,11,12,.78) 0%,rgba(11,11,12,.9) 45%,rgba(11,11,12,.95) 80%,var(--bg) 100%)}
+  .topbar .pill{display:none}}
 
 /* ---------- Content sections ---------- */
 h2{font:400 clamp(34px,6vw,52px)/1 var(--display);text-transform:uppercase;margin:0 0 16px}
