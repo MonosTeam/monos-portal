@@ -58,5 +58,13 @@ export const SALES_TARGET = { count: 20, deadline: "2026-11-15" };
 export const depositPence = (p: Package) => Math.round((p.pricePence * p.depositPct) / 100);
 
 // Optional default payment links per package, set in the environment, e.g. PAY_LINK_LAUNCH490_DEPOSIT.
+// Defaults are MONOS's PayPal links for the £490 offer (75% = £367.50, 25% = £122.50).
+const DEFAULT_PAY_LINKS: Partial<Record<PackageId, Record<"DEPOSIT" | "BALANCE", string>>> = {
+  launch490: {
+    DEPOSIT: "https://www.paypal.com/ncp/payment/45ALR2Y4ECJXL",
+    BALANCE: "https://www.paypal.com/ncp/payment/NSVTCNUHPALVA",
+  },
+};
+
 export const payLink = (p: Package, kind: "DEPOSIT" | "BALANCE") =>
-  process.env[`PAY_LINK_${p.id.toUpperCase()}_${kind}`] || null;
+  process.env[`PAY_LINK_${p.id.toUpperCase()}_${kind}`] || DEFAULT_PAY_LINKS[p.id]?.[kind] || null;
