@@ -1,26 +1,31 @@
 @import "tailwindcss";
 
-/* MONOS brand tokens: signature red, warm neutrals, matching the founding-client landing page. */
+/* MONOS brand (dark only): Signal red, Standby amber, Go green on near-black. See Project files brand/monos-brand.md. */
 :root {
-  --brand: #e0141e;
+  --brand: #d23b2c;      /* Signal */
   --brand-ink: #ffffff;
-  --ink: #141213;
-  --muted: #5f595b;
-  --line: #e3dfdd;
-  --panel: #ffffff;
-  --page: #f7f6f4;
-  --ok: #16794a;
-  --warn: #b45309;
-  --bad: #b91c1c;
+  --highlight: #f3b33e;  /* Standby: prices, highlights */
+  --ink: #ffffff;        /* Paper */
+  --muted: #c6c6cb;
+  --line: #2c2c31;
+  --panel: #1c1c1f;      /* Card */
+  --field: #151517;      /* Card low: inputs, pills */
+  --page: #0b0b0c;
+  --ok: #4fae4f;         /* Go */
+  --warn: #f3b33e;
+  --bad: #ff6a5c;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-ink: var(--brand-ink);
+  --color-highlight: var(--highlight);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-panel: var(--panel);
+  --color-field: var(--field);
   --color-page: var(--page);
   --color-ok: var(--ok);
   --color-warn: var(--warn);
@@ -30,20 +35,28 @@
 }
 
 body {
-  background: var(--page);
+  background:
+    radial-gradient(60rem 30rem at 100% -10%, color-mix(in srgb, var(--brand) 14%, transparent), transparent 70%),
+    var(--page);
+  background-attachment: fixed;
   color: var(--ink);
 }
 
-.card { @apply bg-panel border border-line rounded-xl p-5 sm:p-6; }
-.btn { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand text-brand-ink px-4 py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50; }
-.btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel px-4 py-2 text-sm font-medium hover:bg-page; }
-.input { @apply w-full rounded-lg border border-line bg-panel px-3 py-2 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20; }
-.label { @apply block text-sm font-medium mb-1; }
-.h1 { @apply text-2xl font-semibold tracking-tight; }
-.h2 { @apply text-lg font-semibold; }
+.card { @apply bg-panel border border-line rounded-2xl p-5 sm:p-6; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand text-brand-ink px-5 py-2.5 text-sm font-bold hover:brightness-110 disabled:opacity-50; }
+.btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent text-ink px-5 py-2.5 text-sm font-bold hover:border-ink/60; }
+.input { @apply w-full rounded-xl border border-line bg-field px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-brand focus:ring-2 focus:ring-brand/30; }
+.label { @apply block text-sm font-medium text-muted mb-1.5; }
+.h1 { @apply font-display text-3xl sm:text-4xl uppercase tracking-wide leading-none; }
+.h2 { @apply text-lg font-bold; }
 
 .onair-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brand); animation: onair 1.2s steps(2, start) infinite; }
 @keyframes onair { to { visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) { .onair-dot { animation: none; } }
-.h1 { font-family: var(--font-display-face); }
-@media print { header, nav { display: none; } body { background: #fff; } }
+
+/* Agreements print on white paper. */
+@media print {
+  :root { --ink: #000; --muted: #333; --panel: #fff; --page: #fff; --line: #ccc; color-scheme: light; }
+  body { background: #fff; }
+  header, nav { display: none; }
+}

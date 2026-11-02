@@ -28,10 +28,10 @@ export default async function BookPage({ searchParams }: { searchParams: Promise
         {invalidOffer && <div className="card mb-6 border-warn/40 bg-warn/5 text-sm">This offer link has expired or is fully booked. You can still book at our standard price below.</div>}
         <div className="grid gap-6 md:grid-cols-[1fr_1.1fr]">
           <div className="card">
-            {offerPkg && <span className="inline-block rounded-full bg-brand text-brand-ink text-xs font-medium px-3 py-1 mb-3">Exclusive invite-only offer</span>}
+            {offerPkg && <span className="inline-block rounded-full bg-brand text-brand-ink text-xs font-medium px-3 py-1 mb-3">Festive special offer · invite only</span>}
             <h1 className="h1">{pkg.name}</h1>
             <div className="mt-3 flex items-baseline gap-3">
-              <span className="text-4xl font-semibold">{gbp(pkg.pricePence)}</span>
+              <span className="font-display text-5xl text-highlight">{gbp(pkg.pricePence)}</span>
               {offerPkg && <span className="text-muted line-through">{gbp(PACKAGES.retail.pricePence)}</span>}
             </div>
             <p className="text-sm text-muted mt-1">{gbp(depositPence(pkg))} ({pkg.depositPct}%) on booking, the rest on delivery.</p>

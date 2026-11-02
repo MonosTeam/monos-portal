@@ -78,6 +78,6 @@ async function notifyNewBooking(o: { fullName: string; company: string; email: s
     subject: `New booking: ${o.company || o.fullName} (${gbp(o.price)})`,
     html: `<p><strong>${esc(o.company || o.fullName)}</strong> just booked the ${esc(o.pkgName)} for ${gbp(o.price)}${o.offerCode ? ` with code ${esc(o.offerCode)}` : ""}.</p>
 <p>${esc(o.fullName)} · ${esc(o.email)}${o.phone ? ` · ${esc(o.phone)}` : ""}</p>
-<p><a href="${o.origin}/admin/projects/${o.projectId}" style="display:inline-block;background:#e0141e;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Open in your dashboard</a></p>`,
+<p><a href="${o.origin}/admin/projects/${o.projectId}" style="display:inline-block;background:#d23b2c;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Open in your dashboard</a></p>`,
   });
 }

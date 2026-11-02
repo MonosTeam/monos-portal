@@ -1,10 +1,9 @@
-// MONOS wordmark with the signature red "on air" dot.
+// MONOS wordmark: condensed caps with the signature red dot top-right.
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      <span className="font-display font-extrabold text-2xl leading-none tracking-tight">MONOS</span>
-      <span className="text-sm text-muted">Technology</span>
-      <span className="onair-dot" aria-hidden />
+    <span className={`inline-flex items-start gap-1 ${className}`} aria-label="MONOS Technology">
+      <span className="font-display text-3xl leading-none tracking-wide">MONOS</span>
+      <span className="onair-dot mt-0.5" aria-hidden />
     </span>
   );
 }

@@ -3,7 +3,7 @@ import { createServiceClient } from "@/lib/supabase-server";
 import { provisionClient } from "@/lib/provision";
 import { PACKAGES, type PackageId } from "@/lib/packages";
 
-// Public sign-up endpoint for the founding-client landing page (and any other form).
+// Public sign-up endpoint for the festive offer page (/festive-offer) (and any other form).
 // POST JSON { name, business, email, phone, industry, domain, about, source, offer? }.
 // The offer code can also be given in the URL: /api/signup?offer=LAUNCH490. Without a valid code the client books at retail price.
 const allowed = (process.env.SIGNUP_ALLOWED_ORIGINS || "*").split(",").map((s) => s.trim());

@@ -23,7 +23,7 @@ Stack: Next.js 15 (App Router), Supabase (auth, Postgres with row-level security
 
 Packages live in `src/lib/packages.ts`:
 
-| | Retail | Exclusive launch offer |
+| | Retail | Festive special offer |
 |---|---|---|
 | Price | £3,500 (RRP) | £490 (invite-only) |
 | Payment | 75% on signing/booking, 25% on delivery | 75% on signing/booking, 25% on delivery |
@@ -64,7 +64,7 @@ info@monos.ai is emailed when a client books and when they sign their agreement.
 
 ## Payments
 
-Payments use PayPal payment links on the MONOS PayPal account: £367.50 (75%) and £122.50 (25%) for the founding-client offer. These links are built in as defaults (https://www.paypal.com/ncp/payment/45ALR2Y4ECJXL for £367.50 and https://www.paypal.com/ncp/payment/NSVTCNUHPALVA for £122.50), so every new £490 booking gets them automatically. To change them, set `PAY_LINK_LAUNCH490_DEPOSIT` and `PAY_LINK_LAUNCH490_BALANCE`. Each link asks the payer for their business name, so you can match the payment and mark it as paid in the client's page. Automatic "paid" updates from PayPal webhooks are a planned next step.
+Payments use PayPal payment links on the MONOS PayPal account: £367.50 (75%) and £122.50 (25%) for the festive special offer. These links are built in as defaults (https://www.paypal.com/ncp/payment/45ALR2Y4ECJXL for £367.50 and https://www.paypal.com/ncp/payment/NSVTCNUHPALVA for £122.50), so every new £490 booking gets them automatically. To change them, set `PAY_LINK_LAUNCH490_DEPOSIT` and `PAY_LINK_LAUNCH490_BALANCE`. Each link asks the payer for their business name, so you can match the payment and mark it as paid in the client's page. Automatic "paid" updates from PayPal webhooks are a planned next step.
 
 ## Local development
 

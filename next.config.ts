@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Private founding-client invite page (master copy: outreach/landing-page/founding-client.html in Project files).
+  // Private festive-offer invite page (master copy: outreach/landing-page/festive-offer.html in Project files).
   async rewrites() {
-    return [{ source: "/founding-client", destination: "/founding-client.html" }];
+    return [{ source: "/festive-offer", destination: "/festive-offer.html" }];
   },
   async headers() {
-    return ["/founding-client", "/founding-client.html", "/book"].map((source) => ({
+    return ["/festive-offer", "/festive-offer.html", "/book"].map((source) => ({
       source,
       headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
     }));

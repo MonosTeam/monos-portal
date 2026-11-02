@@ -35,7 +35,7 @@ export const PACKAGES: Record<PackageId, Package> = {
   },
   launch490: {
     id: "launch490",
-    name: "Exclusive launch offer: 5-page website",
+    name: "Festive special offer: 5-page website",
     pricePence: 49000,
     depositPct: 75,
     revisions: 1,

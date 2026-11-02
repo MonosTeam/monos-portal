@@ -4,7 +4,7 @@ import { Logo } from "./Logo";
 export function Shell({ nav, user, children }: { nav: { href: string; label: string }[]; user: string; children: React.ReactNode }) {
   return (
     <div className="min-h-screen">
-      <header className="border-b border-line bg-panel">
+      <header className="border-b border-line bg-page/80 backdrop-blur">
         <div className="mx-auto max-w-5xl px-4 h-16 flex items-center justify-between gap-4">
           <Link href="/"><Logo /></Link>
           <div className="flex items-center gap-3 text-sm">

@@ -1,89 +1,89 @@
-<title>MONOS Founding Client</title>
+<title>MONOS Festive Offer</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Red+Hat+Display:wght@400;500;700;800&display=swap">
 <style>
-/* Layout: one narrow broadcast-style column; a bold hero "on air" strip, then the 3-step join flow as the page's spine. */
+/* Layout: MONOS brand, dark-only by design (matches monostechnology.co.uk): condensed caps hero with the red "ON AIR." line, then the join flow as the spine. */
 :root{
-  --bg:#f7f6f4; --surface:#ffffff; --ink:#141213; --muted:#5f595b; --line:#e3dfdd;
-  --red:#e0141e; --red-ink:#ffffff; --red-soft:#fde8e9; --ok:#16794a;
-  --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
-  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --bg:#0b0b0c; --surface:#1c1c1f; --surface-2:#151517; --ink:#ffffff; --muted:#c6c6cb; --line:#2c2c31;
+  --signal:#d23b2c; --standby:#f3b33e; --go:#4fae4f; --paper:#ffffff;
+  --red:var(--signal); --red-ink:#ffffff; --red-soft:rgba(210,59,44,.28); --ok:var(--go);
+  --display:"Anton", "Impact", "Arial Narrow", sans-serif;
+  --body:"Red Hat Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#121011; --surface:#1c191a; --ink:#f4f1f1; --muted:#a69ea0; --line:#2e2a2b;
-  --red:#ff2d37; --red-ink:#ffffff; --red-soft:#3a1517; --ok:#4cc58a; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#121011; --surface:#1c191a; --ink:#f4f1f1; --muted:#a69ea0; --line:#2e2a2b;
-  --red:#ff2d37; --red-ink:#ffffff; --red-soft:#3a1517; --ok:#4cc58a; color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
-.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header{padding-block:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{font:800 26px/1 var(--display);letter-spacing:-.02em}
-.onair{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);padding:7px 10px;border-radius:4px}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--red);animation:blink 1.2s steps(2,start) infinite}
+body{margin:0;background:var(--bg) radial-gradient(120% 70% at 100% 0%, rgba(210,59,44,.16), transparent 60%) no-repeat;color:var(--ink);font:17px/1.6 var(--body)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{padding-block:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{position:relative;font:400 34px/1 var(--display);letter-spacing:-.005em;text-transform:uppercase;padding-right:12px}
+.logo::after{content:"";position:absolute;top:-2px;right:0;width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.onair{display:inline-flex;align-items:center;gap:9px;font:800 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);padding:9px 14px;border-radius:999px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px var(--signal);animation:blink 1.2s steps(2,start) infinite}
 @keyframes blink{50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.dot{animation:none}}
-.hero{padding-block:28px 36px}
-.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{font:800 clamp(40px,9vw,68px)/.98 var(--display);letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
-h1 em{font-style:normal;color:var(--red)}
-.lead{font-size:19px;color:var(--muted);max-width:56ch;margin:0}
-.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-top:26px;padding-block:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.price b{font:800 46px/1 var(--display);letter-spacing:-.03em}
+.hero{padding-block:26px 34px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font:800 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;background:var(--surface-2);padding:9px 14px;border-radius:999px}
+h1{font:400 clamp(54px,14vw,112px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.005em;margin:18px 0 20px}
+h1 em{font-style:normal;color:var(--signal);display:block}
+.lead{font-size:20px;color:var(--muted);max-width:56ch;margin:0}
+.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-top:28px;padding:20px 22px;background:var(--surface);border-radius:22px}
+.price b{font:400 56px/1 var(--display);color:var(--standby)}
 .price s{color:var(--muted);font-size:18px}
 .price span{color:var(--muted);font-size:15px}
-h2{font:800 28px/1.1 var(--display);letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+h2{font:400 clamp(32px,6vw,44px)/1 var(--display);text-transform:uppercase;margin:0 0 16px}
 section{padding-block:30px}
 .incl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 28px;margin:0;padding:0;list-style:none}
 .incl li{display:flex;gap:10px;align-items:flex-start;min-width:0}
-.incl li::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;background:var(--red);border-radius:50%}
+.incl li::before{content:"";flex:none;width:8px;height:8px;margin-top:10px;background:var(--signal);border-radius:50%}
 .steps{display:grid;gap:14px}
-.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px}
 .step-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:500 14px/1 var(--mono);border:1.5px solid var(--ink)}
-.step.done .num{background:var(--ok);border-color:var(--ok);color:#fff}
-.step.active{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
-.step h3{font:600 19px/1.2 var(--body);margin:0}
+.num{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:800 15px/1 var(--body);background:var(--surface-2);border:1px solid var(--line)}
+.step.done .num{background:var(--go);border-color:var(--go);color:#fff}
+.step.active{border-color:var(--signal);box-shadow:0 0 0 3px var(--red-soft)}
+.step h3{font:800 20px/1.2 var(--body);margin:0}
 .step p{margin:0 0 14px;color:var(--muted)}
 .locked{opacity:.55}
 form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
 .full{grid-column:1/-1}
 @media (max-width:560px){form{grid-template-columns:1fr}}
-label{display:grid;gap:5px;font-weight:500;font-size:14px;min-width:0}
-input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:11px 12px;width:100%}
-textarea{min-height:84px;resize:vertical}
-input:focus,select:focus,textarea:focus,.btn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}
-.check input{width:auto;margin-top:5px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 var(--body);background:var(--red);color:var(--red-ink);border:0;border-radius:8px;padding:15px 22px;text-decoration:none;cursor:pointer}
-.btn[aria-disabled="true"]{background:var(--line);color:var(--muted);pointer-events:none}
-.note{font-size:14px;color:var(--muted);margin-top:10px}
-.err{color:var(--red);font-size:14px}
-.faq details{border-top:1px solid var(--line);padding-block:14px}
+label{display:grid;gap:6px;font-weight:700;font-size:14px;min-width:0}
+input,select,textarea{font:inherit;font-weight:500;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+input::placeholder,textarea::placeholder{color:#8a8a90}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus,.btn:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;color:var(--muted)}
+.check input{width:auto;margin-top:5px;accent-color:var(--signal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:800 17px/1 var(--body);background:var(--signal);color:var(--red-ink);border:0;border-radius:999px;padding:17px 28px;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn[aria-disabled="true"]{background:var(--surface-2);color:var(--muted);border:1px solid var(--line);pointer-events:none}
+.note{font-size:14px;color:var(--muted);margin-top:12px}
+.err{color:var(--standby);font-size:14px}
+.err a{color:var(--ink)}
+.faq details{border-top:1px solid var(--line);padding-block:16px}
 .faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{font-weight:600;cursor:pointer}
+.faq summary{font-weight:700;cursor:pointer}
 .faq p{margin:8px 0 0;color:var(--muted)}
 footer{padding-block:30px 40px;color:var(--muted);font-size:13px}
 </style>
 
 <div class="wrap">
   <header>
-    <div class="logo">MONOS <span style="font-weight:500;font-family:var(--body);font-size:.62em;letter-spacing:0">Technology</span></div>
-    <div class="onair"><span class="dot" aria-hidden="true"></span>Founding client invite</div>
+    <div class="logo">MONOS</div>
+    <div class="onair"><span class="dot" aria-hidden="true"></span>Festive special offer</div>
   </header>
 
   <div class="hero">
-    <div class="eyebrow">Private invitation · Manchester · 20 places</div>
-    <h1>Your business. <em>On air in 5 days.</em></h1>
-    <p class="lead">A professional 5-page website, built for you by MONOS Technology in Manchester. You spend 2 minutes here and 30 minutes on a call with Aisha. We do everything else.</p>
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Special offer for new businesses · Manchester · 20 places</div>
+    <h1>Your website. <em>On air in 5 days.</em></h1>
+    <p class="lead">Our annual festive offer for new businesses: a professional 5-page website, built for you by MONOS Technology in Manchester, so you go into the busy season ready for customers. You spend 2 minutes here and 30 minutes on a call with Aisha. We do everything else.</p>
     <div class="price">
       <b>£490</b><s>Usually £3,500</s>
-      <span>£367.50 today, £122.50 once you've approved your site</span>
+      <span>£367.50 to book, £122.50 once you've approved your site</span>
     </div>
   </div>
 
@@ -136,7 +136,7 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:13px}
 
   <section class="faq">
     <h2>Questions</h2>
-    <details><summary>Why is it £490 instead of £3,500?</summary><p>We're taking on 20 founding clients in Manchester this month in return for honest feedback. The offer is by invitation only and isn't on our public website.</p></details>
+    <details><summary>Why is it £490 instead of £3,500?</summary><p>It's our festive special offer, which we run every year for new businesses to help them take off this season. There are 20 places, it's by invitation only, and it isn't on our public website.</p></details>
     <details><summary>What do I need to prepare?</summary><p>Your logo and a few photos if you have them, which you upload in your portal. If you don't have any, we'll use quality stock images that suit your trade.</p></details>
     <details><summary>When do I pay the rest?</summary><p>The final £122.50 is due on delivery, after your call and your round of changes, before the site goes live on your domain.</p></details>
     <details><summary>I don't have a domain. Is that a problem?</summary><p>No. We'll help you pick one on the call. The domain itself is paid to the registrar, usually about £10 a year.</p></details>
@@ -178,7 +178,7 @@ const CONFIG = {
         const r = await fetch(CONFIG.FORM_ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
         const res = await r.json().catch(() => ({}));
         if (r.status === 409){ err.innerHTML = 'You already have a MONOS account with this email. <a href="' + CONFIG.PORTAL_URL + '" target="_blank" rel="noopener">Log in to your portal</a>.'; btn.textContent = "LET'S GO!"; btn.disabled = false; return; }
-        if (r.status === 410){ err.textContent = "Sorry, all founding places have now been taken. Reply to our email and we'll let you know about the next round."; btn.textContent = "Offer closed"; return; }
+        if (r.status === 410){ err.textContent = "Sorry, all 20 festive offer places have now been taken. Reply to our email and we'll let you know if a place opens up."; btn.textContent = "Offer closed"; return; }
         if (!r.ok || res.ok === false){ throw new Error(res.error || "signup failed"); }
         if (res.portalUrl) pay = res.portalUrl;
       } catch(_) {

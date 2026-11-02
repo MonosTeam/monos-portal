@@ -40,7 +40,7 @@ export default async function Dashboard() {
           <h2 className="h2 mb-3">Your next steps</h2>
           <ul className="space-y-2">
             {todos.map((t) => (
-              <li key={t.href}><Link href={t.href} {...(t.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="flex items-center justify-between rounded-lg bg-panel border border-line px-4 py-3 hover:border-brand"><span>{t.text}</span><span className="text-brand">→</span></Link></li>
+              <li key={t.href}><Link href={t.href} {...(t.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="flex items-center justify-between rounded-xl bg-field border border-line px-4 py-3 hover:border-brand"><span>{t.text}</span><span className="text-brand">→</span></Link></li>
             ))}
           </ul>
         </div>

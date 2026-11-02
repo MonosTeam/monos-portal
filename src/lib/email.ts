@@ -27,7 +27,7 @@ export async function sendEmail({ to, subject, html, replyTo }: { to: string | s
 function layout(body: string) {
   return `<div style="background:#f7f6f4;padding:32px 16px;font-family:Arial,Helvetica,sans-serif;color:#141213">
   <div style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #e3dfdd;border-radius:12px;padding:28px">
-    <div style="font-weight:800;font-size:22px;letter-spacing:-.02em;margin-bottom:20px">MONOS <span style="font-weight:400;font-size:14px">Technology</span> <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e0141e;vertical-align:middle"></span></div>
+    <div style="font-weight:800;font-size:22px;letter-spacing:-.02em;margin-bottom:20px">MONOS <span style="font-weight:400;font-size:14px">Technology</span> <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#d23b2c;vertical-align:middle"></span></div>
     ${body}
   </div>
   <p style="text-align:center;color:#5f595b;font-size:12px;margin-top:16px">MONOS Technology · monostechnology.co.uk</p>
