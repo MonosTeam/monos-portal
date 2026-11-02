@@ -23,7 +23,7 @@ function Callback() {
         : access_token && refresh_token
           ? await supabase.auth.setSession({ access_token, refresh_token })
           : { error: new Error(hash.get("error_description") || "This link has expired. Please ask for a new one.") };
-      if (error) return setError(error.message);
+      if (error) return setError(/code verifier/i.test(error.message) ? "This sign-in link was opened in a different browser from the one that asked for it. Please ask for a new link." : error.message);
       const type = hash.get("type");
       router.replace(type === "invite" || type === "recovery" ? "/set-password" : next);
     })();

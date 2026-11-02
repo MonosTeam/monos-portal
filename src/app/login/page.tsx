@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
+import { createClient as createPlainClient } from "@supabase/supabase-js";
 import { Logo } from "@/components/Logo";
 
 export default function LoginPage() {
@@ -18,7 +19,12 @@ export default function LoginPage() {
     setMsg(null);
     const supabase = createClient();
     if (mode === "link") {
-      const { error } = await supabase.auth.signInWithOtp({
+      // Implicit flow: the link carries the session itself, so it works even when
+      // opened on a different device or browser from the one that requested it.
+      const linkClient = createPlainClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+        auth: { flowType: "implicit", persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+      });
+      const { error } = await linkClient.auth.signInWithOtp({
         email,
         options: { emailRedirectTo: `${location.origin}/auth/callback`, shouldCreateUser: false },
       });
