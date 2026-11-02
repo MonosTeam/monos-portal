@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northgate Heating · Sample design by MONOS</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;600;700;800&display=swap">
+<style>
+:root{--bg:#05070d;--bg2:#0b0f1a;--fg:#f5f7fb;--mut:#8b93a7;--dim:#2a3142;--hair:rgba(255,255,255,.09);--glass:rgba(12,16,28,.6);--acc:#38bdf8;--glow:rgba(56,189,248,.35);--grad:linear-gradient(135deg,#38bdf8,#6366f1);--gradt:linear-gradient(180deg,#fff 30%,#7dd3fc 100%);--btnfg:#fff;--head:Sora,sans-serif;--body:Sora,sans-serif;--h1w:700;--h1ls:-.045em;--ctabg:radial-gradient(120% 120% at 50% 0%,#1e3a8a,#05070d 70%);--ctafg:#fff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.in{max-width:1180px;margin:0 auto;padding:0 24px}
+/* nav */
+.nav{position:sticky;top:12px;z-index:50;margin:12px auto 0;max-width:1180px;padding:0 24px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 18px;border-radius:999px;
+  background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid var(--hair)}
+.brand{display:flex;align-items:center;gap:10px;font:700 17px/1 var(--head);letter-spacing:-.01em}
+.mark{width:28px;height:28px;border-radius:9px;background:var(--grad);box-shadow:0 6px 20px var(--glow)}
+.links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
+.pillbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;background:var(--fg);color:var(--bg);font:600 14px/1 var(--body)}
+@media(max-width:820px){.links{display:none}}
+/* hero */
+.hero{position:relative;padding:110px 0 40px;text-align:center;overflow:hidden}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 13px/1 var(--body);color:var(--mut);padding:8px 14px;border-radius:999px;border:1px solid var(--hair);background:var(--glass)}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font:var(--h1w) clamp(56px,10vw,128px)/.95 var(--head);letter-spacing:var(--h1ls);margin:26px auto 22px;max-width:12ch}
+.grad-t{background:var(--gradt);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(18px,2vw,22px);color:var(--mut);max-width:40ch;margin:0 auto}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 26px;border-radius:999px;font:600 16px/1 var(--body);background:var(--grad);color:var(--btnfg);box-shadow:0 12px 40px var(--glow)}
+.btn.alt{background:transparent;color:var(--fg);box-shadow:none;border:1px solid var(--hair)}
+.stage{position:relative;margin:64px auto 0;height:520px;max-width:1000px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:28px;overflow:hidden;margin-top:30px}
+.stat{background:var(--bg2);padding:30px 26px}
+.stat b{display:block;font:var(--h1w) 46px/1 var(--head);letter-spacing:-.03em}
+.stat span{color:var(--mut);font-size:14px}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+/* sections */
+.sec{padding:120px 0}
+.kick{font:600 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+h2{font:var(--h1w) clamp(40px,6vw,76px)/1 var(--head);letter-spacing:var(--h1ls);max-width:16ch}
+.lede{color:var(--mut);font-size:20px;max-width:46ch;margin-top:18px}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:260px;gap:18px;margin-top:56px}
+.tile{position:relative;overflow:hidden;border-radius:30px;background:var(--bg2);border:1px solid var(--hair);padding:30px;display:flex;flex-direction:column;justify-content:flex-end;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
+.tile:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.tile h3{font:700 24px/1.1 var(--head);letter-spacing:-.02em;position:relative;z-index:2}
+.tile p{color:var(--mut);font-size:15px;margin-top:6px;position:relative;z-index:2;max-width:34ch}
+.t-a{grid-column:span 4;grid-row:span 2}.t-b{grid-column:span 2;grid-row:span 2}.t-c{grid-column:span 2}.t-d{grid-column:span 2}.t-e{grid-column:span 2}
+@media(max-width:900px){.bento{grid-template-columns:1fr 1fr}.t-a,.t-b,.t-c,.t-d,.t-e{grid-column:span 2;grid-row:span 1}.t-a{grid-row:span 2}}
+.big-n{font:var(--h1w) 120px/.9 var(--head);letter-spacing:-.05em;position:absolute;top:24px;left:28px}
+/* word reveal */
+.reveal-words{font:var(--h1w) clamp(36px,5.4vw,72px)/1.08 var(--head);letter-spacing:var(--h1ls);max-width:20ch}
+.reveal-words span{color:var(--dim);transition:color .4s}
+.reveal-words span.lit{color:var(--fg)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.st{border-top:1px solid var(--hair);padding-top:24px}
+.st b{font:var(--h1w) 64px/1 var(--head);color:var(--acc);letter-spacing:-.04em}
+.st h4{font:700 22px/1.2 var(--head);margin:14px 0 6px}
+.st p{color:var(--mut)}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+/* quotes marquee */
+.marq{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);margin-top:56px}
+.marq-in{display:flex;gap:18px;width:max-content;animation:mq 50s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+.q{width:380px;padding:28px;border-radius:26px;background:var(--bg2);border:1px solid var(--hair)}
+.q p{font-size:18px;line-height:1.45}
+.q span{display:block;color:var(--mut);font-size:14px;margin-top:16px}
+.stars{color:var(--acc);letter-spacing:3px;margin-bottom:10px}
+/* cta */
+.cta{position:relative;overflow:hidden;border-radius:40px;padding:100px 40px;text-align:center;background:var(--ctabg);color:var(--ctafg);margin:40px 0 120px}
+.cta h2{margin:0 auto;max-width:14ch}
+.cta .btn{margin-top:30px}
+footer{border-top:1px solid var(--hair);padding:40px 0 60px;color:var(--mut);font-size:14px}
+footer .in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.anim{opacity:1;transform:none;transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.js .anim.pre{opacity:0;transform:translateY(40px)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.orb{position:absolute;left:50%;top:50%;width:420px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 50% 35%,#1d2640,#070a12 72%);box-shadow:inset 0 2px 0 rgba(255,255,255,.14),0 70px 140px rgba(0,0,0,.7),0 0 200px rgba(56,189,248,.28)}
+.ring{position:absolute;inset:-16px;border-radius:50%;background:conic-gradient(from 0deg,#38bdf8,#818cf8,#f97316,#38bdf8);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));animation:spin 10s linear infinite;filter:drop-shadow(0 0 18px rgba(56,189,248,.9))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ticks{position:absolute;inset:0;width:100%;height:100%}.arc{animation:arc 4s ease-in-out infinite alternate}@keyframes arc{from{stroke-dasharray:300 600}to{stroke-dasharray:400 600}}
+.temp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.temp b{font:200 112px/1 Sora;letter-spacing:-.06em}.temp sup{font-size:.4em;vertical-align:top;color:#7dd3fc}.temp small{color:var(--mut);font-size:14px}
+.stage::after{content:"";position:absolute;left:50%;bottom:-30px;width:520px;height:60px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(56,189,248,.35),transparent);filter:blur(10px)}
+.chip{position:absolute;display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:20px;background:rgba(15,20,34,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--hair);text-align:left;box-shadow:0 20px 50px rgba(0,0,0,.5);animation:float 6s ease-in-out infinite}
+.chip b{display:block;font-size:14px}.chip span{font-size:12px;color:var(--mut)}
+.ico{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#16a34a;font-style:normal;font-size:16px}.ico.hot{background:linear-gradient(135deg,#f97316,#ef4444)}
+.c1{left:2%;top:18%}.c2{right:0;top:44%;flex-direction:column;align-items:stretch;animation-delay:-2s}.c3{left:10%;bottom:6%;animation-delay:-4s}
+.bar{height:5px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden;width:200px}.bar i{display:block;height:100%;width:62%;background:var(--grad);animation:load 3s ease-in-out infinite alternate}
+@keyframes load{from{width:40%}to{width:80%}}@keyframes float{50%{transform:translateY(-14px)}}
+@media(max-width:820px){.chip{display:none}.orb{width:300px;height:300px}.temp b{font-size:80px}}
+.map{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(circle at 60% 40%,#000,transparent 75%)}
+.route{position:absolute;inset:0;width:100%;height:100%}.route path{stroke-dasharray:8 10;animation:dash 1.4s linear infinite}@keyframes dash{to{stroke-dashoffset:-36}}
+.ping{position:absolute;left:68%;top:32%;width:16px;height:16px;border-radius:50%;background:#38bdf8;box-shadow:0 0 0 0 rgba(56,189,248,.7);animation:ping 2s infinite}@keyframes ping{to{box-shadow:0 0 0 40px rgba(56,189,248,0)}}
+.flame{position:absolute;right:-30px;top:-30px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 40% 60%,#fbbf24,#f97316 40%,#ef4444 65%,transparent 72%);filter:blur(18px);animation:breathe 3s ease-in-out infinite}@keyframes breathe{50%{transform:scale(1.15);opacity:.8}}
+.toggle{position:absolute;top:30px;right:30px;width:74px;height:42px;border-radius:999px;background:var(--grad);box-shadow:0 0 30px var(--glow)}.toggle::after{content:"";position:absolute;right:4px;top:4px;width:34px;height:34px;border-radius:50%;background:#fff;animation:tog 3s ease-in-out infinite}@keyframes tog{50%{right:36px}}
+.shield{position:absolute;top:22px;right:26px;font:800 70px/1 Sora;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style></head>
+<body>
+<div class="nav"><div class="nav-in"><a class="brand" href="#"><span class="mark"></span>Northgate</a>
+<nav class="links"><a href="#work">Boilers</a><a href="#work">Emergency</a><a href="#work">Bathrooms</a><a href="#work">Reviews</a></nav><a class="pillbtn" href="#book">0161 496 0742</a></div></div>
+<header class="hero"><div class="in">
+<span class="eyebrow"><i></i>Gas Safe engineers · 3 available now</span>
+<h1><span class="grad-t">Heat, perfected.</span></h1><p class="sub">Boilers, heating and plumbing across Manchester. A fixed price before we start, and an engineer at your door within the hour.</p>
+<div class="ctas"><a class="btn" href="#book">Book an engineer</a><a class="btn alt" href="#work">See what we do</a></div>
+<div class="stage"><div class="orb"><div class="ring"></div><svg class="ticks" viewBox="0 0 200 200"><circle cx="100" cy="100" r="86" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="6" stroke-dasharray="1 4.4"/><circle class="arc" cx="100" cy="100" r="86" fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="round" stroke-dasharray="380 600" transform="rotate(130 100 100)"/><defs><linearGradient id="g1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs></svg>
+<div class="temp"><small>Living room</small><b>21.5<sup>°</sup></b><small>Heating to 22° · Eco</small></div></div>
+<div class="chip c1"><em class="ico">✓</em><div><b>Boiler service booked</b><span>Thu 6 Nov · 9:00</span></div></div>
+<div class="chip c2"><div><b>Dan R. is 12 min away</b><span>Gas Safe · 4.9★</span></div><div class="bar"><i></i></div></div>
+<div class="chip c3"><em class="ico hot">♨</em><div><b>Hot water 58°</b><span>Ready</span></div></div></div>
+<div class="stats"><div class="stat"><b>47 min</b><span>average arrival</span></div><div class="stat"><b>£0</b><span>call-out fee</span></div><div class="stat"><b>4.9★</b><span>from 1,280 reviews</span></div><div class="stat"><b>12 mo</b><span>guarantee on all work</span></div></div>
+</div></header>
+<section class="sec" id="work"><div class="in anim">
+<div class="kick">What we do</div><h2>Everything warm. Nothing complicated.</h2><p class="lede">One team for boilers, heating, bathrooms and leaks. Booked online in seconds, fixed in one visit.</p>
+<div class="bento"><div class="tile t-a"><div class="map"></div><svg class="route" viewBox="0 0 600 520" preserveAspectRatio="none"><path d="M60 460 C 160 380, 200 300, 300 280 S 380 200, 410 168" fill="none" stroke="#38bdf8" stroke-width="3"/></svg><span class="ping"></span><h3>Emergency? We're already on the way.</h3><p>24/7 call-outs across Greater Manchester, with live tracking to your door.</p></div>
+<div class="tile t-b"><span class="big-n grad-t">£89</span><h3>Fixed price, before we start.</h3><p>No hourly meter running. You approve the price, then we fix it.</p></div>
+<div class="tile t-c"><span class="flame"></span><h3>New boilers</h3><p>A-rated installs, fitted in a day.</p></div>
+<div class="tile t-d"><span class="toggle"></span><h3>Smart controls</h3><p>Heat the house from your phone.</p></div>
+<div class="tile t-e"><span class="shield">12</span><h3>Months guaranteed</h3><p>On every job, parts and labour.</p></div></div></div></section>
+<section class="sec"><div class="in"><p class="reveal-words" id="rw">From a dripping tap to a brand new boiler, one call sorts it, at a price you agree before we pick up a spanner.</p></div></section>
+<section class="sec"><div class="in anim"><div class="kick">How it works</div><h2>Warm again in three steps.</h2>
+<div class="steps"><div class="st"><b>01</b><h4>Book in 30 seconds</h4><p>Pick a time online or call. We confirm instantly.</p></div><div class="st"><b>02</b><h4>Get a fixed price</h4><p>Your engineer quotes before any work starts.</p></div><div class="st"><b>03</b><h4>Done, guaranteed</h4><p>Fixed first time, covered for 12 months.</p></div></div></div></section>
+<section class="sec" style="padding-top:0"><div class="in"><div class="kick">Reviews</div><h2>Manchester's warmest reviews.</h2></div>
+<div class="marq"><div class="marq-in" id="mq"><div class="q"><div class="stars">★★★★★</div><p>“Boiler died on a Sunday. Dan was here in 40 minutes and it was fixed by lunch.”</p><span>Sarah, Didsbury</span></div><div class="q"><div class="stars">★★★★★</div><p>“Clear price up front, no surprises. Exactly what you want from a plumber.”</p><span>Imran, Sale</span></div><div class="q"><div class="stars">★★★★★</div><p>“New boiler fitted in a day, the house has never been this warm.”</p><span>Claire, Chorlton</span></div><div class="q"><div class="stars">★★★★★</div><p>“Polite, tidy and fast. Booked online at 11pm and they came the next morning.”</p><span>Tom, Stretford</span></div></div></div></section>
+<div class="in" id="book"><div class="cta anim"><div style="position:absolute;inset:auto 0 -40% 0;height:80%;background:radial-gradient(closest-side,rgba(56,189,248,.45),transparent);filter:blur(30px)"></div><h2>Cold house? Not for long.</h2><p class="lede" style="margin:18px auto 0;color:inherit;opacity:.75">Book an engineer now and get a fixed price before we start.</p><a class="btn" href="#">Book an engineer</a></div></div>
+<footer><div class="in"><span>© 2026 Northgate · Gas Safe registered · Greater Manchester</span><span>Concept design by MONOS Technology. Business is fictional.</span></div></footer>
+<script>
+document.documentElement.classList.add("js");
+const mq=document.getElementById("mq");mq.innerHTML+=mq.innerHTML;
+const rw=document.getElementById("rw");rw.innerHTML=rw.textContent.split(" ").map(w=>"<span>"+w+"</span>").join(" ");
+const spans=[...rw.children];
+function onS(){const r=rw.getBoundingClientRect(),vh=innerHeight;const p=Math.min(1,Math.max(0,(vh*.85-r.top)/(r.height+vh*.35)));
+ const n=Math.round(p*spans.length);spans.forEach((s,i)=>s.classList.toggle("lit",i<n));}
+addEventListener("scroll",onS,{passive:true});onS();
+if(new URLSearchParams(location.search).has("still")){spans.forEach(s=>s.classList.add("lit"))}
+else if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove("pre");io.unobserve(e.target)}}),{threshold:.1});
+ document.querySelectorAll(".anim").forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add("pre");io.observe(el)}})}
+
+</script></body></html>

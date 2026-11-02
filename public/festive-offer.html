@@ -100,6 +100,7 @@ h1 em{font-style:normal;color:var(--signal);display:block}
 .phone img{display:block;width:100%;will-change:transform}
 .label{max-width:1100px;width:100%;margin:18px auto 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
 .label b{color:var(--ink)}
+.live{color:var(--signal);font-weight:800;text-decoration:none}.live:hover{text-decoration:underline}
 @media (max-width:760px){.phone{display:none}.show{height:360vh}
   .shade{background:linear-gradient(180deg,rgba(11,11,12,.78) 0%,rgba(11,11,12,.9) 45%,rgba(11,11,12,.95) 80%,var(--bg) 100%)}
   .topbar .pill{display:none}}
@@ -238,9 +239,9 @@ footer{padding-block:30px 40px;color:var(--muted);font-size:13px}
         <div class="screen" id="screen"></div>
         <div class="base"></div>
       </div>
-      <div class="phone" aria-hidden="true"><img id="phoneImg" src="festive-assets/salon-mobile.webp" alt="" loading="lazy"></div>
+      <div class="phone" aria-hidden="true"><img id="phoneImg" src="festive-assets/heating-mobile.webp" alt="" loading="lazy"></div>
     </div>
-    <div class="label"><span id="siteLabel"><b>Northgate Plumbing</b> · Plumbing and heating</span><span>Concept designs. Business names are fictional.</span></div>
+    <div class="label"><span><span id="siteLabel"><b>Northgate Heating</b> · Heating and plumbing</span> · <a id="liveLink" class="live" href="festive-assets/sites/heating.html" target="_blank" rel="noopener">Open live demo ↗</a></span><span>Concept designs. Business names are fictional.</span></div>
   </div>
 </div>
 
@@ -311,7 +312,7 @@ const CONFIG = {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.documentElement.classList.add("js");
   const A = "festive-assets/";
-  const heroes = ["plumber","drinks","solicitor","fashion","builder","skincare","estate","salon"];
+  const heroes = ["heating-a","salon-b","builder-a","electric-b","salon-a","heating-b","electric-a","builder-b"];
   // 3D wall: 5 columns, each a looped stack
   const wallIn = document.getElementById("wallIn");
   for (let c = 0; c < 5; c++){
@@ -331,10 +332,10 @@ const CONFIG = {
   t.innerHTML = half + half;
   // showcase
   const sites = [
-    {k:"plumber", name:"Northgate Plumbing", ind:"Plumbing and heating"},
-    {k:"builder", name:"Oakline Builders", ind:"Builder"},
+    {k:"heating", name:"Northgate Heating", ind:"Heating and plumbing"},
+    {k:"builder", name:"Oakline Build", ind:"Builder"},
     {k:"salon", name:"Studio Velvet", ind:"Hair salon"},
-    {k:"drinks", name:"Halo Soda", ind:"Food and drink"}
+    {k:"electric", name:"Volt & Co", ind:"Electrician"}
   ];
   const screen = document.getElementById("screen"), tabs = document.getElementById("tabs"), label = document.getElementById("siteLabel");
   const pages = sites.map((s, i) => {
@@ -353,6 +354,8 @@ const CONFIG = {
     pages.forEach((p, j) => p.classList.toggle("on", j === i));
     [...tabs.children].forEach((b, j) => b.setAttribute("aria-selected", j === i ? "true" : "false"));
     label.innerHTML = "<b>" + sites[i].name + "</b> · " + sites[i].ind;
+    document.getElementById("liveLink").href = A + "sites/" + sites[i].k + ".html";
+    phone.src = A + sites[i].k + "-mobile.webp";
   }
   function scrollPage(i, f){
     const img = pages[i].firstChild; const max = Math.max(0, img.offsetHeight - screen.clientHeight);
