@@ -1,7 +1,6 @@
 "use server";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { after } from "next/server";
 import { getClientProject } from "@/lib/data";
 import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
 import { kickBuild, queueBuild, serviceDb } from "@/lib/site-agent/pipeline";
@@ -22,7 +21,7 @@ export async function saveBrief(answers: Record<string, string>, submit: boolean
     const { count } = await db.from("site_builds").select("id", { count: "exact", head: true }).eq("project_id", project.id);
     if (!count) {
       const build = await queueBuild(db, project.id);
-      after(() => kickBuild(build.id));
+      await kickBuild(build.id); // the worker replies 202 straight away and builds in the background
     }
   }
   revalidatePath("/", "layout");

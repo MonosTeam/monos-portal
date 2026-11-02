@@ -4,7 +4,7 @@ import { requireAdmin, ukDate } from "@/lib/data";
 import type { SiteBuild } from "@/lib/site-agent/pipeline";
 import { AutoRefresh } from "../AutoRefresh";
 import { StatusPill, working } from "../status";
-import { approve, requestChanges, sendClient, startBuild } from "../actions";
+import { approve, kick, requestChanges, sendClient, startBuild } from "../actions";
 
 export default async function BuildPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -29,7 +29,7 @@ export default async function BuildPage({ params }: { params: Promise<{ id: stri
         <StatusPill status={b.status} />
       </div>
 
-      {working(b.status) && <div className="card"><p className="font-medium">The website agent is building this site. It usually takes 2 to 4 minutes, and this page updates by itself.</p><ul className="text-sm text-muted mt-3 space-y-1">{b.log.map((l, i) => <li key={i}>{time(l.at)} · {l.msg}</li>)}</ul></div>}
+      {working(b.status) && <div className="card"><p className="font-medium">The website agent is building this site. It usually takes 2 to 4 minutes, and this page updates by itself.</p><ul className="text-sm text-muted mt-3 space-y-1">{b.log.map((l, i) => <li key={i}>{time(l.at)} · {l.msg}</li>)}</ul>{b.status === "queued" && <form action={kick} className="mt-4"><input type="hidden" name="id" value={b.id} /><button className="btn-ghost text-sm">Still queued? Send it to the worker again</button></form>}</div>}
       {b.status === "failed" && <div className="card border-bad"><p className="font-medium text-bad">The build failed</p><p className="text-sm text-muted mt-1">{b.error}</p><form action={startBuild} className="mt-4"><input type="hidden" name="project_id" value={b.project_id} /><button className="btn">Try again</button></form></div>}
 
       {(b.status === "ready" || b.status === "published" || b.status === "superseded") && b.preview_url && (

@@ -1,5 +1,4 @@
 "use server";
-import { after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/data";
 import { approveBuild, kickBuild, queueBuild, sendToClient, serviceDb } from "@/lib/site-agent/pipeline";
@@ -7,7 +6,7 @@ import { approveBuild, kickBuild, queueBuild, sendToClient, serviceDb } from "@/
 async function start(projectId: string, changeRequest?: string | null) {
   await requireAdmin();
   const build = await queueBuild(serviceDb(), projectId, changeRequest);
-  after(() => kickBuild(build.id));
+  await kickBuild(build.id);
   revalidatePath("/admin/builds");
   return build.id;
 }
@@ -31,5 +30,12 @@ export async function approve(form: FormData) {
 export async function sendClient(form: FormData) {
   await requireAdmin();
   await sendToClient(serviceDb(), String(form.get("id")), String(form.get("message") ?? "").trim() || undefined);
+  revalidatePath("/admin/builds");
+}
+
+// Re-sends a queued or failed build to the worker (e.g. if the first call didn't get through).
+export async function kick(form: FormData) {
+  await requireAdmin();
+  await kickBuild(String(form.get("id")));
   revalidatePath("/admin/builds");
 }

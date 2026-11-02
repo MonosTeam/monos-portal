@@ -1,0 +1,5 @@
+# Settings for the website agent's background function only (netlify/functions/site-agent-background.mts).
+# sharp ships a native binary, so it is installed next to the function instead of being bundled.
+[functions."site-agent-background"]
+  node_bundler = "esbuild"
+  external_node_modules = ["sharp"]

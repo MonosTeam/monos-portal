@@ -40,14 +40,29 @@ export async function queueBuild(db: SupabaseClient, projectId: string, changeRe
   return data as SiteBuild;
 }
 
-// Starts the worker for a build without waiting for it (it takes 1 to 3 minutes).
-export async function kickBuild(buildId: string) {
+// Hands a build to the worker. The worker answers 202 at once and builds in the background
+// (1 to 3 minutes). The outcome of the hand-off is written to the build's log, so a stuck
+// "queued" build always says why.
+export async function kickBuild(buildId: string, db: SupabaseClient = serviceDb()) {
   const url = process.env.SITE_AGENT_WORKER_URL || `${portalUrl()}/api/site-agent/build`;
-  await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.SITE_AGENT_SECRET ?? ""}` },
-    body: JSON.stringify({ buildId }),
-  }).catch((e) => console.error("[site-agent] could not start worker", e));
+  let msg: string;
+  if (!process.env.SITE_AGENT_SECRET) msg = "Worker not called: SITE_AGENT_SECRET is not set on the portal";
+  else {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.SITE_AGENT_SECRET}` },
+        body: JSON.stringify({ buildId }),
+        signal: AbortSignal.timeout(10000),
+      });
+      msg = res.ok ? `Sent to the worker (${res.status})` : `Worker call failed: ${res.status} ${(await res.text().catch(() => "")).slice(0, 200)} at ${url}`;
+    } catch (e) {
+      msg = `Worker call failed: ${(e as Error).message} at ${url}`;
+    }
+  }
+  console.log(`[site-agent] ${buildId}: ${msg}`);
+  const { data } = await db.from("site_builds").select("log").eq("id", buildId).maybeSingle();
+  await db.from("site_builds").update({ log: [...((data?.log as SiteBuild["log"]) ?? []), { at: new Date().toISOString(), msg }] }).eq("id", buildId);
 }
 
 const now = () => new Date().toISOString();
