@@ -1,8 +1,10 @@
 "use server";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { getClientProject } from "@/lib/data";
 import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
+import { kickBuild, queueBuild, serviceDb } from "@/lib/site-agent/pipeline";
 
 export async function saveBrief(answers: Record<string, string>, submit: boolean) {
   const { supabase, project } = await getClientProject();
@@ -14,6 +16,15 @@ export async function saveBrief(answers: Record<string, string>, submit: boolean
     ...(submit ? { submitted_at: new Date().toISOString() } : {}),
   });
   if (error) throw new Error(error.message);
+  // First submission: the website agent starts building the site straight away.
+  if (submit && process.env.SITE_AGENT_AUTO !== "off") {
+    const db = serviceDb();
+    const { count } = await db.from("site_builds").select("id", { count: "exact", head: true }).eq("project_id", project.id);
+    if (!count) {
+      const build = await queueBuild(db, project.id);
+      after(() => kickBuild(build.id));
+    }
+  }
   revalidatePath("/", "layout");
 }
 

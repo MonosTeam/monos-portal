@@ -1,0 +1,93 @@
+{
+  "design": { "theme": "warm", "fonts": "fraunces", "primary": "#5f7a61", "accent": "#d9a89a", "rationale": "Sage with a muted blush accent on a cream, serif layout: calm and natural without being too pink." },
+  "brand": { "name": "Bloom & Wren", "tagline": "Calm, considered hair in Chorlton" },
+  "home": {
+    "seo": { "title": "Hair Salon in Chorlton & Curly Hair Specialists | Bloom & Wren", "description": "Independent salon in Chorlton, Manchester. Curly cuts, balayage, colour and bridal hair in a calm, friendly space. Book online." },
+    "eyebrow": "Independent salon, Chorlton",
+    "headline": "Hair you love, in a salon that takes its time",
+    "subheadline": "Cuts, colour and balayage from a small, friendly team, with specialist curly cuts that people travel across Manchester for.",
+    "primaryCta": "Book online",
+    "secondaryCta": "See our services",
+    "trustPoints": ["Curly hair specialists", "Free consultations", "Olaplex in every colour", "Since 2018"],
+    "highlights": [
+      { "title": "Curl specialists", "text": "Trained in Rëzo and DevaCurl cutting, so your curls are cut dry, shape by shape, the way they naturally fall." },
+      { "title": "Never rushed", "text": "A calm salon where every appointment starts with a proper chat about what you want." },
+      { "title": "Kind to your hair", "text": "Olaplex is included in every colour to protect and strengthen as we go." }
+    ],
+    "introHeading": "A calmer kind of salon",
+    "introText": "Bloom & Wren is an independent salon on Barlow Moor Road. We keep things relaxed, take our time and make sure you leave knowing how to look after your hair at home.",
+    "servicesHeading": "Cuts, colour and curls",
+    "servicesIntro": "Every service starts with a free consultation, so we can plan it together.",
+    "ctaHeading": "Ready for hair you love?",
+    "ctaText": "Book online in a couple of minutes, or call the salon and we'll find a time that suits you."
+  },
+  "about": {
+    "seo": { "title": "About Bloom & Wren | Hair Salon in Chorlton", "description": "Meet Megan, Priya and Jess. An independent Chorlton salon opened in 2018 by curl specialist Megan Wren." },
+    "heading": "Opened in 2018, built around calm",
+    "intro": "After twelve years in busy city centre salons, Megan wanted somewhere people could slow down.",
+    "story": [
+      "Megan Wren opened Bloom & Wren in Chorlton in 2018, after twelve years working in city centre salons. She loved the craft but not the rush, and wanted a space where every client gets real time and attention.",
+      "Today the salon is a small team with a big following, especially among curly-haired clients who travel from across south Manchester for a cut that finally works with their hair.",
+      "Whether you're coming in for a trim, a full colour change or your wedding day, you'll be looked after by people who genuinely care how you feel when you leave."
+    ],
+    "values": [
+      { "title": "Time to talk", "text": "Free consultations and no rushing, ever." },
+      { "title": "Honest advice", "text": "We'll tell you what will really suit you and your hair." },
+      { "title": "Healthy hair first", "text": "Gentle techniques and Olaplex in every colour." }
+    ],
+    "teamHeading": "Meet the team",
+    "team": [
+      { "name": "Megan Wren", "role": "Owner and curl specialist", "bio": "Twelve years in city centre salons before opening Bloom & Wren." },
+      { "name": "Priya", "role": "Senior colourist", "bio": "Our balayage and colour expert." },
+      { "name": "Jess", "role": "Stylist", "bio": "Cuts, blow-dries and everyday style." }
+    ],
+    "accreditations": []
+  },
+  "services": {
+    "seo": { "title": "Hair Services & Prices | Bloom & Wren, Chorlton", "description": "Cut and finish from £45, curly cuts from £65, balayage from £120, full colour from £80, Olaplex and bridal hair in Chorlton." },
+    "heading": "Services and prices",
+    "intro": "Prices are a starting guide. We'll confirm yours at your free consultation.",
+    "items": [
+      { "name": "Cut and finish", "summary": "A tailored cut and blow-dry, designed around your hair and lifestyle.", "details": ["Consultation, wash, cut and finish", "Styling tips for home"], "price": "From £45", "icon": "scissors" },
+      { "name": "Curly cut", "summary": "Rëzo and DevaCut techniques that shape curls the way they naturally sit.", "details": ["Cut dry, curl by curl", "Curl routine advice and product guidance", "Suits waves, curls and coils"], "price": "From £65", "icon": "sparkle" },
+      { "name": "Balayage", "summary": "Soft, hand-painted colour that grows out beautifully.", "details": ["Includes Olaplex", "Toner and finish", "Low-maintenance colour"], "price": "From £120", "icon": "brush" },
+      { "name": "Full head colour", "summary": "Rich, even colour, from a subtle refresh to a complete change.", "details": ["Includes Olaplex", "Skin test before your first colour"], "price": "From £80", "icon": "drop" },
+      { "name": "Olaplex treatment", "summary": "A bond-building treatment to strengthen and repair.", "details": ["Ideal after colour or heat damage", "Add to any appointment"], "price": "£30", "icon": "leaf" },
+      { "name": "Bridal hair", "summary": "Calm, beautiful hair for your wedding day, with a trial beforehand.", "details": ["Bride and bridal party", "Priced on request"], "price": "On request", "icon": "heart" }
+    ],
+    "processHeading": "Your appointment",
+    "process": [
+      { "title": "Free consultation", "text": "We talk through what you want, your hair history and what will suit you." },
+      { "title": "Unhurried service", "text": "Relax while we take our time over your cut or colour." },
+      { "title": "Home care advice", "text": "Leave knowing exactly how to keep your hair looking its best." }
+    ],
+    "faq": [
+      { "q": "Do you offer free consultations?", "a": "Yes, every service can start with a free consultation." },
+      { "q": "Do I need a skin test before colour?", "a": "For your first colour with us, yes. Book a quick skin test at least 48 hours before your appointment." },
+      { "q": "What is a curly cut?", "a": "We cut curly hair dry, curl by curl, using Rëzo and DevaCut techniques, so it falls naturally and keeps its shape." },
+      { "q": "How do I book?", "a": "Book online through our booking page, or give the salon a call." }
+    ]
+  },
+  "gallery": {
+    "seo": { "title": "Gallery | Bloom & Wren Hair Salon, Chorlton", "description": "Curls, balayage and colour from our Chorlton salon." },
+    "heading": "Curls, colour and our little salon",
+    "intro": "A few recent favourites from our chairs in Chorlton."
+  },
+  "contact": {
+    "seo": { "title": "Contact & Find Us | Bloom & Wren, Chorlton", "description": "Find Bloom & Wren on Barlow Moor Road, Chorlton. Opening hours, phone and online booking." },
+    "heading": "Come and see us in Chorlton",
+    "intro": "Book online any time, or call or message and we'll get back to you between appointments.",
+    "formHeading": "Ask us anything",
+    "hours": [ { "days": "Tuesday to Friday", "time": "9.30am to 7pm" }, { "days": "Saturday", "time": "9am to 5pm" }, { "days": "Sunday and Monday", "time": "Closed" } ]
+  },
+  "reviews": [
+    { "quote": "Megan is the first person who has ever understood my curls. I won't go anywhere else.", "name": "Hannah" },
+    { "quote": "Beautiful salon, and Priya's balayage is unreal.", "name": "Leah" }
+  ],
+  "images": { "uploads": [], "stockQueries": { "hero": "curly hair salon", "about": "hair salon interior plants", "gallery": ["balayage hair", "curly hair woman", "hair stylist cutting"] } },
+  "notesForAisha": [
+    "Megan said she'd upload photos but none are in yet. Chase before publishing.",
+    "No logo uploaded: header uses a text wordmark.",
+    "Bridal hair has no price; shown as 'On request'."
+  ]
+}

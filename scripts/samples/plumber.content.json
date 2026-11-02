@@ -1,0 +1,93 @@
+{
+  "design": { "theme": "bold", "fonts": "grotesk", "primary": "#1b3a6b", "accent": "#ff7a1a", "rationale": "Navy and orange from the brief on a dark, high-contrast layout that reads as fast and dependable for an emergency trade." },
+  "brand": { "name": "Irwell Plumbing & Heating", "tagline": "Family-run heating engineers for Salford" },
+  "home": {
+    "seo": { "title": "Plumber & Boiler Engineer in Salford | Irwell Plumbing", "description": "Gas Safe, family-run plumbing and heating in Salford. Same-day boiler repairs, new boiler installs and landlord certificates. Fixed quotes." },
+    "eyebrow": "Gas Safe engineers in Salford",
+    "headline": "Heating fixed fast, by people you trust",
+    "subheadline": "Same-day boiler repairs, new boiler installs and everyday plumbing across Salford and Manchester. A fixed quote before we start, and we leave your home as we found it.",
+    "primaryCta": "Call now",
+    "secondaryCta": "Our services",
+    "trustPoints": ["Gas Safe registered", "Worcester Bosch accredited", "Family run since 2012", "Same-day callouts"],
+    "highlights": [
+      { "title": "Same-day help", "text": "Most days we can be with you the same day, so a broken boiler doesn't mean a cold night." },
+      { "title": "Fixed quotes, no surprises", "text": "You get a clear price before any work starts, and that's the price you pay." },
+      { "title": "We tidy up", "text": "Dust sheets down, mess cleared away. You'd never know we'd been, apart from the heating working." }
+    ],
+    "introHeading": "A small family team that answers its own phone",
+    "introText": "Irwell is Dave and Ryan Hughes. When you ring, you speak to the engineer who'll do the job, not a call centre. That's how we've looked after homes and landlords across Salford since 2012.",
+    "servicesHeading": "Plumbing and heating, done properly",
+    "servicesIntro": "From a dripping tap to a full boiler replacement, one local team handles it all.",
+    "ctaHeading": "Boiler playing up? Call us today.",
+    "ctaText": "Speak to an engineer directly. We'll give you an honest answer and, most days, a same-day visit."
+  },
+  "about": {
+    "seo": { "title": "About Us | Irwell Plumbing & Heating, Salford", "description": "Family-run since 2012. Meet Dave and Ryan Hughes, Gas Safe heating engineers serving Salford, Manchester, Trafford and Bury." },
+    "heading": "Family run, Salford through and through",
+    "intro": "Two Gas Safe engineers, one van and a simple idea: do the job right and treat every home like our own.",
+    "story": [
+      "Dave Hughes started Irwell Plumbing & Heating in 2012 after ten years as an engineer with British Gas. He wanted to give people the kind of service he'd want himself: honest advice, a fair price and work done properly the first time.",
+      "In 2019 his son Ryan joined the business as a heating engineer. Today we're still a small family team, and we still answer our own phones.",
+      "We look after homeowners and landlords across Salford, Manchester, Trafford and Bury, and many local letting agents trust us with their landlord gas safety certificates."
+    ],
+    "values": [
+      { "title": "Honest advice", "text": "If a repair makes more sense than a new boiler, we'll tell you." },
+      { "title": "On time, every time", "text": "We turn up when we say we will, and keep you posted if anything changes." },
+      { "title": "Respect for your home", "text": "Clean, careful and tidy from the moment we arrive." }
+    ],
+    "teamHeading": "The engineers you'll meet",
+    "team": [
+      { "name": "Dave Hughes", "role": "Founder, Gas Safe engineer", "bio": "Ten years at British Gas before starting Irwell in 2012." },
+      { "name": "Ryan Hughes", "role": "Heating engineer", "bio": "Joined the family business in 2019 and fits most of our new boilers." }
+    ],
+    "accreditations": ["Gas Safe registered", "Worcester Bosch Accredited Installer"]
+  },
+  "services": {
+    "seo": { "title": "Boiler Installation, Repair & Plumbing | Salford", "description": "New boilers with up to 10-year guarantees, boiler repairs, servicing from £75, landlord gas safety certificates from £60 and general plumbing in Salford." },
+    "heading": "Everything your heating and plumbing needs",
+    "intro": "One trusted local team for boilers, radiators and everyday plumbing jobs.",
+    "items": [
+      { "name": "Boiler installation", "summary": "Efficient new boilers fitted by a Worcester Bosch Accredited Installer.", "details": ["Up to 10-year guarantee on Worcester boilers", "Free, fixed-price quote", "Old boiler removed and recycled"], "price": "", "icon": "flame" },
+      { "name": "Boiler repair and breakdowns", "summary": "Fast diagnosis and repair to get your heating and hot water back on.", "details": ["Same-day callouts most days", "All major boiler brands", "Clear price before we start"], "price": "", "icon": "wrench" },
+      { "name": "Boiler servicing", "summary": "An annual service keeps your boiler safe, efficient and under warranty.", "details": ["Full safety and efficiency checks", "Keeps manufacturer warranties valid", "Reminder when your next service is due"], "price": "From £75", "icon": "shield" },
+      { "name": "Landlord gas safety certificates", "summary": "CP12 certificates for landlords and letting agents, sorted quickly.", "details": ["Gas Safe registered engineers", "We can arrange access with tenants", "Certificate emailed the same day"], "price": "From £60", "icon": "key" },
+      { "name": "Central heating and radiators", "summary": "Radiators fitted, moved or replaced, and systems power flushed.", "details": ["Power flushing for cold spots and noisy systems", "New or relocated radiators", "Thermostats and controls"], "price": "", "icon": "home" },
+      { "name": "General plumbing", "summary": "Leaks, taps, toilets and showers fixed by people who turn up.", "details": ["Leak detection and repair", "Taps, toilets and showers", "Small jobs welcome"], "price": "", "icon": "drop" }
+    ],
+    "processHeading": "How it works",
+    "process": [
+      { "title": "Call or message", "text": "Tell us what's going on and we'll find a time that suits you." },
+      { "title": "Fixed quote", "text": "We look at the job and give you a clear price before any work starts." },
+      { "title": "Job done, tidied up", "text": "We do the work properly and leave your home clean." }
+    ],
+    "faq": [
+      { "q": "Do you offer same-day callouts?", "a": "Most days, yes. Call us as early as you can and we'll do our best to get to you the same day." },
+      { "q": "Are you Gas Safe registered?", "a": "Yes. Both of our engineers are Gas Safe registered, and we're a Worcester Bosch Accredited Installer." },
+      { "q": "Which areas do you cover?", "a": "We're based in Salford and cover Salford, Manchester, Trafford and Bury." },
+      { "q": "How much is a boiler service?", "a": "Boiler servicing starts from £75. Landlord gas safety certificates start from £60." },
+      { "q": "Will I know the price before you start?", "a": "Always. We give you a fixed quote before any work begins." }
+    ]
+  },
+  "gallery": {
+    "seo": { "title": "Our Work | Irwell Plumbing & Heating", "description": "Boiler installations and heating work completed by Irwell Plumbing & Heating across Salford and Manchester." },
+    "heading": "Recent boilers and heating jobs",
+    "intro": "A look at some of the installs and tidy-ups we've done for homes across Salford and Manchester."
+  },
+  "contact": {
+    "seo": { "title": "Contact Irwell Plumbing & Heating | Salford", "description": "Call, WhatsApp or send an enquiry. Same-day plumbing and boiler help across Salford, Manchester, Trafford and Bury." },
+    "heading": "Talk to an engineer today",
+    "intro": "Call for urgent help, or send us a message and we'll get back to you as soon as we're off the job.",
+    "formHeading": "Send us a message",
+    "hours": [ { "days": "Monday to Friday", "time": "8am to 6pm" }, { "days": "Saturday", "time": "9am to 1pm" }, { "days": "Emergencies", "time": "7 days a week" } ]
+  },
+  "reviews": [
+    { "quote": "Dave came out the same afternoon when our boiler died in January. Fixed it in an hour and charged exactly what he quoted.", "name": "Sarah, Eccles" },
+    { "quote": "Ryan fitted our new boiler and was spotless. He didn't leave a mark.", "name": "Tom, Worsley" }
+  ],
+  "images": { "uploads": [], "stockQueries": { "hero": "plumber boiler repair", "about": "heating engineer van", "gallery": ["new combi boiler", "radiator installation", "bathroom plumbing", "copper pipes"] } },
+  "notesForAisha": [
+    "No photos uploaded yet. Ask for boiler install and team photos (stock fills in meanwhile).",
+    "No logo: the site uses an 'IP' wordmark until one is made.",
+    "Confirm the 10-year guarantee wording with Worcester Bosch terms before publishing."
+  ]
+}

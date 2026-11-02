@@ -78,3 +78,22 @@ npm run dev
 - Row-level security means a client can only read their own project, stages, payments, agreement and files, even if they call the API directly. Clients sign through a database function that refuses an already-signed agreement.
 - The agreement text in `src/lib/agreement.ts` is a starting template. Have it checked before first use.
 - Brand colours are tokens at the top of `src/app/globals.css`.
+
+## Website agent
+
+When a client submits their consultation form, the portal builds their 5-page website (Home, About, Services, Gallery, Contact) automatically, puts a private preview on Netlify and emails Aisha. Aisha approves it in **Admin → Websites**, which publishes that exact preview, and then sends it to the client with one click.
+
+How it works (code in `src/lib/site-agent/`):
+1. **Brief**: the consultation answers (`src/lib/brief.ts`) and the client's uploads from the Files tab.
+2. **Writer** (`generate.ts`): Claude reads the brief, looks at the photos, and returns the full site content as structured JSON: copy for every page, SEO titles, FAQs, the theme (bold, clean or warm), fonts, brand colours and where each photo goes. It only uses facts from the brief, never invents reviews, awards or prices, and lists anything missing as notes for Aisha. Phone numbers, emails, addresses and links are inserted straight from the brief, never written by the model.
+3. **Images** (`images.ts`): uploads are rotated, resized and converted to WebP. Empty slots use Unsplash stock photos if `UNSPLASH_ACCESS_KEY` is set, otherwise designed colour panels.
+4. **Designer** (`render/`): renders a fast static site with responsive layouts, mobile menu, scroll animations, gallery lightbox, a Netlify Forms enquiry form (enquiries are emailed to the client), click-to-call, Google map, LocalBusiness schema, sitemap and robots.txt.
+5. **Hosting** (`netlify.ts`): creates the client's Netlify site and uploads a draft deploy (the preview). Approving publishes it and attaches the client's domain if they gave one.
+6. **Changes**: on the review page Aisha can type changes ("darker colours, mention free quotes") and the agent rebuilds just those, as a new version.
+
+Set up:
+1. Run `supabase/migration-002-site-builds.sql` in the Supabase SQL editor.
+2. Add the website agent variables from `.env.example`: `ANTHROPIC_API_KEY`, `NETLIFY_AUTH_TOKEN`, `NETLIFY_ACCOUNT_SLUG`, `SITE_AGENT_SECRET`, and on Netlify `SITE_AGENT_WORKER_URL`. Optional: `UNSPLASH_ACCESS_KEY`.
+3. Hosting the portal on Netlify: the build runs in `netlify/functions/site-agent-background.mts` (background functions can run for 15 minutes). On Vercel it runs in `/api/site-agent/build`.
+
+Try it locally without the portal: `npx tsx scripts/site-agent-local.mts scripts/samples/plumber.brief.json --out out` (needs `ANTHROPIC_API_KEY`), or re-render the saved sample content with `--content scripts/samples/plumber.content.json`.
