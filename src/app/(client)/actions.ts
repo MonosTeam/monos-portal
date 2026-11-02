@@ -2,6 +2,7 @@
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { getClientProject } from "@/lib/data";
+import { sendEmail, ADMIN_EMAIL } from "@/lib/email";
 
 export async function saveBrief(answers: Record<string, string>, submit: boolean) {
   const { supabase, project } = await getClientProject();
@@ -22,6 +23,12 @@ export async function signAgreement(agreementId: string, name: string) {
   const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? h.get("x-real-ip") ?? "unknown";
   const { error } = await supabase.rpc("sign_agreement", { aid: agreementId, name: name.trim(), ip });
   if (error) throw new Error(error.message);
+  const { project } = await getClientProject();
+  await sendEmail({
+    to: ADMIN_EMAIL,
+    subject: `Agreement signed: ${project?.name ?? "client"}`,
+    html: `<p>${name.trim().replace(/[<>&]/g, "")} signed the agreement for <strong>${(project?.name ?? "").replace(/[<>&]/g, "")}</strong>.</p>`,
+  }).catch((e) => console.error("[email] signature notice failed", e));
   revalidatePath("/", "layout");
 }
 

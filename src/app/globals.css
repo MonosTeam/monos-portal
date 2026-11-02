@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* MONOS brand tokens. Swap these to match monostechnology.co.uk exactly. */
+/* MONOS brand tokens: signature red, warm neutrals, matching the founding-client landing page. */
 :root {
-  --brand: #4f46e5;
+  --brand: #e0141e;
   --brand-ink: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --line: #e2e8f0;
+  --ink: #141213;
+  --muted: #5f595b;
+  --line: #e3dfdd;
   --panel: #ffffff;
-  --page: #f8fafc;
-  --ok: #059669;
-  --warn: #d97706;
-  --bad: #dc2626;
+  --page: #f7f6f4;
+  --ok: #16794a;
+  --warn: #b45309;
+  --bad: #b91c1c;
 }
 
 @theme inline {
@@ -25,7 +25,8 @@
   --color-ok: var(--ok);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display-face);
 }
 
 body {
@@ -40,3 +41,9 @@ body {
 .label { @apply block text-sm font-medium mb-1; }
 .h1 { @apply text-2xl font-semibold tracking-tight; }
 .h2 { @apply text-lg font-semibold; }
+
+.onair-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brand); animation: onair 1.2s steps(2, start) infinite; }
+@keyframes onair { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .onair-dot { animation: none; } }
+.h1 { font-family: var(--font-display-face); }
+@media print { header, nav { display: none; } body { background: #fff; } }

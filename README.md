@@ -2,7 +2,7 @@
 
 A private portal for each MONOS Technology client: build progress, consultation form, file uploads, agreement signing and payments. Branded as MONOS for every client; what each client sees is customised per project from the admin screen.
 
-Stack: Next.js 15 (App Router), Supabase (auth, Postgres with row-level security, storage), deployed on Vercel.
+Stack: Next.js 15 (App Router), Supabase (auth, Postgres with row-level security, storage), deployed on Netlify (the same place client sites are hosted). Email goes from info@monos.ai.
 
 ## What's in it
 
@@ -44,7 +44,8 @@ The **£490 offer can only be booked with an offer code**, so it never appears o
    - **Magic link:** link to `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email`
    - **Reset password:** link to `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
    For reliable delivery, add your own SMTP (for example your Google Workspace or Resend) under Project settings → Auth → SMTP.
-3. **Vercel:** import the GitHub repo, then add the environment variables from `.env.example` (from Supabase → Project settings → API). Add the domain `portal.monostechnology.co.uk` and create the CNAME it asks for at your DNS provider.
+3. **Netlify:** Add new site → Import from GitHub → `MonosTeam/monos-portal`. Netlify detects Next.js automatically, so no extra config is needed. Add the environment variables from `.env.example` under Site configuration → Environment variables (the Supabase values are in Supabase → Project settings → API). Add the domain `portal.monostechnology.co.uk` under Domain management and create the CNAME it shows at your DNS provider.
+   **Email from info@monos.ai:** create a Google app password for info@monos.ai (Google account → Security → App passwords) and put it in `SMTP_PASS`. Use the same SMTP details in Supabase → Project settings → Auth → SMTP, so login and invite emails also come from info@monos.ai.
 4. **Make yourself admin:** invite yourself from Supabase → Authentication → Users, set a password, then run in the SQL editor:
    ```sql
    update profiles set role = 'admin' where email = 'you@monostechnology.co.uk';
@@ -53,9 +54,17 @@ The **£490 offer can only be booked with an offer code**, so it never appears o
 
 Upgrading from the first version? Run `supabase/migration-001-offers.sql` instead of the full schema.
 
+## Sign-up endpoint (landing page)
+
+`POST https://portal.monostechnology.co.uk/api/signup?offer=LAUNCH490` with JSON `{ name, business, email, phone, industry, domain, about, source }`. It redeems the offer code, creates the client's login and project, emails them their portal invite, pre-fills their consultation form (business_name, what_you_do, domain_name, industry, mobile), and emails info@monos.ai about the new booking. It returns `{ ok, package, depositPence, depositLink, portalUrl }`. Without a valid code the booking is at retail price. CORS origins are set by `SIGNUP_ALLOWED_ORIGINS`.
+
+## Notifications
+
+info@monos.ai is emailed when a client books and when they sign their agreement. Clients get their invite (and later login links) from the same address.
+
 ## Payments
 
-Each payment row takes a payment link. Create one in PayPal (or Stripe Payment Links) for the deposit and the balance, paste it in, and mark the payment as paid when it arrives. Automatic "paid" updates by webhook are a planned next step.
+Payments use PayPal payment links on the MONOS PayPal account: £367.50 (75%) and £122.50 (25%) for the founding-client offer. Put the links in `PAY_LINK_LAUNCH490_DEPOSIT` and `PAY_LINK_LAUNCH490_BALANCE`, and every new booking gets them automatically. Each link asks the payer for their business name, so you can match the payment and mark it as paid in the client's page. Automatic "paid" updates from PayPal webhooks are a planned next step.
 
 ## Local development
 

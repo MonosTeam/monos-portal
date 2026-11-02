@@ -13,7 +13,10 @@ export function SignBox({ agreement }: { agreement: Agreement }) {
     return (
       <div className="mt-8 border-t border-line pt-6 space-y-3">
         <p className="text-sm">Signed by <span className="font-serif italic text-lg">{agreement.signed_name}</span> on {new Date(agreement.signed_at).toLocaleString("en-GB")}</p>
-        <button className="btn-ghost print:hidden" onClick={() => window.print()}>Download PDF</button>
+        <div className="flex flex-wrap gap-3 print:hidden">
+          <a href="/payments" className="btn">Make your booking payment</a>
+          <button className="btn-ghost" onClick={() => window.print()}>Download PDF</button>
+        </div>
       </div>
     );
   }

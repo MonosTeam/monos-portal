@@ -3,6 +3,7 @@ import { createServiceClient } from "./supabase-server";
 import { PACKAGES, depositPence, payLink, type PackageId } from "./packages";
 import { defaultAgreement } from "./agreement";
 import { gbp, ukDate } from "./format";
+import { sendEmail, ADMIN_EMAIL } from "./email";
 
 const addDays = (iso: string, n: number) => {
   const d = new Date(iso);
@@ -15,6 +16,8 @@ export async function provisionClient(o: {
   email: string; fullName: string; company: string; phone?: string;
   packageId: PackageId; projectName?: string; pricePence?: number; startDate?: string;
   offerCode?: string; origin: string;
+  prefill?: Record<string, string>; // consultation answers already known from sign-up, keyed by brief question id
+  source?: string;
 }) {
   const pkg = PACKAGES[o.packageId];
   const price = o.pricePence ?? pkg.pricePence;
@@ -40,12 +43,12 @@ export async function provisionClient(o: {
     start_date: start,
     offer_code: o.offerCode ?? null,
     brief_sections: pkg.briefSections,
-    notes: o.phone ? `Phone: ${o.phone}` : null,
+    notes: [o.phone && `Phone: ${o.phone}`, o.source && `Source: ${o.source}`].filter(Boolean).join("\n") || null,
   }).select().single();
   if (pErr) throw new Error(pErr.message);
 
   const deposit = Math.round((price * pkg.depositPct) / 100);
-  const results = await Promise.all([
+  const results: { error: { message: string } | null }[] = await Promise.all([
     db.from("stages").insert(pkg.stages.map((s, i) => ({
       project_id: project.id, position: i, name: s.name, client_note: s.note ?? null,
       due_date: addDays(start, s.day - 1), status: i === 0 ? "in_progress" : "todo",
@@ -59,7 +62,22 @@ export async function provisionClient(o: {
       body: defaultAgreement({ clientName: o.fullName, company: o.company, price: gbp(price), startDate: ukDate(start), pkg }),
     }),
   ]);
+  const prefill = Object.fromEntries(Object.entries(o.prefill ?? {}).filter(([, v]) => v));
+  if (Object.keys(prefill).length) results.push(await db.from("consultations").insert({ project_id: project.id, answers: prefill }));
   const failed = results.find((r) => r.error);
   if (failed) throw new Error(failed.error!.message);
+  await notifyNewBooking({ ...o, pkgName: pkg.name, price, projectId: project.id }).catch((e) => console.error("[email] booking notice failed", e));
   return { projectId: project.id, depositPence: depositPence({ ...pkg, pricePence: price }), depositLink: payLink(pkg, "DEPOSIT") };
+}
+
+async function notifyNewBooking(o: { fullName: string; company: string; email: string; phone?: string; pkgName: string; price: number; offerCode?: string; projectId: string; origin: string }) {
+  const esc = (v: string) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  await sendEmail({
+    to: ADMIN_EMAIL,
+    replyTo: o.email,
+    subject: `New booking: ${o.company || o.fullName} (${gbp(o.price)})`,
+    html: `<p><strong>${esc(o.company || o.fullName)}</strong> just booked the ${esc(o.pkgName)} for ${gbp(o.price)}${o.offerCode ? ` with code ${esc(o.offerCode)}` : ""}.</p>
+<p>${esc(o.fullName)} · ${esc(o.email)}${o.phone ? ` · ${esc(o.phone)}` : ""}</p>
+<p><a href="${o.origin}/admin/projects/${o.projectId}" style="display:inline-block;background:#e0141e;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Open in your dashboard</a></p>`,
+  });
 }

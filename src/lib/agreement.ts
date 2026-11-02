@@ -1,41 +1,26 @@
 import type { Package } from "./packages";
 
-// Default website agreement, built from the package. Review with your own legal adviser before first use.
+// One-page website agreement, built from the package. Have it checked by a legal adviser before first use.
 export function defaultAgreement(o: { clientName: string; company: string; price: string; startDate: string; pkg: Package }) {
   const { pkg } = o;
-  const pages = pkg.pages
-    ? `the following 5 pages: ${pkg.pages.join(", ")}`
-    : "up to 5 pages of your choice";
-  const extras = pkg.extras.length ? `\nYour package also includes: ${pkg.extras.join("; ")}.` : "";
-  const rounds = pkg.revisions === 1 ? "1 round of revisions" : `up to ${pkg.revisions} rounds of revisions`;
-  return `This agreement is between MONOS Technology ("MONOS", "we") and ${o.company || o.clientName} ("the Client", "you").
+  const pages = pkg.pages ? pkg.pages.join(", ") : "up to 5 pages of your choice";
+  const rounds = pkg.revisions === 1 ? "1 round of revisions" : `${pkg.revisions} rounds of revisions`;
+  const domain = pkg.extras.some((e) => /domain/i.test(e));
+  return `Between MONOS Technology ("MONOS") and ${o.company || o.clientName} ("you"). Package: ${pkg.name}, ${o.price}.
 
-Package: ${pkg.name}
+1. What you get: a mobile-friendly website with ${pages}, basic on-page SEO, a contact form and ${rounds}${pkg.extras.length ? `, plus ${pkg.extras.join(" and ").toLowerCase()}` : ""}.
 
-1. The work
-MONOS will design and build a mobile-friendly website with ${pages}, with basic on-page SEO and a contact form, as described in your consultation form.${extras}
+2. Payment: ${pkg.depositPct}% on signing/booking, and ${100 - pkg.depositPct}% on delivery once you've approved your site, before it goes live${domain ? " on your domain" : ""}.
 
-2. Timeline
-We aim to deliver within 7 days of the later of: (a) receipt of your booking payment and (b) your completed consultation form and content. Delays in providing content, feedback or access may extend this timeline.
+3. Timeline: we deliver within 7 days of receiving both your booking payment and your completed consultation form. Late content or feedback moves the date.
 
-3. Price and payment
-The total price is ${o.price}. ${pkg.depositPct}% is due on signing/booking, before work starts, and the remaining ${100 - pkg.depositPct}% is due on delivery, before the site goes live. Work starts on ${o.startDate} or when the booking payment is received, whichever is later.
+4. Your content: you confirm you have the right to use the text, images and logos you give us. Once you've paid in full, the website is yours. We may show it in our portfolio unless you tell us not to.
 
-4. Revisions
-Your package includes ${rounds} during the Review stage. Additional changes or new pages can be quoted separately.
+5. Extras: domain, hosting and email services are billed by their providers. Changes beyond the included revisions or extra pages are quoted separately.
 
-5. Content and ownership
-You confirm you have the right to use any text, images and logos you provide. On full payment, you own the website design and content created for you. MONOS may show the finished website in our portfolio unless you ask us not to.
+6. Cancellation: cancel before design starts for a full refund. After that, the booking payment covers work done and isn't refundable.
 
-6. Domain, hosting and third parties
-${pkg.extras.some((e) => /domain/i.test(e)) ? "We will connect the website to a domain you already own; you must give us access to your domain provider or make the DNS changes we send you. " : ""}Domain names, hosting, email and third-party services are billed by their providers under their own terms unless agreed otherwise in writing.
+7. Liability: our total liability is limited to what you've paid us, except where UK law doesn't allow a limit.
 
-7. Cancellation
-You may cancel before the Design stage begins for a full refund of your booking payment. After that, the booking payment covers work completed and is non-refundable.
-
-8. Liability
-MONOS's total liability under this agreement is limited to the amount you have paid. Nothing in this agreement limits liability that cannot be limited under UK law.
-
-9. Law
-This agreement is governed by the laws of England and Wales.`;
+8. This agreement is governed by the laws of England and Wales. Start date: ${o.startDate}.`;
 }
