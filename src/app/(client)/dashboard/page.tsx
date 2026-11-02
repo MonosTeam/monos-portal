@@ -19,7 +19,7 @@ export default async function Dashboard() {
   const paid = pay.filter((p) => p.status === "paid").reduce((s, p) => s + p.amount_pence, 0);
   const current = st.find((s) => s.status === "in_progress") ?? st.find((s) => s.status === "todo");
 
-  const callLink = process.env.CALL_BOOKING_URL;
+  const callLink = process.env.CALL_BOOKING_URL || "https://cal.com/aisha-monos-rv64et/30min";
   const firstStage = st[0];
   const todos = [
     project.package_id === "launch490" && callLink && firstStage?.status !== "done" && { href: callLink, text: "Book your 30-minute 1-1 with Aisha" },
