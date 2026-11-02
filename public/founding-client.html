@@ -1,0 +1,195 @@
+<title>MONOS Founding Client</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow broadcast-style column; a bold hero "on air" strip, then the 3-step join flow as the page's spine. */
+:root{
+  --bg:#f7f6f4; --surface:#ffffff; --ink:#141213; --muted:#5f595b; --line:#e3dfdd;
+  --red:#e0141e; --red-ink:#ffffff; --red-soft:#fde8e9; --ok:#16794a;
+  --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121011; --surface:#1c191a; --ink:#f4f1f1; --muted:#a69ea0; --line:#2e2a2b;
+  --red:#ff2d37; --red-ink:#ffffff; --red-soft:#3a1517; --ok:#4cc58a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121011; --surface:#1c191a; --ink:#f4f1f1; --muted:#a69ea0; --line:#2e2a2b;
+  --red:#ff2d37; --red-ink:#ffffff; --red-soft:#3a1517; --ok:#4cc58a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{padding-block:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font:800 26px/1 var(--display);letter-spacing:-.02em}
+.onair{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);padding:7px 10px;border-radius:4px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--red);animation:blink 1.2s steps(2,start) infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.hero{padding-block:28px 36px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font:800 clamp(40px,9vw,68px)/.98 var(--display);letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red)}
+.lead{font-size:19px;color:var(--muted);max-width:56ch;margin:0}
+.price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-top:26px;padding-block:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price b{font:800 46px/1 var(--display);letter-spacing:-.03em}
+.price s{color:var(--muted);font-size:18px}
+.price span{color:var(--muted);font-size:15px}
+h2{font:800 28px/1.1 var(--display);letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+section{padding-block:30px}
+.incl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 28px;margin:0;padding:0;list-style:none}
+.incl li{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.incl li::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;background:var(--red);border-radius:50%}
+.steps{display:grid;gap:14px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px}
+.step-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:500 14px/1 var(--mono);border:1.5px solid var(--ink)}
+.step.done .num{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.active{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+.step h3{font:600 19px/1.2 var(--body);margin:0}
+.step p{margin:0 0 14px;color:var(--muted)}
+.locked{opacity:.55}
+form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-weight:500;font-size:14px;min-width:0}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:11px 12px;width:100%}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus,.btn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}
+.check input{width:auto;margin-top:5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 var(--body);background:var(--red);color:var(--red-ink);border:0;border-radius:8px;padding:15px 22px;text-decoration:none;cursor:pointer}
+.btn[aria-disabled="true"]{background:var(--line);color:var(--muted);pointer-events:none}
+.note{font-size:14px;color:var(--muted);margin-top:10px}
+.err{color:var(--red);font-size:14px}
+.faq details{border-top:1px solid var(--line);padding-block:14px}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{font-weight:600;cursor:pointer}
+.faq p{margin:8px 0 0;color:var(--muted)}
+footer{padding-block:30px 40px;color:var(--muted);font-size:13px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="logo">MONOS <span style="font-weight:500;font-family:var(--body);font-size:.62em;letter-spacing:0">Technology</span></div>
+    <div class="onair"><span class="dot" aria-hidden="true"></span>Founding client invite</div>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Private invitation · Manchester · 20 places</div>
+    <h1>Your business. <em>On air in 5 days.</em></h1>
+    <p class="lead">A professional 5-page website, built for you by MONOS Technology in Manchester. You spend 2 minutes here and 30 minutes on a call with Aisha. We do everything else.</p>
+    <div class="price">
+      <b>£490</b><s>Usually £3,500</s>
+      <span>£367.50 today, £122.50 once you've approved your site</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>What you get</h2>
+    <ul class="incl">
+      <li>Five pages: Home, About, Services, Gallery and Contact</li>
+      <li>Live in 5 days from your call</li>
+      <li>A 30-minute 1-to-1 with Aisha, our founder</li>
+      <li>One round of changes, so it's right</li>
+      <li>Connected to your own domain, with no tech work for you</li>
+      <li>Your own client login to follow progress</li>
+    </ul>
+  </section>
+
+  <section id="join">
+    <h2>Claim your place in 2 steps</h2>
+    <div class="steps">
+      <div class="step active" id="s1">
+        <div class="step-h"><div class="num">1</div><h3>Tell us about your business</h3></div>
+        <p>Two minutes. We use this to set up your private MONOS client portal.</p>
+        <form id="brief" novalidate>
+          <label>Your name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label>Business name<input id="f-business" name="business" autocomplete="organization" required></label>
+          <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+          <label>Mobile<input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+          <label>Industry
+            <select id="f-industry" name="industry" required>
+              <option value="">Choose one</option>
+              <option>Builder</option><option>Plumbing and heating</option><option>Electrician</option>
+              <option>Roofer</option><option>Cleaner</option><option>Salon, barber or beauty</option>
+              <option>Fitness</option><option>Estate agent</option><option>Solicitor</option><option>Other</option>
+            </select>
+          </label>
+          <label>Your domain, if you have one<input id="f-domain" name="domain" placeholder="e.g. smithbuilders.co.uk"></label>
+          <label class="full">What do you do, and who are your customers?<textarea id="f-about" name="about" placeholder="e.g. Kitchen and bathroom fitting across south Manchester, mostly homeowners."></textarea></label>
+          <label class="check full"><input id="f-terms" type="checkbox" required> I agree to the offer terms: £490 total, 75% now and 25% on delivery, 5 pages and one round of changes.</label>
+          <div class="full"><button class="btn" type="submit">LET'S GO!</button> <span class="err" id="err" role="alert"></span></div>
+        </form>
+      </div>
+
+      <div class="step locked" id="s2">
+        <div class="step-h"><div class="num">2</div><h3>Log in to your client portal</h3></div>
+        <p>Your login arrives by email straight away. In the portal you fill in your website brief, sign a one-page agreement and pay your £367.50 deposit by PayPal, then book your 30-minute call with Aisha. Your site is built from your brief and ready to show you on the call.</p>
+        <a class="btn" id="pay" href="#join" aria-disabled="true" target="_blank" rel="noopener">Open my portal</a>
+        <div class="note" id="sent-note">The £122.50 balance is only due once you've seen and approved your site.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Questions</h2>
+    <details><summary>Why is it £490 instead of £3,500?</summary><p>We're taking on 20 founding clients in Manchester this month in return for honest feedback. The offer is by invitation only and isn't on our public website.</p></details>
+    <details><summary>What do I need to prepare?</summary><p>Your logo and a few photos if you have them, which you upload in your portal. If you don't have any, we'll use quality stock images that suit your trade.</p></details>
+    <details><summary>When do I pay the rest?</summary><p>The final £122.50 is due on delivery, after your call and your round of changes, before the site goes live on your domain.</p></details>
+    <details><summary>I don't have a domain. Is that a problem?</summary><p>No. We'll help you pick one on the call. The domain itself is paid to the registrar, usually about £10 a year.</p></details>
+    <details><summary>Is there a monthly fee?</summary><p>Not for the build. We'll talk you through hosting options on the call.</p></details>
+  </section>
+
+  <footer>
+    MONOS Technology · Manchester · monostechnology.co.uk<br>
+    You're seeing this page because you were invited by email. We use the details you enter only to build your website and contact you about it. To stop hearing from us, reply "unsubscribe" to any of our emails.
+  </footer>
+</div>
+
+<script>
+/* ===== SET THESE BEFORE GOING LIVE ===== */
+const CONFIG = {
+  PORTAL_URL: "https://portal.monostechnology.co.uk/login",                      // client portal sign-in
+  FORM_ENDPOINT: "https://portal.monostechnology.co.uk/api/signup?offer=LAUNCH490" // creates the client, emails their login
+};
+/* ======================================= */
+(function(){
+  const $ = id => document.getElementById(id);
+  const form = $("brief"), err = $("err");
+  function unlock(step, btn, href){
+    step.classList.remove("locked"); step.classList.add("active");
+    if (href){ btn.href = href; btn.removeAttribute("aria-disabled"); }
+    else { btn.textContent = "Link coming shortly"; }
+  }
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); err.textContent = "";
+    const missing = [...form.querySelectorAll("[required]")].filter(el => el.type === "checkbox" ? !el.checked : !el.value.trim());
+    if (missing.length){ err.textContent = "Please fill in the highlighted fields and tick the terms."; missing[0].focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test($("f-email").value)){ err.textContent = "That email address doesn't look right."; $("f-email").focus(); return; }
+    const data = Object.fromEntries(new FormData(form)); data.source = new URLSearchParams(location.search).get("ref") || "";
+    const btn = form.querySelector("button");
+    let pay = CONFIG.PORTAL_URL;
+    if (CONFIG.FORM_ENDPOINT){
+      btn.textContent = "Setting up your portal…"; btn.disabled = true;
+      try {
+        const r = await fetch(CONFIG.FORM_ENDPOINT, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
+        const res = await r.json().catch(() => ({}));
+        if (r.status === 409){ err.innerHTML = 'You already have a MONOS account with this email. <a href="' + CONFIG.PORTAL_URL + '" target="_blank" rel="noopener">Log in to your portal</a>.'; btn.textContent = "LET'S GO!"; btn.disabled = false; return; }
+        if (r.status === 410){ err.textContent = "Sorry, all founding places have now been taken. Reply to our email and we'll let you know about the next round."; btn.textContent = "Offer closed"; return; }
+        if (!r.ok || res.ok === false){ throw new Error(res.error || "signup failed"); }
+        if (res.portalUrl) pay = res.portalUrl;
+      } catch(_) {
+        err.textContent = "Something went wrong saving your details. Please try again in a minute, or reply to our email and we'll set you up."; btn.textContent = "LET'S GO!"; btn.disabled = false; return;
+      }
+    }
+    $("sent-note").textContent = "We've emailed your login to " + data.email + ". The £122.50 balance is only due once you've approved your site.";
+    $("s1").classList.remove("active"); $("s1").classList.add("done");
+    btn.textContent = "Saved";
+    unlock($("s2"), $("pay"), pay);
+    $("s2").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
+  });
+})();
+</script>
