@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getClientProject, type Agreement } from "@/lib/data";
 import { SignBox } from "./SignBox";
@@ -5,7 +6,13 @@ import { SignBox } from "./SignBox";
 export default async function AgreementPage() {
   const { supabase, project } = await getClientProject();
   if (!project?.modules.agreement) redirect("/dashboard");
-  const { data } = await supabase.from("agreements").select("*").eq("project_id", project.id);
+  const [{ data }, { data: consult }] = await Promise.all([
+    supabase.from("agreements").select("*").eq("project_id", project.id),
+    supabase.from("consultations").select("submitted_at").eq("project_id", project.id).maybeSingle(),
+  ]);
+  if (project.modules.consultation && !consult?.submitted_at) {
+    return <div className="card space-y-3"><h1 className="h1">Agreement</h1><p className="text-muted">Your agreement unlocks once you&apos;ve sent your consultation form.</p><Link href="/brief" className="btn">Go to the consultation form</Link></div>;
+  }
   const agreements = (data ?? []) as Agreement[];
   if (!agreements.length) return <div className="card"><h1 className="h1">Agreement</h1><p className="text-muted mt-2">Your agreement will appear here shortly.</p></div>;
   return (

@@ -8,6 +8,7 @@ export type Project = {
   id: string; name: string; package_id: string; package: string; offer_code: string | null; price_pence: number; start_date: string; notes: string | null;
   modules: { consultation: boolean; agreement: boolean; payments: boolean; uploads: boolean };
   brief_sections: string[];
+  journey?: import("./journey").Journey;
 };
 
 export async function requireUser() {

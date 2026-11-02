@@ -98,3 +98,12 @@ export async function updateAgreement(form: FormData) {
   revalidatePath("/admin", "layout");
 }
 
+
+/** Aisha ticks off a client step herself (e.g. after the 1-1 handover). */
+export async function adminMarkStep(form: FormData) {
+  const { supabase } = await requireAdmin();
+  const pid = String(form.get("project_id"));
+  const { error } = await supabase.rpc("mark_journey", { pid, step: String(form.get("step")), note: null });
+  if (error) throw new Error(error.message);
+  revalidatePath(`/admin/projects/${pid}`);
+}

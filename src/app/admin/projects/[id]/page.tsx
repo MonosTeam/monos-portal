@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { requireAdmin, progressOf, gbp, ukDate, type Stage, type Payment, type Agreement, type Project } from "@/lib/data";
 import { BRIEF_SECTIONS } from "@/lib/brief";
 import { ProgressRing } from "@/components/ProgressChart";
-import { updateStage, updateProject, upsertPayment, updateAgreement } from "../../actions";
+import { updateStage, updateProject, upsertPayment, updateAgreement, adminMarkStep } from "../../actions";
+import { buildJourney } from "@/lib/journey";
 
 export default async function ProjectAdmin({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -24,8 +25,32 @@ export default async function ProjectAdmin({ params }: { params: Promise<{ id: s
     return { ...f, url: data?.signedUrl };
   }));
 
+  const journey = p.journey ?? {};
+  const steps = buildJourney({
+    briefSubmitted: !p.modules.consultation || !!consult?.submitted_at,
+    agreementSigned: !p.modules.agreement || ((agreements ?? []).length > 0 && (agreements ?? []).every((a) => a.signed_at)),
+    payments: (payments ?? []) as Payment[],
+    journey,
+  });
+  const tick = { done: "text-ok", current: "text-brand", waiting: "text-warn", locked: "text-muted" } as const;
+
   return (
     <div className="space-y-6">
+      <section className="card">
+        <h2 className="h2 mb-3">Client steps</h2>
+        <ol className="grid gap-2 sm:grid-cols-2">
+          {steps.map((s, i) => (
+            <li key={s.key} className="flex items-center justify-between gap-3 rounded-xl bg-field border border-line px-3 py-2 text-sm">
+              <span className={tick[s.state]}>{s.state === "done" ? "✓" : `${i + 1}.`} {s.title}{s.status ? " (client says paid; mark it paid below)" : ""}</span>
+              {s.state !== "done" && (s.key === "book_call" || s.key === "handover") && (
+                <form action={adminMarkStep}><input type="hidden" name="project_id" value={p.id} /><input type="hidden" name="step" value={s.key === "book_call" ? "call_booked" : "handover_done"} /><button className="btn-ghost text-xs px-3 py-1">Mark done</button></form>
+              )}
+            </li>
+          ))}
+        </ol>
+        {journey.handover_done_note && <p className="text-sm mt-3"><span className="text-muted">Client&apos;s changes:</span> <span className="whitespace-pre-wrap">{journey.handover_done_note}</span></p>}
+      </section>
+
       <div className="flex flex-wrap items-center gap-6">
         <ProgressRing value={progressOf(st)} />
         <div>
