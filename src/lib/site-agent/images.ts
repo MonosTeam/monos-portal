@@ -50,8 +50,36 @@ async function unsplash(query: string, orientation: Stock["orientation"], count 
   return picks.map((p) => ({
     src: `${p.urls.raw}&w=1600&q=80&auto=format&fit=crop`,
     alt: p.alt_description || query,
-    credit: { name: p.user.name, url: `${p.user.links.html}?utm_source=monos&utm_medium=referral` },
+    credit: { name: p.user.name, url: `${p.user.links.html}?utm_source=monos&utm_medium=referral`, source: "Unsplash" },
   }));
+}
+
+// No Unsplash key: fall back to Openverse (openly licensed photos, no key needed). The photos are
+// downloaded and resized into the site itself, so nothing is hotlinked from Flickr and friends.
+async function openverse(query: string, orientation: Stock["orientation"], count: number, assets: Asset[], used: Set<string>): Promise<SiteImage[]> {
+  if (!query.trim()) return [];
+  const ar = orientation === "landscape" ? "wide" : orientation === "portrait" ? "tall" : "square";
+  const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(query)}&license_type=commercial&aspect_ratio=${ar}&size=large&mature=false&page_size=${count * 4}`;
+  try {
+    const res = await fetch(url, { headers: { "User-Agent": "MONOS-site-agent/1.0" }, signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return [];
+    const data = (await res.json()) as { results: { id: string; url: string; title: string | null; creator: string | null; foreign_landing_url: string; width: number | null; height: number | null }[] };
+    const out: SiteImage[] = [];
+    for (const r of data.results) {
+      if (out.length >= count) break;
+      if (used.has(r.id) || (r.width ?? 0) < 1100) continue;
+      try {
+        const img = await fetch(r.url, { signal: AbortSignal.timeout(15000) });
+        if (!img.ok) continue;
+        const body = await sharp(Buffer.from(await img.arrayBuffer()), { failOn: "none" }).rotate().resize(1800, 1800, { fit: "inside", withoutEnlargement: true }).webp({ quality: 78 }).toBuffer();
+        used.add(r.id);
+        const path = `/images/stock-${slug(query)}-${out.length}-${r.id.slice(0, 6)}.webp`;
+        assets.push({ path, body, contentType: "image/webp" });
+        out.push({ src: path, alt: query, credit: { name: r.creator || "Openverse", url: r.foreign_landing_url, source: "Openverse" } });
+      } catch { /* skip this photo */ }
+    }
+    return out;
+  } catch { return []; }
 }
 
 export async function assignImages(content: SiteContent, uploads: PreparedUpload[]): Promise<{ images: SiteImages; assets: Asset[] }> {
@@ -82,13 +110,17 @@ export async function assignImages(content: SiteContent, uploads: PreparedUpload
   if (!images.hero && images.gallery[0]) images.hero = images.gallery[0];
 
   const q = content.images.stockQueries;
-  if (!images.hero) images.hero = (await unsplash(q.hero, "portrait"))[0];
-  if (!images.about) images.about = (await unsplash(q.about, "portrait"))[0];
+  const seen = new Set<string>();
+  const stock = process.env.UNSPLASH_ACCESS_KEY
+    ? (query: string, o: Stock["orientation"], n = 1) => unsplash(query, o, n)
+    : (query: string, o: Stock["orientation"], n = 1) => openverse(query, o, n, assets, seen);
+  if (!images.hero) images.hero = (await stock(q.hero, "landscape"))[0];
+  if (!images.about) images.about = (await stock(q.about, "portrait"))[0];
   if (images.gallery.length < 4) {
     const per = Math.ceil((6 - images.gallery.length) / Math.max(1, q.gallery.length));
     for (const query of q.gallery) {
       if (images.gallery.length >= 6) break;
-      images.gallery.push(...(await unsplash(query, "landscape", per)));
+      images.gallery.push(...(await stock(query, "landscape", per)));
     }
     images.gallery = images.gallery.slice(0, Math.max(6, images.gallery.length));
   }

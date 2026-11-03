@@ -2,6 +2,7 @@
 import type { Answers, SiteContent, SiteImage, SiteImages } from "../schema";
 import { FONTS } from "./css";
 import { icon, socialIcon } from "./icons";
+import { scene, sceneFor } from "./scene";
 
 export const esc = (s: unknown) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -89,20 +90,31 @@ function footer(x: Ctx) {
 <div><h4>Explore</h4><ul>${PAGES.map((p) => `<li><a href="${p.href}">${p.label}</a></li>`).join("")}</ul></div>
 <div><h4>Get in touch</h4><ul>${phone ? `<li><a href="${telHref(phone)}">${esc(phone)}</a></li>` : ""}${x.a.contact_email ? `<li><a href="mailto:${esc(x.a.contact_email)}">${esc(x.a.contact_email)}</a></li>` : ""}${x.a.contact_address ? `<li>${nl2br(x.a.contact_address)}</li>` : x.a.location ? `<li>${esc(x.a.location)}</li>` : ""}</ul></div>
 </div><div class="base"><span>© ${x.year} ${esc(x.c.brand.name)}. All rights reserved.</span><a href="https://www.monostechnology.co.uk" target="_blank" rel="noopener">Website by MONOS Technology</a></div></div></footer>
-${phone ? `<a class="float-call" href="${telHref(phone)}" aria-label="Call ${esc(x.c.brand.name)}">${icon("phone")}</a>` : ""}
+<div class="mbar">${phone ? `<a href="${telHref(phone)}">${icon("phone")}Call now</a>` : ""}<a class="go" href="${quoteOn(x) ? "/#quote" : "/contact/"}">${icon(quoteOn(x) ? "calculator" : "chat")}${quoteOn(x) ? "Instant quote" : "Enquire"}</a></div>
+<div class="prog" aria-hidden="true"></div>
 <div class="lb" id="lb"><img alt=""></div>
 <script>
 (function(){var b=document.querySelector('.menu'),n=document.getElementById('nav');b&&b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});
 var io='IntersectionObserver'in window?new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'}):null;
 document.querySelectorAll('.rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
 var lb=document.getElementById('lb');document.querySelectorAll('.masonry figure').forEach(function(f){f.addEventListener('click',function(){lb.querySelector('img').src=f.querySelector('img').src;lb.classList.add('on')})});lb.addEventListener('click',function(){lb.classList.remove('on')});
+var pg=document.querySelector('.prog');addEventListener('scroll',function(){var h=document.documentElement;pg.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'},{passive:true});
+document.querySelectorAll('.spot').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+var hd=document.querySelector('.hdr');addEventListener('scroll',function(){hd.classList.toggle('sc',scrollY>20)},{passive:true});
+var q=document.getElementById('qw');if(q){var st={},f=q.querySelector('form'),fmt=function(n){return '£'+Math.round(n).toLocaleString('en-GB')};
+var go=function(n){q.querySelectorAll('.qs').forEach(function(s,i){s.hidden=i!==n});q.querySelector('.qbar i').style.width=((n+1)/3*100)+'%';q.querySelectorAll('.qsteps span').forEach(function(s,i){s.classList.toggle('on',i<=n)})};
+q.querySelectorAll('[data-job]').forEach(function(b){b.addEventListener('click',function(){st.job=b.dataset.job;st.from=+b.dataset.from;st.to=+b.dataset.to;st.unit=b.dataset.unit;go(1)})});
+q.querySelectorAll('[data-m]').forEach(function(b){b.addEventListener('click',function(){st.urg=b.dataset.label;var m=+b.dataset.m,lo=Math.round(st.from*m/5)*5,hi=Math.round(st.to*m/5)*5,el=q.querySelector('.est b'),t0=performance.now();
+q.querySelector('.est small').textContent=st.job+' · '+st.urg+(st.unit?' · '+st.unit:'');(function tick(t){var k=Math.min(1,(t-t0)/700),e=1-Math.pow(1-k,3);el.textContent=fmt(lo*e)+' – '+fmt(hi*e);if(k<1)requestAnimationFrame(tick)})(t0);
+f.job.value=st.job;f.urgency.value=st.urg;f.estimate.value=fmt(lo)+' – '+fmt(hi);go(2)})});
+q.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.back)})});go(0)}
 })();
 </script></body></html>`;
 }
 
 function band(x: Ctx) {
-  const act = primaryAction(x);
-  return `<section class="section" style="padding-top:0"><div class="wrap"><div class="band rv"><div><h2>${esc(x.c.home.ctaHeading)}</h2><p>${esc(x.c.home.ctaText)}</p></div><a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(x.c.home.primaryCta)} ${arrow}</a></div></div></section>`;
+  const act = quoteOn(x) ? { href: "/#quote", ext: false } : primaryAction(x);
+  return `<section class="section" style="padding-top:0"><div class="wrap"><div class="band rv"><div><h2>${esc(x.c.home.ctaHeading)}</h2><p>${esc(x.c.home.ctaText)}</p></div><a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${quoteOn(x) ? "Get an instant quote" : esc(x.c.home.primaryCta)} ${arrow}</a></div></div></section>`;
 }
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const star = '<svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>';
@@ -113,19 +125,56 @@ function reviews(x: Ctx) {
 <div class="grid ${x.c.reviews.length >= 3 ? "g3" : "g2"}">${x.c.reviews.slice(0, 3).map((r) => `<figure class="card quote rv"><div><div class="stars">${star.repeat(5)}</div><blockquote style="margin-top:16px">“${esc(r.quote)}”</blockquote></div><cite>${esc(r.name)}</cite></figure>`).join("")}</div></div></section>`;
 }
 
+export const quoteOn = (x: Ctx) => !!x.c.quote?.enabled && (x.c.quote?.jobs?.length ?? 0) >= 2;
+
+function marquee(x: Ctx) {
+  const items = [...x.c.home.trustPoints, ...x.c.about.accreditations].filter((v, i, a) => v && a.indexOf(v) === i);
+  if (items.length < 2) return "";
+  const row = items.map((t) => `<span>${icon("check")}${esc(t)}</span>`).join("");
+  return `<div class="mq" aria-label="Why customers choose us"><div class="mq-t">${row}${row}${row}</div></div>`;
+}
+
+export function quoteSection(x: Ctx) {
+  if (!quoteOn(x)) return "";
+  const q = x.c.quote;
+  const phone = x.a.contact_phone || x.a.mobile;
+  return `<section class="section qsec" id="quote"><div class="wrap qgrid"><div class="rv"><span class="eyebrow">Instant quote</span><h2>${emph(q.heading)}</h2><p class="lead" style="margin-top:16px">${esc(q.intro)}</p>
+<ul class="ticks"><li>${icon("clock")}Takes about 30 seconds</li><li>${icon("shield")}No obligation, no spam</li><li>${icon("chat")}We confirm your exact price before any work starts</li></ul>${phone ? `<p style="margin-top:26px">Prefer to talk? <a class="lnk" href="${telHref(phone)}">Call ${esc(phone)}</a></p>` : ""}</div>
+<div class="qw rv" id="qw"><div class="qsteps"><span>1. Job</span><span>2. Timing</span><span>3. Your price</span></div><div class="qbar"><i></i></div>
+<div class="qs"><h3>What do you need?</h3><div class="qopts">${q.jobs.map((j) => `<button type="button" data-job="${esc(j.label)}" data-from="${j.from}" data-to="${j.to}" data-unit="${esc(j.unit)}"><span class="qi">${icon(j.icon)}</span>${esc(j.label)}</button>`).join("")}</div></div>
+<div class="qs" hidden><h3>How soon do you need us?</h3><div class="qopts one">${q.urgency.map((u) => `<button type="button" data-m="${u.multiplier}" data-label="${esc(u.label)}">${esc(u.label)}<span>${arrow}</span></button>`).join("")}</div><button type="button" class="qback" data-back="0">← Back</button></div>
+<div class="qs" hidden><div class="est"><span>Your guide price</span><b>£0</b><small></small></div><p class="qdis">${esc(q.disclaimer)}</p>
+<form name="quote" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_website"><input type="hidden" name="form-name" value="quote"><input type="hidden" name="job"><input type="hidden" name="urgency"><input type="hidden" name="estimate"><p class="hp"><label>Leave this empty <input name="company_website"></label></p>
+<div class="two"><div class="fld"><label for="q-name">Name</label><input id="q-name" name="name" autocomplete="name" required></div><div class="fld"><label for="q-phone">Phone</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" required></div></div>
+<div class="two"><div class="fld"><label for="q-email">Email</label><input id="q-email" name="email" type="email" autocomplete="email"></div><div class="fld"><label for="q-pc">Postcode</label><input id="q-pc" name="postcode" autocomplete="postal-code" required></div></div>
+<div class="fld"><label for="q-notes">Anything we should know? (optional)</label><textarea id="q-notes" name="notes" rows="2"></textarea></div>
+<button class="btn" type="submit">Get my exact quote ${arrow}</button></form><button type="button" class="qback" data-back="1">← Back</button></div>
+<noscript><p>Our price guide needs JavaScript. <a class="lnk" href="/contact/">Send us an enquiry instead</a>.</p></noscript></div></div></section>`;
+}
+
 export function home(x: Ctx) {
   const c = x.c, h = c.home, act = primaryAction(x);
   const gal = x.img.gallery.slice(0, 4);
+  const kind = sceneFor(x.a);
+  const bg = x.img.hero?.src;
+  const visual = kind !== "generic" || !bg
+    ? `<div class="scene-card">${scene(kind, initials(c.brand.name), c.services.items.map((s) => s.icon))}</div>`
+    : picture(x.img.hero, x, "media", true);
+  const qOn = quoteOn(x);
+  const phone = x.a.contact_phone || x.a.mobile;
   return head(x, "home", h.seo) + header(x, "home") + `
-<section class="hero"><div class="wrap"><div class="rv"><span class="eyebrow">${esc(h.eyebrow)}</span><h1>${emph(h.headline)}</h1><p class="lead">${esc(h.subheadline)}</p>
-<div class="ctas"><a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)} ${arrow}</a><a class="btn ghost" href="/services/">${esc(h.secondaryCta)}</a></div>
-${h.trustPoints.length ? `<div class="trust">${h.trustPoints.map((t) => `<span>${icon("check")}${esc(t)}</span>`).join("")}</div>` : ""}</div>
-<div class="rv" style="position:relative">${picture(x.img.hero, x, "media", true, c.services.items[0]?.icon)}${c.about.accreditations[0] ? `<div class="badge">${icon("award")}<span>${esc(c.about.accreditations[0])}</span></div>` : ""}</div></div></section>
-<section class="section alt"><div class="wrap"><div class="head rv"><span class="eyebrow">Why ${esc(c.brand.name)}</span><h2>${esc(h.introHeading)}</h2><p class="lead">${esc(h.introText)}</p></div>
-<div class="grid g3">${h.highlights.map((k, i) => `<div class="card rv"><span class="num">0${i + 1}</span><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join("")}</div></div></section>
-<section class="section"><div class="wrap"><div class="head rv"><span class="eyebrow">Services</span><h2>${esc(h.servicesHeading)}</h2><p class="lead">${esc(h.servicesIntro)}</p></div>
-<div class="grid ${c.services.items.length % 3 === 0 || c.services.items.length > 4 ? "g3" : "g2"}">${c.services.items.slice(0, 6).map((s) => `<a class="card rv" href="/services/"><span class="ic-wrap">${icon(s.icon)}</span><h3>${esc(s.name)}</h3><p>${esc(s.summary)}</p><span class="more">Learn more ${arrow.replace("<svg", '<svg width="18" height="18"')}</span></a>`).join("")}</div></div></section>
-${gal.length >= 4 ? `<section class="section alt"><div class="wrap"><div class="head rv" style="display:flex;justify-content:space-between;align-items:end;gap:24px;max-width:none;flex-wrap:wrap"><div><span class="eyebrow">Gallery</span><h2>${esc(c.gallery.heading)}</h2></div><a class="btn ghost" href="/gallery/">View the gallery</a></div><div class="strip">${gal.map((g) => `<div class="rv">${picture(g, x)}</div>`).join("")}</div></div></section>` : ""}
+<section class="hero2${bg ? " has-bg" : ""}">${bg ? `<div class="hbg"><img src="${esc(bg)}" alt="" fetchpriority="high"></div>` : ""}<div class="hglow" aria-hidden="true"></div><div class="wrap"><div class="htext"><span class="eyebrow">${esc(h.eyebrow)}</span><h1 class="split-in">${emph(h.headline)}</h1><p class="lead">${esc(h.subheadline)}</p>
+<div class="ctas">${qOn ? `<a class="btn" href="#quote">${icon("calculator")}Get an instant quote</a><a class="btn ghost" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)}</a>` : `<a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)} ${arrow}</a><a class="btn ghost" href="/services/">${esc(h.secondaryCta)}</a>`}</div>
+${c.reviews.length ? `<div class="proof"><div class="stars">${star.repeat(5)}</div><span>“${esc(c.reviews[0].quote.length > 80 ? c.reviews[0].quote.slice(0, 78).replace(/\s+\S*$/, "") + "…" : c.reviews[0].quote)}” <b>${esc(c.reviews[0].name)}</b></span></div>` : phone ? `<div class="proof">${icon("phone")}<span>Call us on <a href="${telHref(phone)}"><b>${esc(phone)}</b></a></span></div>` : ""}</div>
+<div class="hvis">${visual}${c.about.accreditations[0] ? `<div class="badge">${icon("award")}<span>${esc(c.about.accreditations[0])}</span></div>` : ""}</div></div></section>
+${marquee(x)}
+<section class="section"><div class="wrap"><div class="head rv"><span class="eyebrow">Why ${esc(c.brand.name)}</span><h2>${emph(h.introHeading)}</h2><p class="lead">${esc(h.introText)}</p></div>
+<div class="grid g3">${h.highlights.map((k, i) => `<div class="card spot rv" style="transition-delay:${i * 90}ms"><span class="num">0${i + 1}</span><h3>${esc(k.title)}</h3><p>${esc(k.text)}</p></div>`).join("")}</div></div></section>
+${qOn ? quoteSection(x) : ""}
+<section class="section"><div class="wrap"><div class="head rv"><span class="eyebrow">Services</span><h2>${emph(h.servicesHeading)}</h2><p class="lead">${esc(h.servicesIntro)}</p></div>
+<div class="grid ${c.services.items.length % 3 === 0 || c.services.items.length > 4 ? "g3" : "g2"}">${c.services.items.slice(0, 6).map((s, i) => { const im = x.img.services[i] ?? x.img.gallery[i]; return `<a class="card svc-card spot rv${im ? " ph" : ""}" href="/services/" style="transition-delay:${(i % 3) * 90}ms">${im ? `<div class="sv-img"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy" decoding="async"></div>` : ""}<span class="ic-wrap">${icon(s.icon)}</span><h3>${esc(s.name)}</h3><p>${esc(s.summary)}</p>${s.price ? `<span class="price">${esc(s.price)}</span>` : ""}<span class="more">Learn more ${arrow.replace("<svg", '<svg width="18" height="18"')}</span></a>`; }).join("")}</div></div></section>
+${c.services.process.length ? `<section class="section alt"><div class="wrap"><div class="head c rv"><span class="eyebrow">How it works</span><h2>${esc(c.services.processHeading)}</h2></div><ol class="steps">${c.services.process.map((p, i) => `<li class="rv" style="transition-delay:${i * 110}ms"><span>${i + 1}</span><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></li>`).join("")}</ol></div></section>` : ""}
+${gal.length >= 4 ? `<section class="section"><div class="wrap"><div class="head rv" style="display:flex;justify-content:space-between;align-items:end;gap:24px;max-width:none;flex-wrap:wrap"><div><span class="eyebrow">Gallery</span><h2>${esc(c.gallery.heading)}</h2></div><a class="btn ghost" href="/gallery/">View the gallery</a></div><div class="strip">${gal.map((g) => `<div class="rv">${picture(g, x)}</div>`).join("")}</div></div></section>` : ""}
 ${reviews(x)}${band(x)}` + footer(x);
 }
 
@@ -146,6 +195,7 @@ export function services(x: Ctx) {
 <section class="page-hero"><div class="wrap rv"><span class="eyebrow">Services</span><h1>${esc(s.heading)}</h1><p class="lead">${esc(s.intro)}</p></div></section>
 <section class="section" style="padding-top:0"><div class="wrap">${s.items.map((it, i) => `<div class="svc"><div class="rv">${picture(x.img.services[i], x, "media", false, it.icon)}</div><div class="rv"><span class="ic-wrap" style="width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--link);margin-bottom:20px">${icon(it.icon)}</span><h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">${esc(it.name)}</h2><p class="lead" style="margin-top:14px">${esc(it.summary)}</p><ul class="ticks">${it.details.map((d) => `<li>${icon("check")}${esc(d)}</li>`).join("")}</ul>${it.price ? `<span class="price">${esc(it.price)}</span>` : ""}</div></div>`).join("")}</div></section>
 <section class="section alt"><div class="wrap"><div class="head c rv"><span class="eyebrow">Process</span><h2>${esc(s.processHeading)}</h2></div><div class="grid ${s.process.length === 4 ? "g4" : "g3"}">${s.process.map((p, i) => `<div class="card rv"><span class="num">Step ${i + 1}</span><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></div>`).join("")}</div></div></section>
+${quoteSection(x)}
 ${s.faq.length ? `<section class="section"><div class="wrap"><div class="head c rv"><span class="eyebrow">FAQ</span><h2>Questions, answered</h2></div><div class="faq rv">${s.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div></div></section>` : ""}
 ${band(x)}` + footer(x);
 }
@@ -155,7 +205,7 @@ export function gallery(x: Ctx) {
   const imgs = x.img.gallery;
   return head(x, "gallery", g.seo) + header(x, "gallery") + `
 <section class="page-hero"><div class="wrap rv"><span class="eyebrow">Gallery</span><h1>${esc(g.heading)}</h1><p class="lead">${esc(g.intro)}</p></div></section>
-<section class="section" style="padding-top:0"><div class="wrap">${imgs.length ? `<div class="masonry">${imgs.map((i) => `<figure class="rv"><img src="${esc(i.src)}" alt="${esc(i.alt)}" loading="lazy" decoding="async">${i.credit ? `<figcaption>Photo: ${esc(i.credit.name)} / Unsplash</figcaption>` : ""}</figure>`).join("")}</div>` : `<div class="grid g3">${c.services.items.slice(0, 6).map((s) => `<div class="rv">${picture(undefined, x, "media", false, s.icon)}</div>`).join("")}</div>`}</div></section>
+<section class="section" style="padding-top:0"><div class="wrap">${imgs.length ? `<div class="masonry">${imgs.map((i) => `<figure class="rv"><img src="${esc(i.src)}" alt="${esc(i.alt)}" loading="lazy" decoding="async">${i.credit ? `<figcaption>Photo: ${esc(i.credit.name)} / ${esc(i.credit.source ?? "Unsplash")}</figcaption>` : ""}</figure>`).join("")}</div>` : `<div class="grid g3">${c.services.items.slice(0, 6).map((s) => `<div class="rv">${picture(undefined, x, "media", false, s.icon)}</div>`).join("")}</div>`}</div></section>
 ${band(x)}` + footer(x);
 }
 

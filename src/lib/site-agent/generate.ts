@@ -26,6 +26,16 @@ Design rules:
   distinctive, tasteful palette for the industry. Avoid default blue unless it is their brand.
 - Respect anything the client says they dislike.
 
+Instant price guide ("quote"): the home page has an interactive price guide that leads into a lead form. Use the
+client's own prices when they gave them. Otherwise give honest, typical UK price ranges for the area and set
+pricesFromClient to false; the system then adds a note asking Aisha to confirm them with the client. Ranges must be
+realistic and not too narrow. Emergency or same-day options only if the brief suggests they offer them.
+
+Features the system already builds for every site (so requests for them need no special content): an animated hero
+illustration for the industry, scroll animations, the instant price guide with a lead form, a sticky mobile call and
+quote bar, reviews, a gallery with lightbox and an enquiry form. If Aisha asks for something else that the system
+cannot build, apply what you can through the copy and design, and add a short note explaining what was not possible.
+
 Images: uploaded photos are shown to you numbered from 0. Put the best wide shot in "hero", a people/workplace shot in
 "about", product or work shots in "gallery" or a matching "service", the logo in "logo", and blurry, duplicate or
 unsuitable images in "skip". Stock queries are used only where uploads don't cover a slot: make them concrete and
@@ -114,9 +124,17 @@ export function tidy(c: SiteContent, answers: Answers): SiteContent {
   c.services.items = c.services.items.slice(0, 9);
   c.services.process = c.services.process.slice(0, 4);
   c.services.faq = c.services.faq.slice(0, 6);
-  c.notesForAisha = c.notesForAisha.slice(0, 6);
+  c.notesForAisha = c.notesForAisha.slice(0, 7);
   if (!answers.reviews?.trim()) c.reviews = []; // reviews can only come from the client
   if (!answers.team?.trim()) c.about.team = []; // team members only when the client named them
   if (!answers.accreditations?.trim()) c.about.accreditations = [];
+  const q = (c.quote ??= { enabled: false, heading: "", intro: "", jobs: [], urgency: [], disclaimer: "", pricesFromClient: false });
+  q.jobs = q.jobs.filter((j) => Number.isFinite(j.from) && Number.isFinite(j.to) && j.to > 0).slice(0, 6)
+    .map((j) => ({ ...j, from: Math.round(Math.max(0, Math.min(j.from, j.to))), to: Math.round(Math.max(j.from, j.to)) }));
+  q.urgency = q.urgency.filter((u) => Number.isFinite(u.multiplier)).slice(0, 3).map((u) => ({ ...u, multiplier: Math.min(2.5, Math.max(1, u.multiplier)) }));
+  if (!q.urgency.length) q.urgency = [{ label: "Standard", multiplier: 1 }];
+  if (q.jobs.length < 2) q.enabled = false;
+  if (q.enabled && !q.pricesFromClient && !c.notesForAisha.some((n) => /price guide/i.test(n)))
+    c.notesForAisha.push("The instant price guide uses typical local prices, not the client's own. Confirm the ranges with the client before publishing.");
   return c;
 }

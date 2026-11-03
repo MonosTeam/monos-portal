@@ -81,6 +81,21 @@ export const SiteContentSchema = z.object({
     hours: z.array(z.object({ days: z.string(), time: z.string() })).describe("Opening hours reformatted from the brief; empty if not given"),
   }),
   reviews: z.array(z.object({ quote: z.string(), name: z.string() })).describe("ONLY real reviews pasted in the brief, lightly tidied. Empty array if none. Never invent."),
+  quote: z.object({
+    enabled: z.boolean().describe("true when an instant price guide suits the business (trades, cleaning, beauty, fitness, events, most services). false for work that cannot be priced at all without a consultation."),
+    heading: z.string().describe("e.g. 'Get an instant price guide'"),
+    intro: z.string().describe("One sentence"),
+    jobs: z.array(z.object({
+      label: z.string().describe("Short job name, max 4 words"),
+      icon: z.enum(ICONS),
+      from: z.number().describe("Low end of the guide price in GBP, whole pounds"),
+      to: z.number().describe("High end of the guide price in GBP, whole pounds"),
+      unit: z.string().describe("Empty, or what the price covers, e.g. 'per visit', 'per room'"),
+    })).describe("3 to 6 common jobs from the brief. Use the client's own prices when given; otherwise realistic typical UK prices for the area"),
+    urgency: z.array(z.object({ label: z.string().describe("e.g. 'Within a week'"), multiplier: z.number().describe("1 for standard, up to 2 for same-day or emergency") })).describe("2 or 3 options, the first is the standard timescale with multiplier 1"),
+    disclaimer: z.string().describe("One short sentence saying these are guide prices and the exact price is confirmed before any work starts"),
+    pricesFromClient: z.boolean().describe("true only if every price came from the brief"),
+  }),
   images: z.object({
     uploads: z.array(z.object({
       index: z.number().describe("Index of the uploaded image, as numbered in the prompt"),
@@ -103,7 +118,7 @@ export type SiteContent = z.infer<typeof SiteContentSchema>;
 // works in two steps: a plan (design, images, short pages) and then the main page copy.
 const S = SiteContentSchema.shape;
 export const PlanSchema = z.object({
-  design: S.design, brand: S.brand, gallery: S.gallery, contact: S.contact, reviews: S.reviews, images: S.images, notesForAisha: S.notesForAisha,
+  design: S.design, brand: S.brand, gallery: S.gallery, contact: S.contact, reviews: S.reviews, quote: S.quote, images: S.images, notesForAisha: S.notesForAisha,
 });
 export const CopySchema = z.object({
   home: S.home, about: S.about, services: S.services,
@@ -111,7 +126,7 @@ export const CopySchema = z.object({
 });
 export type Answers = Record<string, string>;
 
-export type SiteImage = { src: string; alt: string; credit?: { name: string; url: string } };
+export type SiteImage = { src: string; alt: string; credit?: { name: string; url: string; source?: string } };
 export type SiteImages = {
   logo?: SiteImage;
   hero?: SiteImage;
