@@ -158,5 +158,45 @@
    "Art people",
    "wear forever."
   ]
+ },
+ {
+  "slug": "kestrel",
+  "tpl": "word",
+  "name": "KESTREL 24",
+  "industry": "Emergency plumber",
+  "caption": [
+   "Boiler broke at 2am.",
+   "Who do they Google?"
+  ]
+ },
+ {
+  "slug": "hearthwell",
+  "tpl": "quote",
+  "name": "Hearthwell",
+  "industry": "Boiler servicing",
+  "caption": [
+   "Winter is coming.",
+   "Is your diary full?"
+  ]
+ },
+ {
+  "slug": "emberline",
+  "tpl": "quote",
+  "name": "Emberline",
+  "industry": "Boiler installation",
+  "caption": [
+   "New boiler quotes",
+   "in 60 seconds."
+  ]
+ },
+ {
+  "slug": "copperhill",
+  "tpl": "story",
+  "name": "Copperhill",
+  "industry": "Heating and bathrooms",
+  "caption": [
+   "Gas Safe. 5-star.",
+   "Booked."
+  ]
  }
 ]

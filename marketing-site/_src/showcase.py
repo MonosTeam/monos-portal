@@ -374,13 +374,58 @@ add('inkwell', 'word', 'Tattoo studio', ('Art people', 'wear forever.'), dict(
     h2='Fine lines,<br><em>forever.</em>', p='Custom fine-line and botanical tattoos by award-winning artists in a clean, calm studio.',
     list=[('Small flash', 'From £80'), ('Half day', '£350'), ('Full day', '£650')]))
 
+# ---- Plumbing and heating set (4 extra, 3 Nov)
+add('kestrel', 'word', 'Emergency plumber', ('Boiler broke at 2am.', 'Who do they Google?'), dict(
+    name='KESTREL 24', fonts='family=Anton&family=Archivo:wght@500;700;900', disp='Anton', body='Archivo',
+    bg='#0B1A33', word_c='#FF6A1A', txt='#F3F5FA', word='24/7', wsize='36vw', wls='.01em', wtop='46%', sh='90%', cut='engineer', detail='heat_night',
+    btn='#FF6A1A', btnink='#0B1A33', em='#FF6A1A', links=['Emergency', 'Boilers', 'Leaks', 'Reviews'], navr='Tap to call',
+    drop='Out<br>in 60<br>mins', meta='Greater Manchester<br>Gas Safe engineers', price='No call-out fee', cta='Tap to call now', tick='Burst pipes · No heating · No hot water · Leaks · Blocked drains',
+    h2='Night or day,<br>we <em>answer.</em>', p='A real engineer picks up, day or night, and is usually with you within the hour. No call-out fee, ever.',
+    list=[('Boiler breakdown', '24/7'), ('Burst pipe', '24/7'), ('No hot water', '24/7')]))
+add('hearthwell', 'quote', 'Boiler servicing', ('Winter is coming.', 'Is your diary full?'), dict(
+    name='Hearthwell', logo='hearth<span>well</span>', fonts='family=Inter+Tight:wght@400;500;600;700;800', disp='Inter Tight', body='Inter Tight',
+    bg='#F6F2EA', ink='#0E1F3D', mut='#5E6880', acc='#0E1F3D', accink='#fff', dk='#0E1F3D', hl='#F2C14E',
+    links=['Servicing', 'Repairs', 'Landlords', 'Reviews'], eyebrow='Winter slots filling fast',
+    h1='Book your boiler service <mark>before the cold hits.</mark>', lead='Annual services and gas safety checks from Gas Safe engineers. Pick a slot online and we send a reminder every year.',
+    cta='Book a service', img='heat_service', rating='4.9', badge='Reminder sent every year', badge2='Gas Safe registered',
+    stats=[('2 min', 'To book online'), ('Next day', 'Slots available'), ('1 yr', 'Auto reminders'), ('4.9★', 'Customer rating')],
+    qh='Choose your<br>service and slot.', plabel='Your service', pnote='Fixed price, includes VAT',
+    perks=['Free annual reminder', 'Text when we are on the way', 'Pay after the visit'], book='Confirm my slot',
+    groups=[('Service', 'one', [('Boiler service', 79), ('Gas safety certificate', 69), ('Service and certificate', 119)]),
+            ('Slot', 'one', [('Morning', 0), ('Afternoon', 0), ('Saturday', 15)]),
+            ('Add-ons', 'many', [('Carbon monoxide alarm', 35), ('Radiator bleed', 25), ('Magnetic filter clean', 30)])],
+    defaults=[0, 0], demo=[2, 4, 6, 7]))
+add('emberline', 'quote', 'Boiler installation', ('New boiler quotes', 'in 60 seconds.'), dict(
+    name='Emberline', logo='ember<span>line</span>', fonts='family=Inter+Tight:wght@400;500;600;700;800', disp='Inter Tight', body='Inter Tight',
+    bg='#FFF6EE', ink='#1A1410', mut='#6E6258', acc='#FF5A1F', accink='#fff', dk='#1A1410', hl='#FFC9A8',
+    links=['New boilers', 'Finance', 'How it works', 'Reviews'], eyebrow='Fitted in as little as 48 hours',
+    h1='Your new boiler, <mark>priced in 60 seconds.</mark>', lead='Answer four quick questions and get a fixed, all-in price with a 10-year warranty. Spread the cost with monthly finance.',
+    cta='Get my quote', img='heat_boiler', rating='4.9', badge='10-year warranty', badge2='Finance available',
+    stats=[('60 s', 'To your price'), ('48 hrs', 'To installation'), ('10 yrs', 'Warranty'), ('4.9★', 'Customer rating')],
+    qh='Build your<br>boiler quote.', plabel='Your fixed price', pnote='Fully fitted, includes VAT and removal',
+    perks=['10-year warranty', 'Monthly finance', 'Old boiler removed'], book='Choose install date',
+    groups=[('Home', 'one', [('Flat', 0), ('2-3 bed', 0), ('4+ bed', 350)]),
+            ('Boiler', 'one', [('Combi', 1895), ('System', 2295), ('Regular', 2395)]),
+            ('Extras', 'many', [('Smart thermostat', 189), ('Power flush', 395), ('Magnetic filter', 120)])],
+    defaults=[1, 0], demo=[0, 4, 6, 8]))
+add('copperhill', 'story', 'Heating and bathrooms', ('Gas Safe. 5-star.', 'Booked.'), dict(
+    name='Copperhill', fonts='family=Playfair+Display:ital,wght@0,500;1,400&family=Inter:wght@400;500', disp='Playfair Display', body='Inter',
+    bg='#0E1F3D', ink='#F3EEE4', mut='#AEB6C6', acc='#D4A84B', accink='#0E1F3D', scrim='rgba(14,31,61,.9)', scrim2='rgba(14,31,61,.55)', tt='none', txtc='#F3EEE4', dotc='#F3EEE4', line='rgba(243,238,228,.2)', dark=True,
+    bar1='Gas Safe registered · 5-star rated', bar2='Free home survey', links=['Heating', 'Bathrooms', 'Our work', 'Reviews'], navr='Get a survey', cta='Book a free survey',
+    frames=[('gas1', 'Gas Safe registered', 'Trusted in', 'your home.', 'Fully qualified engineers, ID checked and rated 5 stars by 600+ families.'),
+            ('bath', 'Bathroom renovations', 'From tired', 'to stunning.', 'Design, plumbing, tiling and finishing by one team, in as little as 10 days.'),
+            ('rad', 'Heating upgrades', 'Warm rooms,', 'lower bills.', 'Efficient boilers, designer radiators and smart controls, fitted properly.')],
+    ah='What our customers book', cards=[('Boiler installs', '10-year warranty'), ('Bathroom renovations', 'Designed and fitted'), ('Annual servicing', 'Reminders every year')]))
+
 # ---- SEO: real titles, canonical, intro line linking to pricing + web-design-manchester
 SEO = {'grind': ('Coffee Shops', 'coffee shop'), 'petal': ('Florists', 'florist'), 'scoop': ('Dessert Shops', 'dessert shop'),
        'smile': ('Dentists', 'dental practice'), 'flowright': ('Plumbers', 'plumbing business'), 'paws': ('Dog Groomers', 'dog grooming business'),
        'brickbeam': ('Builders', 'building business'), 'lumiere': ('Nail Salons', 'nail salon'), 'northside': ('Estate Agents', 'estate agency'),
        'ashworth': ('Law Firms', 'law firm'), 'everafter': ('Wedding Businesses', 'wedding business'), 'millhouse': ('Hotels', 'hotel'),
        'faderoom': ('Barbers', 'barbershop'), 'ironclad': ('Gyms', 'gym'), 'gloss': ('Car Detailers', 'car detailing business'),
-       'inkwell': ('Tattoo Studios', 'tattoo studio')}
+       'inkwell': ('Tattoo Studios', 'tattoo studio'),
+       'kestrel': ('Emergency Plumbers', 'emergency plumber'), 'hearthwell': ('Boiler Service Engineers', 'heating engineer'),
+       'emberline': ('Boiler Installers', 'boiler installer'), 'copperhill': ('Heating and Bathroom Companies', 'heating and bathroom company')}
 SITE_URL = 'https://monostechnology.co.uk'
 INTRO_CSS = ".mintro{background:#0B0B0C;color:#F4F1EA;font:500 15px/1.5 system-ui,sans-serif;text-align:center;padding:26px 20px 80px}.mintro a{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:3px}.mintro a.b{display:inline-block;margin:0 6px;background:#D23B2C;color:#fff;text-decoration:none;padding:10px 18px;border-radius:999px}"
 def seo(slug, h):
