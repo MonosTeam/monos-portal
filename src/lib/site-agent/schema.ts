@@ -66,7 +66,7 @@ export const SiteContentSchema = z.object({
     })).describe("Every service from the brief, 3 to 8 items; group small ones"),
     processHeading: z.string(),
     process: z.array(Card).describe("3 or 4 steps of how working with them goes"),
-    faq: z.array(z.object({ q: z.string(), a: z.string() })).describe("4 to 6 FAQs answered only with information from the brief or generic, safe statements; never invent prices, guarantees or timescales"),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).describe("6 to 10 FAQs real customers ask this kind of business (call-outs, what to expect, payment, parking, cancellations, how long jobs take), answered only with information from the brief or generic, safe statements; never invent prices, guarantees or timescales. They also power the site's FAQ chat."),
   }),
   gallery: z.object({
     seo: Seo,

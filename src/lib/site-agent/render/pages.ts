@@ -3,6 +3,7 @@ import type { Answers, SiteContent, SiteImage, SiteImages } from "../schema";
 import { FONTS } from "./css";
 import { icon, socialIcon } from "./icons";
 import { scene, sceneFor } from "./scene";
+import { EXTRAS_JS, bookingSection, chatWidget } from "./extras";
 
 export const esc = (s: unknown) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -75,11 +76,10 @@ function jsonLd(x: Ctx) {
 }
 
 function header(x: Ctx, key: PageKey) {
-  const act = primaryAction(x);
   const logo = x.img.logo ? `<img src="${esc(x.img.logo.src)}" alt="${esc(x.c.brand.name)} logo">` : `<span class="mark">${esc(initials(x.c.brand.name))}</span><span>${esc(x.c.brand.name)}</span>`;
   return `<header class="hdr"><div class="wrap"><a href="/" class="logo" aria-label="${esc(x.c.brand.name)} home">${logo}</a>
 <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-<nav class="nav" id="nav">${PAGES.map((p) => `<a href="${p.href}"${p.key === key ? ' aria-current="page"' : ""}>${p.label}</a>`).join("")}<a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(x.c.home.primaryCta)}</a></nav></div></header><main>`;
+<nav class="nav" id="nav">${PAGES.map((p) => `<a href="${p.href}"${p.key === key ? ' aria-current="page"' : ""}>${p.label}</a>`).join("")}<a class="btn" href="/#book">Book now</a></nav></div></header><main>`;
 }
 
 function footer(x: Ctx) {
@@ -90,7 +90,8 @@ function footer(x: Ctx) {
 <div><h4>Explore</h4><ul>${PAGES.map((p) => `<li><a href="${p.href}">${p.label}</a></li>`).join("")}</ul></div>
 <div><h4>Get in touch</h4><ul>${phone ? `<li><a href="${telHref(phone)}">${esc(phone)}</a></li>` : ""}${x.a.contact_email ? `<li><a href="mailto:${esc(x.a.contact_email)}">${esc(x.a.contact_email)}</a></li>` : ""}${x.a.contact_address ? `<li>${nl2br(x.a.contact_address)}</li>` : x.a.location ? `<li>${esc(x.a.location)}</li>` : ""}</ul></div>
 </div><div class="base"><span>© ${x.year} ${esc(x.c.brand.name)}. All rights reserved.</span><a href="https://www.monostechnology.co.uk" target="_blank" rel="noopener">Website by MONOS Technology</a></div></div></footer>
-<div class="mbar">${phone ? `<a href="${telHref(phone)}">${icon("phone")}Call now</a>` : ""}<a class="go" href="${quoteOn(x) ? "/#quote" : "/contact/"}">${icon(quoteOn(x) ? "calculator" : "chat")}${quoteOn(x) ? "Instant quote" : "Enquire"}</a></div>
+<div class="mbar">${phone ? `<a href="${telHref(phone)}">${icon("phone")}Call</a>` : ""}${quoteOn(x) ? `<a href="/#quote">${icon("calculator")}Quote</a>` : ""}<a class="go" href="/#book">${icon("calendar")}Book now</a></div>
+${chatWidget(x)}
 <div class="prog" aria-hidden="true"></div>
 <div class="lb" id="lb"><img alt=""></div>
 <script>
@@ -101,6 +102,7 @@ var lb=document.getElementById('lb');document.querySelectorAll('.masonry figure'
 var pg=document.querySelector('.prog');addEventListener('scroll',function(){var h=document.documentElement;pg.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'},{passive:true});
 document.querySelectorAll('.spot').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
 var hd=document.querySelector('.hdr');addEventListener('scroll',function(){hd.classList.toggle('sc',scrollY>20)},{passive:true});
+${EXTRAS_JS}
 var q=document.getElementById('qw');if(q){var st={},f=q.querySelector('form'),fmt=function(n){return '£'+Math.round(n).toLocaleString('en-GB')};
 var go=function(n){q.querySelectorAll('.qs').forEach(function(s,i){s.hidden=i!==n});q.querySelector('.qbar i').style.width=((n+1)/3*100)+'%';q.querySelectorAll('.qsteps span').forEach(function(s,i){s.classList.toggle('on',i<=n)})};
 q.querySelectorAll('[data-job]').forEach(function(b){b.addEventListener('click',function(){st.job=b.dataset.job;st.from=+b.dataset.from;st.to=+b.dataset.to;st.unit=b.dataset.unit;go(1)})});
@@ -113,8 +115,8 @@ q.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click'
 }
 
 function band(x: Ctx) {
-  const act = quoteOn(x) ? { href: "/#quote", ext: false } : primaryAction(x);
-  return `<section class="section" style="padding-top:0"><div class="wrap"><div class="band rv"><div><h2>${esc(x.c.home.ctaHeading)}</h2><p>${esc(x.c.home.ctaText)}</p></div><a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${quoteOn(x) ? "Get an instant quote" : esc(x.c.home.primaryCta)} ${arrow}</a></div></div></section>`;
+  const act = { href: "/#book", ext: false };
+  return `<section class="section" style="padding-top:0"><div class="wrap"><div class="band rv"><div><h2>${esc(x.c.home.ctaHeading)}</h2><p>${esc(x.c.home.ctaText)}</p></div><a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>Book online ${arrow}</a></div></div></section>`;
 }
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const star = '<svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>';
@@ -164,7 +166,7 @@ export function home(x: Ctx) {
   const phone = x.a.contact_phone || x.a.mobile;
   return head(x, "home", h.seo) + header(x, "home") + `
 <section class="hero2${bg ? " has-bg" : ""}">${bg ? `<div class="hbg"><img src="${esc(bg)}" alt="" fetchpriority="high"></div>` : ""}<div class="hglow" aria-hidden="true"></div><div class="wrap"><div class="htext"><span class="eyebrow">${esc(h.eyebrow)}</span><h1 class="split-in">${emph(h.headline)}</h1><p class="lead">${esc(h.subheadline)}</p>
-<div class="ctas">${qOn ? `<a class="btn" href="#quote">${icon("calculator")}Get an instant quote</a><a class="btn ghost" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)}</a>` : `<a class="btn" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)} ${arrow}</a><a class="btn ghost" href="/services/">${esc(h.secondaryCta)}</a>`}</div>
+<div class="ctas"><a class="btn" href="#book">${icon("calendar")}Book online</a>${qOn ? `<a class="btn ghost" href="#quote">${icon("calculator")}Get an instant quote</a>` : `<a class="btn ghost" href="${esc(act.href)}"${act.ext ? ' target="_blank" rel="noopener"' : ""}>${esc(h.primaryCta)}</a>`}</div>
 ${c.reviews.length ? `<div class="proof"><div class="stars">${star.repeat(5)}</div><span>“${esc(c.reviews[0].quote.length > 80 ? c.reviews[0].quote.slice(0, 78).replace(/\s+\S*$/, "") + "…" : c.reviews[0].quote)}” <b>${esc(c.reviews[0].name)}</b></span></div>` : phone ? `<div class="proof">${icon("phone")}<span>Call us on <a href="${telHref(phone)}"><b>${esc(phone)}</b></a></span></div>` : ""}</div>
 <div class="hvis">${visual}${c.about.accreditations[0] ? `<div class="badge">${icon("award")}<span>${esc(c.about.accreditations[0])}</span></div>` : ""}</div></div></section>
 ${marquee(x)}
@@ -173,6 +175,7 @@ ${marquee(x)}
 ${qOn ? quoteSection(x) : ""}
 <section class="section"><div class="wrap"><div class="head rv"><span class="eyebrow">Services</span><h2>${emph(h.servicesHeading)}</h2><p class="lead">${esc(h.servicesIntro)}</p></div>
 <div class="grid ${c.services.items.length % 3 === 0 || c.services.items.length > 4 ? "g3" : "g2"}">${c.services.items.slice(0, 6).map((s, i) => { const im = x.img.services[i] ?? x.img.gallery[i]; return `<a class="card svc-card spot rv${im ? " ph" : ""}" href="/services/" style="transition-delay:${(i % 3) * 90}ms">${im ? `<div class="sv-img"><img src="${esc(im.src)}" alt="${esc(im.alt)}" loading="lazy" decoding="async"></div>` : ""}<span class="ic-wrap">${icon(s.icon)}</span><h3>${esc(s.name)}</h3><p>${esc(s.summary)}</p>${s.price ? `<span class="price">${esc(s.price)}</span>` : ""}<span class="more">Learn more ${arrow.replace("<svg", '<svg width="18" height="18"')}</span></a>`; }).join("")}</div></div></section>
+${bookingSection(x, true)}
 ${c.services.process.length ? `<section class="section alt"><div class="wrap"><div class="head c rv"><span class="eyebrow">How it works</span><h2>${esc(c.services.processHeading)}</h2></div><ol class="steps">${c.services.process.map((p, i) => `<li class="rv" style="transition-delay:${i * 110}ms"><span>${i + 1}</span><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></li>`).join("")}</ol></div></section>` : ""}
 ${gal.length >= 4 ? `<section class="section"><div class="wrap"><div class="head rv" style="display:flex;justify-content:space-between;align-items:end;gap:24px;max-width:none;flex-wrap:wrap"><div><span class="eyebrow">Gallery</span><h2>${esc(c.gallery.heading)}</h2></div><a class="btn ghost" href="/gallery/">View the gallery</a></div><div class="strip">${gal.map((g) => `<div class="rv">${picture(g, x)}</div>`).join("")}</div></div></section>` : ""}
 ${reviews(x)}${band(x)}` + footer(x);
@@ -195,6 +198,7 @@ export function services(x: Ctx) {
 <section class="page-hero"><div class="wrap rv"><span class="eyebrow">Services</span><h1>${esc(s.heading)}</h1><p class="lead">${esc(s.intro)}</p></div></section>
 <section class="section" style="padding-top:0"><div class="wrap">${s.items.map((it, i) => `<div class="svc"><div class="rv">${picture(x.img.services[i], x, "media", false, it.icon)}</div><div class="rv"><span class="ic-wrap" style="width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 14%,transparent);color:var(--link);margin-bottom:20px">${icon(it.icon)}</span><h2 style="font-size:clamp(1.6rem,3vw,2.2rem)">${esc(it.name)}</h2><p class="lead" style="margin-top:14px">${esc(it.summary)}</p><ul class="ticks">${it.details.map((d) => `<li>${icon("check")}${esc(d)}</li>`).join("")}</ul>${it.price ? `<span class="price">${esc(it.price)}</span>` : ""}</div></div>`).join("")}</div></section>
 <section class="section alt"><div class="wrap"><div class="head c rv"><span class="eyebrow">Process</span><h2>${esc(s.processHeading)}</h2></div><div class="grid ${s.process.length === 4 ? "g4" : "g3"}">${s.process.map((p, i) => `<div class="card rv"><span class="num">Step ${i + 1}</span><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></div>`).join("")}</div></div></section>
+${bookingSection(x)}
 ${quoteSection(x)}
 ${s.faq.length ? `<section class="section"><div class="wrap"><div class="head c rv"><span class="eyebrow">FAQ</span><h2>Questions, answered</h2></div><div class="faq rv">${s.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div></div></section>` : ""}
 ${band(x)}` + footer(x);
