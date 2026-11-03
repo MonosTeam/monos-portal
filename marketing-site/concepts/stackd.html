@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STACKD Burger Co. | Concept by MONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--y:#FFD23F;--b:#1E3FD8;--ink:#14110F;--paper:#FFF8E7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Bricolage Grotesque',system-ui,sans-serif;background:var(--ink);color:var(--ink);overflow-x:hidden}
+.hero{position:relative;height:100vh;min-height:760px;background:url(img/food.jpg) center/cover;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,15,.55),rgba(20,17,15,0) 45%)}
+nav{position:absolute;z-index:5;top:22px;left:28px;right:28px;display:flex;align-items:center;gap:16px;padding:12px 14px 12px 22px;background:var(--y);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.logo{font-weight:800;font-size:28px;letter-spacing:-.04em;color:var(--b);line-height:.8}
+.logo small{display:block;font-size:10px;letter-spacing:.2em;color:var(--ink);font-weight:700;margin-top:4px}
+nav ul{display:flex;gap:28px;list-style:none;margin:0 auto;font-weight:700;font-size:15px}
+.pill{background:var(--b);color:#fff;border-radius:12px;padding:12px 18px;font-weight:700;font-size:15px;display:flex;gap:10px;align-items:center}
+.pill b{background:var(--y);color:var(--b);border-radius:7px;padding:1px 8px;font-size:13px}
+.copy{position:absolute;z-index:3;left:60px;top:190px;color:#fff;max-width:520px}
+.tag{display:inline-block;background:var(--b);color:#fff;font-weight:700;font-size:13px;padding:7px 12px;border-radius:999px;margin-bottom:18px;transform:rotate(-3deg)}
+h1{font-size:120px;line-height:.82;letter-spacing:-.06em;font-weight:800;color:var(--y);text-shadow:0 6px 0 var(--b)}
+.copy p{font-size:20px;line-height:1.4;margin:22px 0 28px;font-weight:500;max-width:400px}
+.cta{display:inline-flex;gap:10px;align-items:center;background:var(--y);color:var(--ink);font-weight:800;font-size:18px;padding:18px 26px;border-radius:16px;box-shadow:0 6px 0 var(--b);transition:transform .2s}
+.cta:hover{transform:translateY(-3px)}
+.receipt{position:absolute;z-index:4;right:44px;bottom:44px;width:300px;background:#fff;border-radius:6px;padding:20px 20px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;box-shadow:0 30px 60px rgba(0,0,0,.35);transform:rotate(2deg)}
+.receipt h4{font-family:'Bricolage Grotesque';font-size:22px;color:var(--b);letter-spacing:-.03em}
+.receipt .ln{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #ddd;animation:in .35s}
+@keyframes in{from{opacity:0;transform:translateX(-8px)}}
+.receipt .tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin:12px 0}
+.receipt .go{display:block;text-align:center;background:var(--b);color:#fff;border-radius:10px;padding:12px;font-family:'Bricolage Grotesque';font-weight:800}
+.build{background:var(--paper);padding:110px 60px;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+.build h2{font-size:84px;line-height:.85;letter-spacing:-.05em;color:var(--b);font-weight:800}
+.build p{font-size:19px;margin:20px 0;max-width:420px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:11px 18px;font-weight:700;font-size:16px;cursor:pointer;transition:all .2s;font-family:inherit}
+.chip.on{background:var(--y);box-shadow:0 4px 0 var(--ink);transform:translateY(-2px)}
+.burger{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.2);transform:rotate(-1.5deg)}
+.burger img{width:100%;display:block}
+.stamp{position:fixed;z-index:20;left:20px;bottom:20px;display:flex;align-items:center;gap:8px;background:#0B0B0C;color:#fff;font:700 12px/1 'Bricolage Grotesque';letter-spacing:.08em;padding:9px 13px;border-radius:999px;text-transform:uppercase}
+.stamp i{width:7px;height:7px;border-radius:50%;background:#D23B2C}
+</style></head><body>
+<section class="hero">
+ <nav><div class="logo">STACKD<small>BURGER CO · MCR</small></div><ul><li>Menu</li><li>Build your own</li><li>Locations</li><li>Rewards</li></ul><div class="pill">Order <b id="cnt">3</b></div></nav>
+ <div class="copy"><span class="tag">New: Double Smash is back</span><h1>BUILD IT<br>YOUR WAY.</h1><p>Smashed to order in Manchester. Pick your stack, your sauce and your sides.</p><a class="cta" href="#b">Start your order →</a></div>
+ <div class="receipt"><h4>Your order</h4><div id="lines"></div><div class="tot"><span>TOTAL</span><span id="tot">£0.00</span></div><span class="go">Checkout · Ready in 12 min</span></div>
+</section>
+<section class="build" id="b">
+ <div><h2>Stack it.<br>Sauce it.<br>Smash it.</h2><p>Tap to add. Your order updates as you go.</p>
+ <div class="chips" id="chips"></div></div>
+ <div class="burger"><img src="img/burger.jpg" alt=""></div>
+</section>
+<div class="stamp"><i></i>Concept by MONOS</div>
+<script>
+var items=[["Double Smash",9.5,1],["Crinkle fries",3.5,1],["Onion rings",3.9,1],["Extra cheese",1.2],["Crispy bacon",1.8],["Jalapeños",.8],["Pickles",.5],["House sauce",.6],["Shake",4.5]];
+var sel=items.map(function(i){return !!i[2]});
+var chips=document.getElementById('chips');
+items.forEach(function(it,i){var b=document.createElement('button');b.className='chip'+(sel[i]?' on':'');b.textContent=it[0]+' +£'+it[1].toFixed(2);b.onclick=function(){sel[i]=!sel[i];b.classList.toggle('on');draw()};chips.appendChild(b)});
+function draw(){var h='',t=0,c=0;items.forEach(function(it,i){if(sel[i]){h+='<div class="ln"><span>'+it[0]+'</span><span>£'+it[1].toFixed(2)+'</span></div>';t+=it[1];c++}});document.getElementById('lines').innerHTML=h;document.getElementById('tot').textContent='£'+t.toFixed(2);document.getElementById('cnt').textContent=c}
+draw();
+window.demo=function(){var seq=[3,4,7,5];seq.forEach(function(i,k){setTimeout(function(){chips.children[i].click()},700*k)})};
+</script></body></html>

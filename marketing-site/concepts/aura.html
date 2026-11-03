@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=390,initial-scale=1"><title>AURA Health | Concept by MONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050506;font-family:Inter,system-ui,sans-serif;color:#fff}
+.scr{width:390px;height:844px;position:relative;overflow:hidden;background:#060607;display:inline-block;vertical-align:top;margin:0 30px 30px 0}
+.sb{display:flex;justify-content:space-between;padding:16px 26px 0;font-weight:600;font-size:15px}
+.days{display:flex;justify-content:center;gap:10px;margin:22px 0 10px}
+.days span{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px;color:#8d8d93;border:1px solid #232327}
+.days span.on{background:#fff;color:#000;font-weight:700}
+.lbl{text-align:center;color:#c9c9cf;font-size:15px;margin-top:16px}
+.big{text-align:center;font:800 112px/1 Doto;letter-spacing:-.02em;margin-top:2px}
+.unit{text-align:center;color:#8d8d93;font-size:13px}
+.wave{display:block;margin:12px auto 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
+.c{position:relative;border-radius:26px;padding:16px;overflow:hidden;min-height:118px;isolation:isolate}
+.c:before{content:"";position:absolute;inset:-30%;z-index:-1;filter:blur(28px);animation:drift 7s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(12%,-8%) scale(1.15)}}
+.c small{font-size:12px;color:rgba(255,255,255,.8)}
+.c b{display:block;font-size:30px;font-weight:600;letter-spacing:-.03em;margin-top:26px}
+.c b em{font-size:14px;font-style:normal;opacity:.8}
+.wide{grid-column:span 2;min-height:120px}
+.g1:before{background:radial-gradient(circle at 20% 60%,#ff5fa2,transparent 55%),radial-gradient(circle at 80% 30%,#8a4dff,transparent 60%),#3a1838}
+.g2:before{background:radial-gradient(circle at 30% 70%,#38d39f,transparent 55%),radial-gradient(circle at 80% 20%,#e7ff7a,transparent 50%),#163a2e}
+.g3:before{background:radial-gradient(circle at 70% 70%,#ff7ac6,transparent 55%),radial-gradient(circle at 20% 20%,#ff3d7f,transparent 60%),#401530}
+.g4:before{background:radial-gradient(circle at 30% 30%,#3d6bff,transparent 60%),radial-gradient(circle at 80% 80%,#7ad0ff,transparent 50%),#101a40}
+.g5:before{background:radial-gradient(circle at 60% 40%,#ff6a3d,transparent 55%),radial-gradient(circle at 20% 80%,#3d4dff,transparent 55%),#2a1220}
+.ring{position:absolute;right:16px;top:16px;width:74px;height:74px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);display:grid;place-items:center;font:800 26px Doto}
+.meter{height:4px;border-radius:2px;background:rgba(255,255,255,.3);margin-top:12px;position:relative}
+.meter i{position:absolute;left:62%;top:-5px;border:6px solid transparent;border-top-color:#ffd23f}
+.dotsl{display:flex;gap:7px;margin-top:14px}.dotsl i{width:5px;height:5px;border-radius:50%;background:#fff;opacity:.85}
+/* screen 2 */
+.hdr{display:flex;align-items:center;gap:12px;padding:20px 22px 0;font-size:18px;font-weight:600}
+.hdr i{width:34px;height:34px;border-radius:50%;border:1px solid #2a2a2e;display:grid;place-items:center;font-style:normal;color:#aaa}
+.orb{margin:26px 18px 0;height:430px;border-radius:40px;position:relative;overflow:hidden;background:#2b0f22}
+.orb:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,#ff2f8e 0,#c2177a 25%,#5b0f4a 50%,transparent 70%);filter:blur(10px);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.orb .t{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.orb .t b{font:800 120px/1 Doto;display:block}
+.orb .t small{font-size:15px;opacity:.85}
+.tog{position:absolute;right:20px;top:20px;width:52px;height:30px;border-radius:15px;background:rgba(255,255,255,.25)}
+.tog:after{content:"";position:absolute;right:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff}
+.orb .lab{position:absolute;left:22px;top:24px;font-weight:600;font-size:17px}
+.times{display:flex;justify-content:space-around;margin:24px 30px;color:#8d8d93;font-size:14px}
+.times b{color:#fff;font-size:22px;display:block;font-weight:600}
+.cta{margin:0 18px;background:#fff;color:#000;border-radius:22px;padding:18px;text-align:center;font-weight:700}
+/* screen 3 */
+.card3{margin:30px 22px 0;height:250px;border-radius:30px;background:#141416;border:1px solid #232327;position:relative;overflow:hidden;padding:22px}
+.card3 h3{font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.card3 p{color:#8d8d93;font-size:14px;margin-top:8px}
+.scan{margin:24px auto 0;width:250px;height:250px;border-radius:50%;border:1px dashed #3a3a3e;display:grid;place-items:center;position:relative}
+.scan:before{content:"";position:absolute;inset:20px;border-radius:50%;background:conic-gradient(from 0deg,#38d39f,#3d6bff,#ff2f8e,#38d39f);filter:blur(24px);opacity:.6;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scan b{position:relative;width:110px;height:110px;border-radius:50%;background:#f4f4f4;box-shadow:0 0 0 10px rgba(255,255,255,.08)}
+.stamp{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:6px;color:#8d8d93;font:600 10px Inter;letter-spacing:.12em;text-transform:uppercase}
+.stamp i{width:6px;height:6px;border-radius:50%;background:#D23B2C}
+</style></head><body>
+<div class="scr" id="s1"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="days"><span>M</span><span class="on">T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+ <div class="lbl">Glucose</div><div class="big" id="num">90</div><div class="unit">mg/dL · in range</div>
+ <svg class="wave" width="330" height="54" viewBox="0 0 330 54"><path id="wv" d="M0 30 C30 10 50 50 80 30 S130 8 160 28 S210 50 240 26 S290 12 330 24" stroke="#e7ff7a" stroke-width="2" fill="none"/><circle cx="240" cy="26" r="5" fill="#e7ff7a"/></svg>
+ <div class="grid"><div class="c g1 wide"><small>Average glucose</small><b>84 <em>mg/dL</em></b><div class="ring">84</div></div>
+ <div class="c g2"><small>Time in range</small><b>100 <em>%</em></b><div class="meter"><i></i></div></div>
+ <div class="c g3"><small>Variability</small><b>6.8 <em>%</em></b><div class="dotsl"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+ <div class="c g4"><small>Vitamin D</small><b>83 <em>Good</em></b></div>
+ <div class="c g5"><small>Spikes</small><b>0 <em>today</em></b></div></div>
+ <div class="stamp"><i></i>Concept by MONOS</div></div>
+<div class="scr" id="s2"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="hdr"><i>←</i>Complete setup</div>
+ <div class="orb"><div class="lab">Sleep reminder</div><div class="tog"></div><div class="t"><div><b>8</b><small>hours of sleep</small></div></div></div>
+ <div class="times"><div><b>22:30</b>Wind down</div><div><b>06:30</b>Wake up</div></div>
+ <div class="cta">Save routine</div><div class="stamp"><i></i>Concept by MONOS</div></div>
+<div class="scr" id="s3"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="card3"><h3>Pair your sensor</h3><p>Move your phone closer to the sensor on your arm.</p><div class="scan"><b></b></div></div>
+ <div class="grid" style="margin-top:20px"><div class="c g4"><small>Battery</small><b>14 <em>days</em></b></div><div class="c g2"><small>Signal</small><b>Strong</b></div></div>
+ <div class="stamp"><i></i>Concept by MONOS</div></div>
+<script>
+var n=document.getElementById('num'),v=[90,92,95,93,90,88,86,89,90];var k=0;setInterval(function(){k=(k+1)%v.length;n.textContent=v[k]},900);
+</script></body></html>

@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZEPHA Eyewear | Concept by MONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,700;125,900&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#1f5fe0;--red:#E2342B;--w:#fff;--ink:#0d0d0d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Archivo,system-ui,sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+.hero{position:relative;height:100vh;min-height:720px;background:linear-gradient(#1a57d6,#2a6ff0);overflow:hidden}
+nav{position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;padding:24px 40px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.logo{font-size:22px;letter-spacing:-.02em;text-transform:none;font-weight:900}
+nav ul{display:flex;gap:30px;list-style:none;margin:0 auto}
+.word{position:absolute;z-index:1;left:50%;top:44%;transform:translate(-50%,-50%);font-weight:900;font-stretch:125%;font-size:31vw;letter-spacing:-.06em;line-height:.8;color:var(--red);white-space:nowrap}
+.word span{display:inline-block;transform:translateY(40%);opacity:0;animation:up 1.1s cubic-bezier(.2,.7,.1,1) forwards}
+.word span:nth-child(2){animation-delay:.08s}.word span:nth-child(3){animation-delay:.16s}.word span:nth-child(4){animation-delay:.24s}.word span:nth-child(5){animation-delay:.32s}
+@keyframes up{to{transform:none;opacity:1}}
+.model{position:absolute;z-index:2;left:50%;bottom:0;height:96%;transform:translateX(-50%) scale(1.04);animation:zoom 2.4s cubic-bezier(.2,.7,.1,1) forwards}
+@keyframes zoom{to{transform:translateX(-50%) scale(1)}}
+.meta{position:absolute;z-index:3;left:40px;bottom:36px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.6);padding-top:12px;width:260px}
+.price{position:absolute;z-index:3;right:40px;bottom:36px;text-align:right}
+.price b{font-size:40px;font-weight:900;letter-spacing:-.03em;display:block}
+.price span{display:inline-block;margin-top:10px;background:#fff;color:var(--ink);font-weight:800;font-size:13px;letter-spacing:.08em;padding:14px 20px;border-radius:999px;text-transform:uppercase}
+.drop{position:absolute;z-index:3;right:40px;top:110px;width:150px;height:150px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;text-align:center;font-weight:900;font-size:16px;line-height:1;text-transform:uppercase;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grid{display:grid;grid-template-columns:1.2fr 1fr;min-height:100vh}
+.grid .a{background:#1f5fe0 url(img/glasses.jpg) center/cover}
+.grid .b{background:#f2f2ee;color:var(--ink);padding:70px 60px;display:flex;flex-direction:column;justify-content:center}
+.grid h2{font-weight:900;font-stretch:125%;font-size:84px;line-height:.85;letter-spacing:-.04em;text-transform:uppercase}
+.grid h2 em{color:var(--red);font-style:normal}
+.grid p{font-size:17px;line-height:1.5;margin:22px 0;max-width:380px;color:#444}
+.sw{display:flex;gap:10px;margin:8px 0 28px}.sw i{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #ccc}
+.add{align-self:flex-start;background:var(--ink);color:#fff;font-weight:800;padding:18px 28px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.stamp{position:fixed;z-index:20;left:20px;bottom:20px;display:flex;align-items:center;gap:8px;background:#0B0B0C;color:#fff;font:700 11px/1 Archivo;letter-spacing:.1em;padding:9px 13px;border-radius:999px;text-transform:uppercase}
+.stamp i{width:7px;height:7px;border-radius:50%;background:#D23B2C}
+</style></head><body>
+<section class="hero">
+ <nav><div class="logo">zepha</div><ul><li>Shop</li><li>New drop</li><li>About</li><li>Delivery</li></ul><div>Cart 00</div></nav>
+ <div class="word"><span>z</span><span>e</span><span>p</span><span>h</span><span>a</span></div>
+ <img class="model" src="img/fashion_cut.png" alt="">
+ <div class="drop">Drop<br>04<br>Chrome</div>
+ <div class="meta">No. 04 / Chrome<br>Limited to 300 pairs</div>
+ <div class="price"><b>£145</b><span>Shop the drop</span></div>
+</section>
+<section class="grid"><div class="a"></div><div class="b"><h2>Made for<br><em>loud</em> days.</h2><p>Wraparound chrome lenses, featherweight titanium frames and full UV400 protection. Designed in Manchester.</p><div class="sw"><i style="background:#c9cdd3"></i><i style="background:#111"></i><i style="background:#E2342B"></i><i style="background:#1f5fe0"></i></div><span class="add">Add to bag · £145</span></div></section>
+<div class="stamp"><i></i>Concept by MONOS</div>
+</body></html>

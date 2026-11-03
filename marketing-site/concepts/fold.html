@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fold &amp; Flour | Concept by MONOS</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F3EDE3;--ink:#1d1a16;--mut:#7a7166}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink)}
+.bar{position:fixed;top:0;left:0;right:0;z-index:10;font-size:11px;letter-spacing:.06em;color:var(--mut);display:flex;justify-content:space-between;padding:8px 48px;background:rgba(243,237,227,.9)}
+nav{position:fixed;top:30px;left:0;right:0;z-index:10;display:flex;align-items:center;padding:14px 48px;gap:34px;font-size:13px}
+.logo{font:500 22px 'Bodoni Moda';letter-spacing:.08em}
+nav ul{display:flex;gap:26px;list-style:none;margin-left:120px}
+nav .r{margin-left:auto;display:flex;gap:18px;align-items:center}
+.story{height:700vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.fr{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 6s ease}
+.fr.on{opacity:1}.fr.on img{transform:scale(1)}
+.txt{position:absolute;left:56px;top:170px;z-index:3;max-width:470px}
+.txt small{font:italic 400 15px 'Bodoni Moda';color:var(--mut)}
+.txt h1{font:400 76px/.95 'Bodoni Moda';letter-spacing:-.02em;text-transform:uppercase;margin:10px 0 18px}
+.txt h1 span{display:block;overflow:hidden}
+.txt h1 span i{display:block;font-style:normal;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.7,.1,1)}
+.fr.on .txt h1 span i{transform:none}
+.fr.on .txt h1 span:nth-child(2) i{transition-delay:.1s}
+.txt p{font-size:15px;line-height:1.6;color:#5c554c;max-width:300px}
+.txt .shop{display:inline-block;margin-top:22px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.14em;padding:12px 18px;text-transform:uppercase}
+.dark .txt h1,.dark .txt small{color:#f3ede3}.dark .txt p{color:#cfc4b4}.dark .txt .shop{background:#f3ede3;color:var(--ink)}
+.top .txt{left:50%;transform:translateX(-50%);text-align:center;top:120px;max-width:800px}
+.dots{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.2);transition:all .4s}
+.dots i.on{width:24px;border-radius:4px;background:var(--ink)}
+.after{padding:120px 56px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.after h2{grid-column:1/-1;font:400 56px 'Bodoni Moda';text-transform:uppercase}
+.card{border-top:1px solid #d8cfc2;padding-top:18px}
+.card b{font:400 26px 'Bodoni Moda'}.card p{color:var(--mut);margin-top:8px}
+.stamp{position:fixed;z-index:20;left:20px;bottom:20px;display:flex;align-items:center;gap:8px;background:#0B0B0C;color:#fff;font:600 11px/1 Inter;letter-spacing:.1em;padding:9px 13px;border-radius:999px;text-transform:uppercase}
+.stamp i{width:7px;height:7px;border-radius:50%;background:#D23B2C}
+</style></head><body>
+<div class="bar"><span>Freshly laminated every morning in Ancoats</span><span>Preorder for Saturday · Free local delivery over £25</span></div>
+<nav><div class="logo">FOLD &amp; FLOUR</div><ul><li>Viennoiserie</li><li>Craft</li><li>Ingredients</li><li>Story</li></ul><div class="r"><span>Search</span><span>Bag (0)</span></div></nav>
+<section class="story" id="story"><div class="stage" id="stage">
+ <div class="fr on"><img src="img/bake0.jpg" alt=""><div class="txt"><small>Premium artisan</small><h1><span><i>Crafted</i></span><span><i>in layers.</i></span></h1><p>Small-batch viennoiserie made with French butter, slow-fermented dough and patience.</p><span class="shop">Shop now</span></div></div>
+ <div class="fr"><img src="img/bake1.jpg" alt=""><div class="txt"><small>Step one</small><h1><span><i>Butter,</i></span><span><i>folded in.</i></span></h1><p>82% Normandy butter, rolled into every sheet by hand.</p></div></div>
+ <div class="fr"><img src="img/bake2.jpg" alt=""><div class="txt"><small>Step two</small><h1><span><i>Layer by</i></span><span><i>layer.</i></span></h1><p>Three turns, twenty-seven layers, a full day of resting.</p></div></div>
+ <div class="fr"><img src="img/bake3.jpg" alt=""><div class="txt"><small>Step three</small><h1><span><i>Shaped</i></span><span><i>by hand.</i></span></h1><p>Cut, rolled and proved overnight.</p></div></div>
+ <div class="fr dark"><img src="img/bake4.jpg" alt=""><div class="txt"><small>Step four</small><h1><span><i>Baked</i></span><span><i>to rise.</i></span></h1><p>Out of the oven at 6am, on your table by 8.</p><span class="shop">Preorder</span></div></div>
+ <div class="fr top"><img src="img/bake5.jpg" alt=""><div class="txt"><small>The result</small><h1><span><i>Layers worth</i></span><span><i>breaking.</i></span></h1></div></div>
+ <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+</div></section>
+<section class="after"><h2>The bakery box</h2><div class="card"><b>Butter croissant</b><p>£3.40 · Our signature</p></div><div class="card"><b>Pain au chocolat</b><p>£3.80 · Two bâtons of dark chocolate</p></div><div class="card"><b>Almond twice-baked</b><p>£4.20 · Frangipane, flaked almonds</p></div></section>
+<div class="stamp"><i></i>Concept by MONOS</div>
+<script>
+var fr=document.querySelectorAll('.fr'),dots=document.querySelectorAll('#dots i'),cur=0,story=document.getElementById('story');
+function set(i){if(i===cur)return;fr[cur].classList.remove('on');dots[cur].classList.remove('on');cur=i;fr[i].classList.add('on');dots[i].classList.add('on')}
+addEventListener('scroll',function(){var r=story.getBoundingClientRect(),p=-r.top/(r.height-innerHeight);set(Math.max(0,Math.min(5,Math.floor(p*6))))},{passive:true});
+</script></body></html>

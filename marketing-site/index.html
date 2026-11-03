@@ -9,7 +9,7 @@
 <meta property="og:description" content="Multi-award winning Manchester agency for websites, apps, content and social media.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://monostechnology.co.uk/">
-<meta property="og:image" content="https://monostechnology.co.uk/work/w3.jpg">
+<meta property="og:image" content="https://monostechnology.co.uk/work2/stackd.jpg">
 <meta name="theme-color" content="#0B0B0C">
 <link rel="canonical" href="https://monostechnology.co.uk/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0B0C'/%3E%3Ctext x='10' y='50' font-family='Impact,Arial Black,sans-serif' font-size='44' fill='%23fff'%3EM%3C/text%3E%3Ccircle cx='52' cy='14' r='6' fill='%23D23B2C'/%3E%3C/svg%3E">
@@ -160,8 +160,8 @@ section{position:relative}
 .wc .frame .bar span{height:18px;font-size:11px;max-width:260px}
 .wc .frame .img{aspect-ratio:16/10;overflow:hidden}
 .wc.big .frame .img{aspect-ratio:16/8}
-.wc .frame img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.4s var(--ease)}
-.wc:hover .frame img{transform:scale(1.04)}
+.wc .frame img,.wc .frame video{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1.4s var(--ease)}
+.wc:hover .frame video{transform:scale(1.03)}
 .wc .meta{display:flex;justify-content:space-between;align-items:center;padding:22px 28px 26px;gap:16px;border-top:1px solid var(--line)}
 .wc .meta h3{font-size:21px;font-weight:800;letter-spacing:-.01em}
 .wc .meta p{color:var(--muted);font-size:15px}
@@ -171,7 +171,7 @@ section{position:relative}
 .apps-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px}
 .apps-head h3{font-family:var(--display);font-size:clamp(36px,4.5vw,56px);text-transform:uppercase;font-weight:400;line-height:1}
 .apps-head p{color:var(--muted);max-width:420px}
-.phones{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;align-items:end}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:end;max-width:900px;margin:0 auto}
 .ph{border-radius:40px 40px 0 0;padding:10px 10px 0;background:#232327;border:1px solid var(--line2);border-bottom:0;transition:transform .6s var(--ease)}
 .ph:nth-child(even){transform:translateY(40px)}
 .ph:hover{transform:translateY(-10px)}
@@ -180,6 +180,9 @@ section{position:relative}
 .ph .s img{width:100%;object-fit:cover;object-position:top}
 .ph-label{display:flex;justify-content:space-between;padding:16px 4px 18px;font-size:14px;font-weight:700;align-items:center;gap:8px}
 .ph-label small{color:var(--muted);font-weight:600}
+.films{margin-top:22px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);padding:56px 40px 48px;overflow:hidden}
+.reels{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.reels video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:22px;background:#000;border:1px solid var(--line2);display:block}
 .disclaim{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}
 
 /* RESULTS */
@@ -344,7 +347,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   .svc{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr;row-gap:40px}
   .phones{grid-template-columns:repeat(2,1fr)}
-  .phones .ph:nth-child(n+3){display:none}
+  .reels{grid-template-columns:repeat(5,62%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .reels video{scroll-snap-align:start}
   .stats{grid-template-columns:1fr 1fr}
 }
 @media (max-width:680px){
@@ -362,7 +366,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   .wc .frame{margin:16px 16px 0}
   .wc .meta{padding:18px 20px 20px;flex-direction:column;align-items:flex-start}
   .apps{padding:36px 18px 0}
-  .phones{gap:12px}
+  .phones{gap:10px}
+  .films{padding:36px 18px 30px}
   .ph{border-radius:26px 26px 0 0;padding:6px 6px 0}
   .ph .s{border-radius:21px 21px 0 0}
   .ph:nth-child(even){transform:translateY(24px)}
@@ -448,20 +453,19 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
     <div class="stage rv d2" id="stage">
       <div class="laptop" id="laptop">
         <div class="browser">
-          <div class="bar"><i></i><i></i><i></i><span id="url">lumendental.co.uk</span></div>
+          <div class="bar"><i></i><i></i><i></i><span id="url">stackd.co.uk</span></div>
           <div class="screen" id="screen">
-            <img src="work/w3.jpg" alt="Concept website design for a dental clinic" class="on" data-url="lumendental.co.uk">
-            <img src="work/w2.jpg" alt="Concept website design for a restaurant" data-url="emberandoak.co.uk" loading="lazy">
-            <img src="work/w4.jpg" alt="Concept website design for a construction company" data-url="keystonebuild.co.uk" loading="lazy">
-            <img src="work/w5.jpg" alt="Concept website design for a pilates studio" data-url="verve.studio" loading="lazy">
+            <img src="work2/stackd.jpg" alt="Concept website for a burger restaurant" class="on" data-url="stackd.co.uk">
+            <img src="work2/fold.jpg" alt="Concept website for an artisan bakery" data-url="foldandflour.co.uk" loading="lazy">
+            <img src="work2/zepha.jpg" alt="Concept website for an eyewear brand" data-url="zepha.store" loading="lazy">
+            <img src="work2/brightwell.jpg" alt="Concept website for a cleaning company" data-url="brightwell.co.uk" loading="lazy">
           </div>
         </div>
       </div>
       <div class="phone"><div class="ps" id="pscreen">
-        <img src="work/a1.jpg" alt="Concept fitness app design" class="on">
-        <img src="work/a2.jpg" alt="Concept coffee ordering app design" loading="lazy">
-        <img src="work/a3.jpg" alt="Concept property app design" loading="lazy">
-        <img src="work/a4.jpg" alt="Concept business banking app design" loading="lazy">
+        <img src="work2/aura1.png" alt="Concept health app design" class="on">
+        <img src="work2/aura2.png" alt="Concept health app design" loading="lazy">
+        <img src="work2/aura3.png" alt="Concept health app design" loading="lazy">
       </div></div>
       <div class="chip c1"><span class="ic" style="background:rgba(79,174,79,.18);color:var(--green)"><svg width="18" height="18"><use href="#check"/></svg></span><div>New booking<small>Table for 6 · Saturday 7pm</small></div></div>
       <div class="chip c2"><span class="ic" style="background:rgba(210,59,44,.2);color:var(--red2)">▶</span><div>279K views<small>One video · Sofia Patisserie</small></div></div>
@@ -502,44 +506,49 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
     </div>
     <div class="work-grid">
       <article class="wc big rv">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>emberandoak.co.uk</span></div><div class="img"><img src="work/w2.jpg" alt="Ember and Oak restaurant website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Ember &amp; Oak</h3><p>Restaurant website with live table booking</p></div><span class="tag">Concept design</span></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>stackd.co.uk</span></div><div class="img"><video src="work2/stackd-live.mp4" poster="work2/stackd.jpg" muted loop playsinline preload="none" aria-label="STACKD Burger Co. concept website preview"></video></div></div>
+        <div class="meta"><div><h3>STACKD Burger Co.</h3><p>Restaurant site with a build-your-order menu and live basket</p></div><span class="tag">Concept design</span></div>
       </article>
       <article class="wc rv">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>lumendental.co.uk</span></div><div class="img"><img src="work/w3.jpg" alt="Lumen Dental clinic website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Lumen Dental</h3><p>Private clinic with online appointments</p></div><span class="tag">Concept design</span></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>brightwell.co.uk</span></div><div class="img"><video src="work2/brightwell-live.mp4" poster="work2/brightwell.jpg" muted loop playsinline preload="none" aria-label="Brightwell Cleaning concept website preview"></video></div></div>
+        <div class="meta"><div><h3>Brightwell Cleaning</h3><p>Instant quote builder with live pricing and booking</p></div><span class="tag">Concept design</span></div>
       </article>
-      <article class="wc rv d1">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>keystonebuild.co.uk</span></div><div class="img"><img src="work/w4.jpg" alt="Keystone construction website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Keystone Build</h3><p>Construction firm with instant quote requests</p></div><span class="tag">Concept design</span></div>
-      </article>
-      <article class="wc rv">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>northfold.studio</span></div><div class="img"><img src="work/w1.jpg" alt="Northfold architecture website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Northfold</h3><p>Architecture studio portfolio</p></div><span class="tag">Concept design</span></div>
-      </article>
-      <article class="wc rv d1">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>haldenlaw.co.uk</span></div><div class="img"><img src="work/w6.jpg" alt="Halden solicitors website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Halden Solicitors</h3><p>Law firm with callback booking</p></div><span class="tag">Concept design</span></div>
+      <article class="wc d1 rv">
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>foldandflour.co.uk</span></div><div class="img"><video src="work2/fold-live.mp4" poster="work2/fold.jpg" muted loop playsinline preload="none" aria-label="Fold &amp; Flour concept website preview"></video></div></div>
+        <div class="meta"><div><h3>Fold &amp; Flour</h3><p>Scroll-driven product story for an artisan bakery</p></div><span class="tag">Concept design</span></div>
       </article>
       <article class="wc big rv">
-        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>verve.studio</span></div><div class="img"><img src="work/w5.jpg" alt="Verve pilates studio website concept" loading="lazy"></div></div>
-        <div class="meta"><div><h3>Verve Studio</h3><p>Pilates studio with class timetable and booking</p></div><span class="tag">Concept design</span></div>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>zepha.store</span></div><div class="img"><video src="work2/zepha-live.mp4" poster="work2/zepha.jpg" muted loop playsinline preload="none" aria-label="ZEPHA Eyewear concept website preview"></video></div></div>
+        <div class="meta"><div><h3>ZEPHA Eyewear</h3><p>Fashion e-commerce drop with bold motion typography</p></div><span class="tag">Concept design</span></div>
       </article>
     </div>
 
     <div class="apps rv">
       <div class="apps-head">
         <h3>Apps people<br>actually open.</h3>
-        <p>Booking, ordering, loyalty and membership apps for iPhone and Android, designed with the same care as our websites.</p>
+        <p>Health, booking, ordering and membership apps for iPhone and Android, designed with the same care as our websites.</p>
       </div>
       <div class="phones">
-        <div class="ph"><div class="s"><img src="work/a1.jpg" alt="Pulse fitness app concept" loading="lazy"></div><div class="ph-label">Pulse <small>Fitness</small></div></div>
-        <div class="ph"><div class="s"><img src="work/a2.jpg" alt="Bean and Batch coffee app concept" loading="lazy"></div><div class="ph-label">Bean &amp; Batch <small>Order ahead</small></div></div>
-        <div class="ph"><div class="s"><img src="work/a3.jpg" alt="Nestly property app concept" loading="lazy"></div><div class="ph-label">Nestly <small>Property</small></div></div>
-        <div class="ph"><div class="s"><img src="work/a4.jpg" alt="Ledgr business finance app concept" loading="lazy"></div><div class="ph-label">Ledgr <small>Finance</small></div></div>
+        <div class="ph"><div class="s"><img src="work2/aura1.png" alt="AURA health app concept, glucose dashboard" loading="lazy"></div><div class="ph-label">AURA Health <small>Dashboard</small></div></div>
+        <div class="ph"><div class="s"><img src="work2/aura2.png" alt="AURA health app concept, sleep routine" loading="lazy"></div><div class="ph-label">AURA Health <small>Routines</small></div></div>
+        <div class="ph"><div class="s"><img src="work2/aura3.png" alt="AURA health app concept, sensor pairing" loading="lazy"></div><div class="ph-label">AURA Health <small>Pairing</small></div></div>
       </div>
     </div>
-    <p class="disclaim">Concept designs show our design range. Business names are fictional. Client work under NDA is available to view on a call.</p>
+
+    <div class="films rv">
+      <div class="apps-head">
+        <h3>Every launch,<br>on air.</h3>
+        <p>Every site we build can come with promo films for Instagram and TikTok, so your launch looks as good as your website.</p>
+      </div>
+      <div class="reels">
+        <video src="work2/stackd-reel.mp4" poster="work2/stackd-reel.jpg" muted loop playsinline preload="none" aria-label="STACKD promo film"></video>
+        <video src="work2/fold-reel.mp4" poster="work2/fold-reel.jpg" muted loop playsinline preload="none" aria-label="Fold and Flour promo film"></video>
+        <video src="work2/aura-reel.mp4" poster="work2/aura-reel.jpg" muted loop playsinline preload="none" aria-label="AURA app promo film"></video>
+        <video src="work2/zepha-reel.mp4" poster="work2/zepha-reel.jpg" muted loop playsinline preload="none" aria-label="ZEPHA promo film"></video>
+        <video src="work2/brightwell-reel.mp4" poster="work2/brightwell-reel.jpg" muted loop playsinline preload="none" aria-label="Brightwell promo film"></video>
+      </div>
+    </div>
+    <p class="disclaim">Concept designs show our design range. Business names and products are fictional, and imagery is AI-generated. Client work under NDA is available to view on a call.</p>
   </div>
 </section>
 
@@ -819,6 +828,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   // slideshow
   var cycle=function(id,ms,cb){var imgs=document.querySelectorAll('#'+id+' img'),i=0;setInterval(function(){imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on');cb&&cb(imgs[i])},ms)};
   if(!reduce){cycle('screen',3800,function(im){document.getElementById('url').textContent=im.dataset.url});cycle('pscreen',3000)}
+
+  // play videos only while on screen
+  var vio=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(v.preload==='none')v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.25});
+  if(!reduce)document.querySelectorAll('video').forEach(function(v){vio.observe(v)});
 
   // marquee duplicate
   var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
