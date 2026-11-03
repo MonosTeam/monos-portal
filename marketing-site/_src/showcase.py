@@ -374,11 +374,38 @@ add('inkwell', 'word', 'Tattoo studio', ('Art people', 'wear forever.'), dict(
     h2='Fine lines,<br><em>forever.</em>', p='Custom fine-line and botanical tattoos by award-winning artists in a clean, calm studio.',
     list=[('Small flash', 'From £80'), ('Half day', '£350'), ('Full day', '£650')]))
 
+# ---- SEO: real titles, canonical, intro line linking to pricing + web-design-manchester
+SEO = {'grind': ('Coffee Shops', 'coffee shop'), 'petal': ('Florists', 'florist'), 'scoop': ('Dessert Shops', 'dessert shop'),
+       'smile': ('Dentists', 'dental practice'), 'flowright': ('Plumbers', 'plumbing business'), 'paws': ('Dog Groomers', 'dog grooming business'),
+       'brickbeam': ('Builders', 'building business'), 'lumiere': ('Nail Salons', 'nail salon'), 'northside': ('Estate Agents', 'estate agency'),
+       'ashworth': ('Law Firms', 'law firm'), 'everafter': ('Wedding Businesses', 'wedding business'), 'millhouse': ('Hotels', 'hotel'),
+       'faderoom': ('Barbers', 'barbershop'), 'ironclad': ('Gyms', 'gym'), 'gloss': ('Car Detailers', 'car detailing business'),
+       'inkwell': ('Tattoo Studios', 'tattoo studio')}
+SITE_URL = 'https://monostechnology.co.uk'
+INTRO_CSS = ".mintro{background:#0B0B0C;color:#F4F1EA;font:500 15px/1.5 system-ui,sans-serif;text-align:center;padding:26px 20px 80px}.mintro a{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:3px}.mintro a.b{display:inline-block;margin:0 6px;background:#D23B2C;color:#fff;text-decoration:none;padding:10px 18px;border-radius:999px}"
+def seo(slug, h):
+    plural, one = SEO[slug]
+    title = 'Website Design for %s in Manchester | MONOS' % plural
+    desc = 'A concept website for a %s by MONOS Technology, the multi-award winning Manchester web design agency. Custom, mobile-first websites from \u00a33,500.' % one
+    if len(desc) > 158: desc = 'A concept %s website by MONOS Technology, the multi-award winning Manchester web design agency. Custom, mobile-first sites from \u00a33,500.' % one
+    url = '%s/concepts/%s' % (SITE_URL, slug)
+    ld = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url,
+          "isPartOf": {"@id": SITE_URL + "/#site"}, "publisher": {"@id": SITE_URL + "/#org"}}
+    head = ('<title>%s</title><meta name="description" content="%s"><link rel="canonical" href="%s">'
+            '<meta property="og:type" content="website"><meta property="og:title" content="%s"><meta property="og:description" content="%s">'
+            '<meta property="og:url" content="%s"><meta property="og:image" content="%s/concepts/img/%s.jpg"><meta name="twitter:card" content="summary_large_image">'
+            '<script type="application/ld+json">%s</script>') % (E(title), E(desc), url, E(title), E(desc), url, SITE_URL, slug, json.dumps(ld))
+    i = h.index('<meta name="robots"'); j = h.index('</title>') + 8
+    h = h[:i] + head + h[j:]
+    intro = ('<div class="mintro">Concept design by MONOS Technology. Want a website like this for your %s? '
+             '<a class="b" href="/pricing">Build your quote</a> or see our <a href="/web-design-manchester">web design in Manchester</a>.</div>') % one
+    return h.replace('</style></head>', INTRO_CSS + '</style></head>', 1).replace(STAMP, intro + STAMP, 1)
+
 TPL = {'order': tpl_order, 'quote': tpl_quote, 'story': tpl_story, 'word': tpl_word}
 if __name__ == '__main__':
     meta = []
     for slug, tpl, industry, caption, c in SITES:
-        open(os.path.join(OUT, slug + '.html'), 'w').write(TPL[tpl](c))
+        open(os.path.join(OUT, slug + '.html'), 'w').write(seo(slug, TPL[tpl](c)))
         meta.append(dict(slug=slug, tpl=tpl, name=c['name'], industry=industry, caption=caption))
     json.dump(meta, open(os.path.join(OUT, 'showcase.json'), 'w'), indent=1)
     print(len(meta), 'sites')
