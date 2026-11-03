@@ -97,7 +97,7 @@
 }
 @media(prefers-reduced-motion:reduce){.wall,.wall .col,.atrack,.gold{animation:none!important;opacity:1}}
 .akonf{position:relative;margin:0 0 22px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
-.akonf img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 22%;transition:transform 1.2s var(--ease)}
+.akonf img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 0%;transition:transform 1.2s var(--ease)}
 .akonf:hover img{transform:scale(1.03)}
 .akonf figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 34px 28px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;font-size:clamp(17px,2vw,24px);font-weight:600}
 .akonf figcaption span{font-weight:900;font-size:13px;letter-spacing:.18em;color:var(--red2,#ff6a5a)}
