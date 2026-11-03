@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>SCOOP LAB | Concept by MONOS</title><link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}img{display:block;max-width:100%}button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:root{--bg:#FF6FAE;--ink:#2A0E1C;--acc:#FFE14D;--card:#FF8DC0;--mut:#4A1830}
+body{background:var(--bg);color:var(--ink);font-family:'Rubik',system-ui,sans-serif;overflow-x:hidden}
+nav{display:flex;align-items:center;gap:34px;padding:22px 56px;position:relative;z-index:3}
+.logo{font:400 28px/1 'Bowlby One';letter-spacing:.01em}
+nav ul{display:flex;gap:26px;list-style:none;font-weight:600;font-size:15px;margin-left:auto;opacity:.85}
+.cart{display:flex;align-items:center;gap:10px;background:var(--acc);color:#2A0E1C;font-weight:800;padding:12px 18px;border-radius:999px}
+.cart i{font-style:normal;background:var(--ink);color:var(--bg);border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-size:12px;transition:transform .3s}
+.cart i.bump{transform:scale(1.35)}
+.hero{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;padding:20px 56px 60px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:var(--card);padding:9px 14px;border-radius:999px;font-weight:700;font-size:13px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+h1{font:400 clamp(64px,8.4vw,128px)/.88 'Bowlby One';text-transform:uppercase;letter-spacing:-.01em;margin:24px 0 22px}
+h1 span{display:block;overflow:hidden}h1 span em{display:block;font-style:normal;transform:translateY(105%);animation:up 1s cubic-bezier(.2,.7,.1,1) forwards}
+h1 span:nth-child(2) em{animation-delay:.12s;color:var(--acc)}h1 span:nth-child(3) em{animation-delay:.24s}
+@keyframes up{to{transform:none}}
+.hero p{font-size:19px;line-height:1.5;color:var(--mut);max-width:460px}
+.ctas{display:flex;gap:12px;margin-top:30px}
+.b1{background:var(--acc);color:#2A0E1C;font-weight:800;padding:18px 28px;border-radius:999px}
+.b2{border:2px solid currentColor;font-weight:700;padding:16px 26px;border-radius:999px}
+.pic{position:relative;border-radius:34px;overflow:hidden;aspect-ratio:1.25;animation:zin 1.6s cubic-bezier(.2,.7,.1,1) both}
+@keyframes zin{from{transform:scale(.92);opacity:0}}
+.pic img{width:100%;height:100%;object-fit:cover;animation:kb 14s ease-in-out infinite alternate}
+@keyframes kb{to{transform:scale(1.08) translate(-1%,1%)}}
+.tag{position:absolute;right:20px;top:20px;background:var(--acc);color:#2A0E1C;font:400 22px/1 'Bowlby One';text-transform:uppercase;padding:16px 18px;border-radius:50%;width:120px;height:120px;display:grid;place-items:center;text-align:center;animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.build{padding:70px 56px 110px;display:grid;grid-template-columns:1.4fr .9fr;gap:40px;align-items:start}
+.build h2{font:400 clamp(48px,5vw,76px)/.9 'Bowlby One';text-transform:uppercase;grid-column:1/-1;margin-bottom:6px}
+.grp{background:var(--card);border-radius:26px;padding:24px 26px;margin-bottom:16px}
+.grp h4{display:flex;align-items:center;gap:12px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.grp h4 span{background:var(--ink);color:var(--bg);border-radius:8px;padding:4px 8px;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:flex;gap:10px;align-items:center;padding:13px 16px;border-radius:14px;border:2px solid transparent;background:var(--bg);font-weight:700;font-size:15px;transition:all .25s}
+.chip b{font-weight:600;opacity:.6;font-size:13px}
+.chip.on{background:var(--acc);color:#2A0E1C;border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}
+.chip.on b{opacity:.9}
+.sum{position:sticky;top:30px;background:var(--ink);color:var(--bg);border-radius:30px;padding:30px}
+.sum small{letter-spacing:.14em;text-transform:uppercase;font-weight:800;font-size:12px;opacity:.6}
+.sum ul{list-style:none;margin:18px 0;display:grid;gap:10px;min-height:120px}
+.sum li{display:flex;justify-content:space-between;font-weight:600;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateX(-8px)}}
+.tot{display:flex;justify-content:space-between;align-items:end;border-top:1px dashed currentColor;padding-top:18px}
+.tot b{font:400 64px/1 'Bowlby One';font-variant-numeric:tabular-nums}
+.go{display:block;text-align:center;margin-top:20px;background:var(--acc);color:#2A0E1C;font-weight:800;padding:18px;border-radius:16px}
+@media(max-width:900px){.hero,.build{grid-template-columns:1fr;padding-left:20px;padding-right:20px}nav ul{display:none}}
+.mstamp{position:fixed;z-index:50;left:20px;bottom:20px;display:flex;align-items:center;gap:8px;background:#0B0B0C;color:#fff;font:700 11px/1 system-ui,sans-serif;letter-spacing:.1em;padding:9px 13px;border-radius:999px;text-transform:uppercase}.mstamp i{width:7px;height:7px;border-radius:50%;background:#D23B2C}</style></head><body><nav><div class="logo">SCOOP LAB</div><ul><li>Flavours</li><li>Cakes</li><li>Parties</li><li>Visit</li></ul><span class="cart">Basket <i id="cn">0</i></span></nav>
+<section class="hero"><div><span class="pill"><i></i>New: pistachio crunch</span><h1><span><em>Stack</em></span><span><em>your</em></span><span><em>scoops.</em></span></h1><p>Small-batch gelato churned every morning on the Northern Quarter. Pick your cone, your flavours and your toppings.</p><div class="ctas"><span class="b1">Order a tub →</span><span class="b2">Book a party</span></div></div>
+<div class="pic"><img src="img/gelato.jpg" alt=""><div class="tag">Made<br>fresh<br>today</div></div></section>
+<section class="build" id="build"><h2>Build your cone</h2><div><div class="grp" data-mode="one"><h4><span>01</span>Serve</h4><div class="chips"><button class="chip on" data-g="0" data-n="Cone" data-p="3.5">Cone<b>£3.50</b></button><button class="chip" data-g="0" data-n="Cup" data-p="3.5">Cup<b>£3.50</b></button><button class="chip" data-g="0" data-n="Waffle cone" data-p="4.5">Waffle cone<b>£4.50</b></button></div></div><div class="grp" data-mode="many"><h4><span>02</span>Scoops</h4><div class="chips"><button class="chip" data-g="1" data-n="Pistachio" data-p="1.8">Pistachio<b>+£1.80</b></button><button class="chip" data-g="1" data-n="Strawberry" data-p="1.8">Strawberry<b>+£1.80</b></button><button class="chip" data-g="1" data-n="Dark chocolate" data-p="1.8">Dark chocolate<b>+£1.80</b></button><button class="chip" data-g="1" data-n="Salted caramel" data-p="1.8">Salted caramel<b>+£1.80</b></button></div></div><div class="grp" data-mode="many"><h4><span>03</span>Toppings</h4><div class="chips"><button class="chip" data-g="2" data-n="Sprinkles" data-p="0.5">Sprinkles<b>+£0.50</b></button><button class="chip" data-g="2" data-n="Hot fudge" data-p="0.9">Hot fudge<b>+£0.90</b></button><button class="chip" data-g="2" data-n="Crushed nuts" data-p="0.7">Crushed nuts<b>+£0.70</b></button><button class="chip" data-g="2" data-n="Marshmallow" data-p="0.6">Marshmallow<b>+£0.60</b></button></div></div></div><aside class="sum"><small>Your order</small><ul id="lines"></ul><div class="tot"><span>Total</span><b id="tot">£0.00</b></div><span class="go">Collect in 10 mins</span></aside></section><div class="mstamp"><i></i>Concept by MONOS</div><script>function smooth(to,ms){return new Promise(function(r){var f=scrollY,st=performance.now();(function s(n){var k=Math.min((n-st)/ms,1),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,f+(to-f)*e);k<1?requestAnimationFrame(s):r()})(st)})}
+var shown=0;function fmt(n){return '£'+n.toFixed(2)}
+function upd(){var t=0,h='',k=0;document.querySelectorAll('.chip.on').forEach(function(b){t+=+b.dataset.p;k++;h+='<li><span>'+b.dataset.n+'</span><span>'+(+b.dataset.p?fmt(+b.dataset.p):'Free')+'</span></li>'});document.getElementById('lines').innerHTML=h;var cn=document.getElementById('cn');cn.textContent=k;cn.classList.add('bump');setTimeout(function(){cn.classList.remove('bump')},250);var from=shown,st=performance.now();(function f(n){var p=Math.min((n-st)/500,1);shown=from+(t-from)*(1-Math.pow(1-p,3));document.getElementById('tot').textContent=fmt(shown);if(p<1)requestAnimationFrame(f)})(st)}
+document.querySelectorAll('.grp').forEach(function(g){var one=g.dataset.mode==='one';g.querySelectorAll('.chip').forEach(function(b){b.onclick=function(){if(one){g.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});b.classList.add('on')}else b.classList.toggle('on');upd()}})});upd();
+window.demo=function(){var s=[2, 3, 4, 5, 8, 9];return smooth(document.getElementById('build').offsetTop-20,1400).then(function(){s.forEach(function(q,k){setTimeout(function(){var e=document.querySelectorAll('.chip')[q];e&&e.click()},650*(k+1))})})};</script></body></html>

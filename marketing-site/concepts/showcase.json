@@ -1,0 +1,162 @@
+[
+ {
+  "slug": "grind",
+  "tpl": "order",
+  "name": "GRIND & CO.",
+  "industry": "Coffee shop",
+  "caption": [
+   "Order ahead.",
+   "Skip the queue."
+  ]
+ },
+ {
+  "slug": "petal",
+  "tpl": "order",
+  "name": "PETAL & STEM",
+  "industry": "Florist",
+  "caption": [
+   "Bouquets built",
+   "in a tap."
+  ]
+ },
+ {
+  "slug": "scoop",
+  "tpl": "order",
+  "name": "SCOOP LAB",
+  "industry": "Dessert parlour",
+  "caption": [
+   "Websites people",
+   "can taste."
+  ]
+ },
+ {
+  "slug": "smile",
+  "tpl": "quote",
+  "name": "Smile Theory",
+  "industry": "Dental clinic",
+  "caption": [
+   "Book more patients",
+   "online."
+  ]
+ },
+ {
+  "slug": "flowright",
+  "tpl": "quote",
+  "name": "FlowRight",
+  "industry": "Plumbing and heating",
+  "caption": [
+   "Fixed prices.",
+   "Phones ringing."
+  ]
+ },
+ {
+  "slug": "paws",
+  "tpl": "quote",
+  "name": "Paws & Polish",
+  "industry": "Dog grooming",
+  "caption": [
+   "Book a groom",
+   "in seconds."
+  ]
+ },
+ {
+  "slug": "brickbeam",
+  "tpl": "quote",
+  "name": "Brick & Beam",
+  "industry": "Builder and renovations",
+  "caption": [
+   "Quotes that win",
+   "the job."
+  ]
+ },
+ {
+  "slug": "lumiere",
+  "tpl": "story",
+  "name": "Lumi\u00e8re",
+  "industry": "Nail and beauty salon",
+  "caption": [
+   "Beauty brands",
+   "deserve this."
+  ]
+ },
+ {
+  "slug": "northside",
+  "tpl": "story",
+  "name": "Northside",
+  "industry": "Estate agent",
+  "caption": [
+   "Homes that sell",
+   "themselves."
+  ]
+ },
+ {
+  "slug": "ashworth",
+  "tpl": "story",
+  "name": "Ashworth & Vale",
+  "industry": "Law firm",
+  "caption": [
+   "Websites that",
+   "build trust."
+  ]
+ },
+ {
+  "slug": "everafter",
+  "tpl": "story",
+  "name": "Ever After",
+  "industry": "Wedding planner",
+  "caption": [
+   "Unforgettable days",
+   "start online."
+  ]
+ },
+ {
+  "slug": "millhouse",
+  "tpl": "story",
+  "name": "The Mill House",
+  "industry": "Boutique hotel",
+  "caption": [
+   "More direct",
+   "bookings."
+  ]
+ },
+ {
+  "slug": "faderoom",
+  "tpl": "word",
+  "name": "FADE ROOM",
+  "industry": "Barbershop",
+  "caption": [
+   "Sharp cuts.",
+   "Sharper websites."
+  ]
+ },
+ {
+  "slug": "ironclad",
+  "tpl": "word",
+  "name": "IRONCLAD",
+  "industry": "Gym and fitness",
+  "caption": [
+   "Built to convert.",
+   "Like your PT."
+  ]
+ },
+ {
+  "slug": "gloss",
+  "tpl": "word",
+  "name": "GLOSS",
+  "industry": "Car detailing",
+  "caption": [
+   "Showroom shine.",
+   "Showroom website."
+  ]
+ },
+ {
+  "slug": "inkwell",
+  "tpl": "word",
+  "name": "INKWELL",
+  "industry": "Tattoo studio",
+  "caption": [
+   "Art people",
+   "wear forever."
+  ]
+ }
+]
