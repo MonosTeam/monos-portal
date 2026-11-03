@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
   );
   const { data: { user } } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
-  const isPublic = path.startsWith("/login") || path.startsWith("/auth") || path.startsWith("/book") || path.startsWith("/api/signup") || path.startsWith("/festive-offer") || path.startsWith("/festive-assets") || path.startsWith("/api/site-agent") || path.startsWith("/.netlify/");
+  const isPublic = path.startsWith("/login") || path.startsWith("/auth") || path.startsWith("/book") || path.startsWith("/api/signup") || path.startsWith("/festive-offer") || path.startsWith("/festive-assets") || path.startsWith("/api/site-agent") || path.startsWith("/api/pay/return") || path.startsWith("/.netlify/");
   if (!user && !isPublic) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

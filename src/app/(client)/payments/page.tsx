@@ -30,7 +30,7 @@ export default async function PaymentsPage() {
                   <span className="font-semibold">{gbp(p.amount_pence)}</span>
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${badge[p.status]}`}>{p.status}</span>
                   {p.status !== "paid" && !unlocked(p) && <span className="text-xs text-muted">🔒 {p.id === balance?.id ? "Unlocks after your 1-1" : "Unlocks after you sign"}</span>}
-                  {p.status !== "paid" && p.payment_url && unlocked(p) && <a href={p.payment_url} target="_blank" rel="noopener noreferrer" className="btn">Pay now</a>}
+                  {p.status !== "paid" && unlocked(p) && <a href={`/api/pay/${p.id}`} className="btn">Pay now</a>}
                 </div>
               </li>
             ))}

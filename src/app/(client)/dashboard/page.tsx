@@ -4,7 +4,8 @@ import { StageTimeline } from "@/components/StageTimeline";
 import { JourneySteps } from "@/components/JourneySteps";
 import { buildJourney, callLinkFrom, splitPayments, QUESTIONS_LINK } from "@/lib/journey";
 
-export default async function Dashboard() {
+export default async function Dashboard({ searchParams }: { searchParams: Promise<{ paid?: string; payerror?: string; cancelled?: string }> }) {
+  const sp = await searchParams;
   const { supabase, profile, project } = await getClientProject();
   if (!project) {
     return <div className="card"><h1 className="h1">Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}</h1><p className="text-muted mt-2">Your project is being set up. We&apos;ll email you as soon as it&apos;s ready.</p></div>;
@@ -28,9 +29,9 @@ export default async function Dashboard() {
     journey,
   });
   const { deposit, balance } = splitPayments(pay);
-  const call = callLinkFrom(deposit?.paid_at ?? journey.deposit_sent_at);
+  const call = callLinkFrom(deposit?.paid_at);
   const links = {
-    depositPay: deposit?.payment_url, balancePay: balance?.payment_url,
+    depositId: deposit?.id, balanceId: balance?.id,
     callUrl: call.url, earliestCall: ukDate(call.earliest.toISOString().slice(0, 10)), questionsUrl: QUESTIONS_LINK(),
   };
 
@@ -41,6 +42,9 @@ export default async function Dashboard() {
         <p className="text-muted mt-1">{project.package} · started {ukDate(project.start_date)}</p>
       </div>
 
+      {sp.paid && <div className="card border-ok/50 text-ok">Thank you, your payment went through. Your next step is unlocked.</div>}
+      {sp.payerror && <div className="card border-bad/50 text-bad">Your payment didn&apos;t go through, and you haven&apos;t been charged. Please try again, or reply to any of our emails and we&apos;ll help.</div>}
+      {sp.cancelled && <div className="card text-muted">Payment cancelled. You haven&apos;t been charged.</div>}
       <JourneySteps steps={steps} links={links} />
 
       <div className="grid gap-6 md:grid-cols-3">

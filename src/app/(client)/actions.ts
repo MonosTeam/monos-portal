@@ -51,10 +51,8 @@ export async function recordUpload(path: string, name: string) {
 }
 
 const STEP_NOTICE: Record<string, string> = {
-  deposit_sent: "says they've paid the 75% deposit. Please check PayPal and mark it paid in Admin.",
   call_booked: "has booked their 1-1 with you.",
   handover_done: "has finished their 1-1 handover.",
-  balance_sent: "says they've paid the final 25%. Please check PayPal and mark it paid in Admin.",
 };
 
 /** Client confirms a step they did outside the portal (PayPal, Cal.com, the 1-1). */

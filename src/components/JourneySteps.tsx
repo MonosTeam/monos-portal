@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { JourneyStep } from "@/lib/journey";
 import { markStep } from "@/app/(client)/actions";
 
-type Links = { depositPay?: string | null; balancePay?: string | null; callUrl: string; earliestCall: string; questionsUrl: string };
+type Links = { depositId?: string; balanceId?: string; callUrl: string; earliestCall: string; questionsUrl: string };
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -24,10 +24,7 @@ function Actions({ s, links }: { s: JourneyStep; links: Links }) {
       return <Link href="/agreement" className="btn">Read and sign</Link>;
     case "deposit":
       return (
-        <div className="flex flex-wrap items-start gap-3">
-          {links.depositPay && <a href={links.depositPay} {...ext} className="btn">Pay by PayPal</a>}
-          <Confirm step="deposit_sent" label="I've paid" />
-        </div>
+        links.depositId ? <a href={`/api/pay/${links.depositId}`} className="btn">Pay by PayPal</a> : null
       );
     case "book_call":
       return (
@@ -43,10 +40,7 @@ function Actions({ s, links }: { s: JourneyStep; links: Links }) {
       return <Confirm step="handover_done" label="I've had my 1-1 and shared my changes" note="Any changes you'd like to your website (optional). Aisha will also note them on the call." />;
     case "balance":
       return (
-        <div className="flex flex-wrap items-start gap-3">
-          {links.balancePay && <a href={links.balancePay} {...ext} className="btn">Pay by PayPal</a>}
-          <Confirm step="balance_sent" label="I've paid" />
-        </div>
+        links.balanceId ? <a href={`/api/pay/${links.balanceId}`} className="btn">Pay by PayPal</a> : null
       );
   }
 }

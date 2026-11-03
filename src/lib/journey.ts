@@ -53,15 +53,15 @@ export function buildJourney(input: {
     { key: "agreement", title: "Sign your agreement", blurb: "A short, one-page agreement. Read it and sign with your name.", done: input.agreementSigned },
     {
       key: "deposit", title: `Pay your 75% deposit${deposit ? ` (${gbp(deposit.amount_pence)})` : ""}`,
-      blurb: "Pay securely by PayPal. This books your place and starts your build.",
-      done: depositPaid || !!j.deposit_sent_at, waiting: !depositPaid && !!j.deposit_sent_at,
+      blurb: "Pay securely by PayPal. This step ticks off by itself as soon as your payment goes through.",
+      done: depositPaid,
     },
     { key: "book_call", title: "Book your 1-1 with Aisha", blurb: `Pick a 30-minute slot at least ${CALL_LEAD_DAYS} days from your deposit, so your website is ready to show you.`, done: !!j.call_booked_at },
     { key: "handover", title: "Your 1-1: see your new website", blurb: "Aisha walks you through your new website on the call and notes any changes you'd like. You have one round of changes.", done: !!j.handover_done_at },
     {
       key: "balance", title: `Pay the final 25%${balance ? ` (${gbp(balance.amount_pence)})` : ""}`,
       blurb: "Once you're happy with your website, pay the balance and we connect it to your domain.",
-      done: balancePaid || !!j.balance_sent_at, waiting: !balancePaid && !!j.balance_sent_at,
+      done: balancePaid,
     },
   ];
 
