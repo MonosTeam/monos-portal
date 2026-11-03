@@ -131,3 +131,43 @@
       .catch(function(){btn.disabled=false;btn.firstChild.textContent='Send my enquiry ';alert('Sorry, that did not send. Please email info@monos.ai.')});
   });
 })();
+// ===== SPIN TO WIN =====
+(function(){
+  var box=document.getElementById('spin');if(!box)return;
+  var P=[['£50 off','any website',18,'#D23B2C','#fff'],['3 months','free hosting',18,'#0B0B0C','#f3d68a'],['10% off','any website',12,'#f3d68a','#1a1204'],['Free call','20 mins with Aisha',18,'#D23B2C','#fff'],['Free teaser','trailer',16,'#0B0B0C','#fff'],['Free poster','design',18,'#f3d68a','#1a1204']];
+  var svg=document.getElementById('wheel'),n=P.length,seg=360/n,ns='http://www.w3.org/2000/svg',h='';
+  var pt=function(a,r){a=(a-90)*Math.PI/180;return [(r*Math.cos(a)).toFixed(2),(r*Math.sin(a)).toFixed(2)]};
+  P.forEach(function(p,i){var a0=i*seg,a1=a0+seg,s=pt(a0,104),e=pt(a1,104),m=a0+seg/2;
+    h+='<path d="M0 0L'+s[0]+' '+s[1]+'A104 104 0 0 1 '+e[0]+' '+e[1]+'Z" fill="'+p[3]+'" stroke="#2a2a2e" stroke-width="1"/>';
+    h+='<g transform="rotate('+m+')"><text x="0" y="-66" text-anchor="middle" fill="'+p[4]+'" style="font:400 14px Anton,Impact,sans-serif;letter-spacing:.04em;text-transform:uppercase">'+p[0]+'</text><text x="0" y="-52" text-anchor="middle" fill="'+p[4]+'" opacity=".85" style="font:700 7.5px \'Red Hat Display\',sans-serif">'+p[1]+'</text></g>'});
+  for(var k=0;k<24;k++){var d=pt(k*15,99);h+='<circle cx="'+d[0]+'" cy="'+d[1]+'" r="2" fill="#f3d68a" opacity=".9"/>'}
+  h='<circle r="108" fill="#f3d68a"/><circle r="105" fill="#1a1a1d"/>'+h;
+  svg.innerHTML=h;
+  var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+  var fab=document.querySelector('.spin-fab');
+  var open=function(){box.hidden=false;document.body.style.overflow='hidden';store.set('monosSpinSeen',Date.now());var prev=store.get('monosSpinWon');if(prev){showRes(JSON.parse(prev),true)}};
+  var close=function(){box.hidden=true;document.body.style.overflow=''};
+  document.querySelectorAll('[data-spin]').forEach(function(b){b.addEventListener('click',open)});
+  box.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)close()});
+  setTimeout(function(){fab&&fab.classList.add('show')},2500);
+  var seen=+(store.get('monosSpinSeen')||0),auto=Date.now()-seen>3*864e5&&!store.get('monosSpinWon');
+  if(auto){var fired=false,fire=function(){if(fired)return;fired=true;open()};
+    setTimeout(fire,18000);
+    document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<10)fire()});
+    addEventListener('scroll',function(){if(scrollY>(document.body.scrollHeight-innerHeight)*.55)fire()},{passive:true})}
+  function showRes(r,again){
+    document.getElementById('spRes').innerHTML='<small>'+(again?'YOU ALREADY WON':'YOU WON')+'</small><div class="won">'+r.p+'</div><code>'+r.c+'</code><p>Screenshot your code. We\'ll email you to claim it, and you\'re in the draw for a free website.</p><a href="contact.html" class="btn btn-red">Work with us now <svg><use href="#arrow"/></svg></a>';
+    box.classList.add('done')}
+  var f=document.getElementById('spinForm'),rot=0;
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var tot=P.reduce(function(a,p){return a+p[2]},0),x=Math.random()*tot,i=0;for(;i<n;i++){x-=P[i][2];if(x<0)break}if(i>=n)i=n-1;
+    var label=P[i][0]+' '+P[i][1],code='MONOS-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    document.getElementById('spPrize').value=label;document.getElementById('spCode').value=code;document.getElementById('spPage').value=location.pathname;
+    var btn=f.querySelector('button[type=submit]');btn.disabled=true;
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(function(){});
+    var target=360-(i*seg+seg/2)+(Math.random()-.5)*seg*.6;rot=rot+360*6+((target-rot%360)+360)%360;
+    svg.style.transform='rotate('+rot+'deg)';
+    var r={p:label,c:code};store.set('monosSpinWon',JSON.stringify(r));
+    setTimeout(function(){showRes(r,false)},5200)});
+})();

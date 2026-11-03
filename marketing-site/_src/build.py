@@ -35,12 +35,12 @@ GOLDT='''<svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="
 def awcard(a):
     f,k,t,o,cov=a
     return ('<div class="aw"><div class="pic"><img src="img/awards/%s.jpg" alt="%s, %s" loading="lazy"%s><span class="rib%s">%s%s</span></div><div class="cap"><b>%s</b><span>%s</span></div></div>'
-            %(f,t,o,' class="cov"' if cov and f in('islam-channel-2025','halal-food-festival-2025') else '',' fin' if k=='Finalist' else '',TROPHY,k.upper(),t,o))
+            %(f,t,o,' class="cov"' if cov and f in('islam-channel-2025','halal-food-festival-2025') else '',' fin' if k=='Finalist' else '',TROPHY,'WINNER' if k=='Winner' else 'TO BE ANNOUNCED',t,o))
 montage='''<!-- AWARDS MONTAGE -->
 <section class="amont" aria-label="Awards">
   <div class="wrap"><div class="ahead">%s<h2><span class="gold">Multi-award winning</span></h2>%s</div></div>
   <div class="amq"><div class="atrack" id="atrack">%s</div></div>
-  <div class="wrap"><div class="trow"><span class="tpill">%s<span class="gold">2× Winner 2025</span></span><span class="tpill">%s<span class="gold">3× Finalist 2026</span></span></div></div>
+  <div class="wrap"><div class="trow"><span class="tpill">%s<span class="gold">2× Winner 2025</span></span><span class="tpill">%s<span class="gold">3× 2026 · To be announced</span></span></div></div>
 </section>
 '''%(GOLDT,GOLDT,''.join(awcard(a) for a in AW),GOLDT,GOLDT)
 F['awardsband']='''<!-- AWARDS -->
@@ -49,7 +49,7 @@ F['awardsband']='''<!-- AWARDS -->
     <div class="band rv">
       <span class="eyebrow"><span class="dot"></span>Recognised by the industry</span>
       <h2 class="h2" style="margin-top:26px">Multi-award<br><span class="r">winning.</span></h2>
-      <p class="lead" style="margin:22px auto 0">Two wins in 2025 and three finalist places in 2026. The same team behind work for the BBC, Sky TV and Samsung builds your website.</p>
+      <p class="lead" style="margin:22px auto 0">Two wins in 2025, with three more 2026 awards to be announced. The same team behind work for the BBC, Sky TV and Samsung builds your website.</p>
       <div class="agrid">%s</div>
     </div>
   </div>
@@ -104,17 +104,75 @@ w=F['work']
 i=w.index('<div class="apps rv">');j=w.index('<p class="disclaim">')
 F['work_home']=w[:i]+'<div class="more"><a href="work.html" class="btn btn-ghost">See all work, apps and films <svg><use href="#arrow"/></svg></a></div>\n    '+w[j:]
 
+# ---- wording
+for k in F:
+    F[k]=F[k].replace('Multi-award winning agency, 2024 and 2025, finalist three times in 2026','Multi-award winning agency, with three more 2026 awards to be announced')
+footer=footer.replace('Winner 2024 and 2025, finalist × 3 2026.','Award winner 2024 and 2025, with three 2026 awards to be announced.')
+
+# ---- brands
+F['logos']=F['logos'].replace('<span class="lg uom">The University<br>of Manchester</span>','''<span class="lg uom">The University<br>of Manchester</span>
+      <span class="lg po">P&amp;O <small>Cruises</small></span>
+      <span class="lg vw">Vivienne Westwood</span>
+      <span class="lg lloyds">Lloyds TSB</span>
+      <span class="lg bobbi">bobbi brown</span>
+      <span class="lg astra">ASTRA <small>International</small></span>
+      <span class="lg aja">Asian Jewel <small>Awards</small></span>
+      <span class="lg afm">ASIAN FASHION<small>MAGAZINE</small></span>''')
+
+# ---- work with us CTA
+WWU='''<!-- WORK WITH US -->
+<section class="wwu">
+  <div class="wwu-mq" aria-hidden="true"><div>WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● </div></div>
+  <div class="wrap wwu-in">
+    <div><h2 class="h-display rv">Work with<br>us <span>now.</span></h2>
+    <p class="rv d1">Places each month are limited so every client gets Aisha's full attention. Tell us about your business today and we'll reply within one working day.</p></div>
+    <div class="wwu-b rv d2"><a href="contact.html" class="btn btn-white">Start your project <svg><use href="#arrow"/></svg></a><button type="button" class="btn btn-outline-w" data-spin>Spin to win a prize</button></div>
+  </div>
+</section>
+'''
+F['wwu']=WWU
+GIFT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 010-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 010 5"/></svg>'
+POP='''<button type="button" class="spin-fab" data-spin aria-label="Spin to win">%s<span>Spin to win</span></button>
+<div class="spin" id="spin" role="dialog" aria-modal="true" aria-labelledby="spinT" hidden>
+  <div class="sp-bg" data-close></div>
+  <div class="sp-card">
+    <button type="button" class="sp-x" data-close aria-label="Close">&times;</button>
+    <div class="sp-left"><div class="sp-wheel"><span class="ptr"></span><svg id="wheel" viewBox="-110 -110 220 220"></svg><span class="hub">M<i></i></span></div></div>
+    <div class="sp-right">
+      <span class="eyebrow"><span class="dot"></span>MONOS Spin &amp; Win</span>
+      <h3 id="spinT">Spin to win.<br><span class="r">Every spin wins.</span></h3>
+      <p class="sp-sub">Every entry also goes into our draw for a <b>free website worth £3,500</b>.</p>
+      <form name="spin-to-win" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="spinForm">
+        <input type="hidden" name="form-name" value="spin-to-win">
+        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+        <input type="hidden" name="prize" id="spPrize"><input type="hidden" name="code" id="spCode"><input type="hidden" name="page" id="spPage">
+        <div class="sp-row"><div class="field"><label for="spN">First name</label><input id="spN" name="name" required autocomplete="given-name"></div>
+        <div class="field"><label for="spE">Email</label><input id="spE" name="email" type="email" required autocomplete="email"></div></div>
+        <div class="sp-row"><div class="field"><label for="spB">Business name</label><input id="spB" name="business" required autocomplete="organization"></div>
+        <div class="field"><label for="spI">Industry</label><select id="spI" name="industry" required><option value="">Choose one</option><option>Food and drink</option><option>Beauty and wellness</option><option>Fashion and retail</option><option>Trades and home services</option><option>Health and fitness</option><option>Professional services</option><option>Events and entertainment</option><option>Property</option><option>Other</option></select></div></div>
+        <div class="sp-row"><div class="field"><label for="spW">Do you have a website?</label><select id="spW" name="has_website" required><option value="">Choose one</option><option>No, not yet</option><option>Yes, but it needs a refresh</option><option>Yes, and I'm happy with it</option></select></div>
+        <div class="field"><label for="spP">Phone <small>(optional)</small></label><input id="spP" name="phone" type="tel" autocomplete="tel"></div></div>
+        <label class="sp-ok"><input type="checkbox" name="marketing_consent" value="yes" required><span>Yes, email me MONOS offers, tips and news. Unsubscribe any time.</span></label>
+        <button class="btn btn-red" type="submit">Spin the wheel <svg><use href="#arrow"/></svg></button>
+        <p class="fine">One spin per person. Prizes for new clients. See our <a href="terms.html#spin">Spin &amp; Win terms</a> and <a href="privacy.html">Privacy policy</a>.</p>
+      </form>
+      <div class="sp-res" id="spRes" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+'''%GIFT
+
 # ---- link mapping
 MAP={'#work':'work.html','#services':'services.html','#process':'services.html#process','#quote':'pricing.html','#aisha':'about.html','#faq':'contact.html#faq','#contact':'contact.html','#top':'index.html'}
 def links(h):
     for k,v in MAP.items():h=h.replace('href="%s"'%k,'href="%s"'%v)
     return h.replace('href="/terms"','href="terms.html"').replace('href="/privacy"','href="privacy.html"')
 
-PAGES=[('index.html','MONOS Technology | Multi-award winning web design agency, Manchester',None,['hero','AWM','logos','work_home','results','final']),
- ('work.html','Our work | MONOS Technology','Work',['work','final']),
- ('services.html','Services | MONOS Technology','Services',['services','process','awardsband','final']),
+PAGES=[('index.html','MONOS Technology | Multi-award winning web design agency, Manchester',None,['hero','AWM','logos','work_home','wwu','results','final']),
+ ('work.html','Our work | MONOS Technology','Work',['work','wwu']),
+ ('services.html','Services | MONOS Technology','Services',['services','process','wwu','awardsband']),
  ('pricing.html','Pricing and quote builder | MONOS Technology','Pricing',['quote','contact','faq']),
- ('about.html','About Aisha Ansari | MONOS Technology','About',['founder','awardsband','results','final']),
+ ('about.html','About Aisha Ansari | MONOS Technology','About',['founder','awardsband','results','wwu']),
  ('contact.html','Contact | MONOS Technology','Contact',['contact','faq'])]
 NAV=[('work.html','Work'),('services.html','Services'),('pricing.html','Pricing'),('about.html','About'),('contact.html','Contact')]
 def nav(cur):
@@ -125,7 +183,7 @@ def nav(cur):
     <a href="index.html" class="logo" aria-label="MONOS home">MONOS<i></i></a>
     <ul>%s</ul>
     <div class="act">
-      <a href="contact.html" class="btn btn-ghost">Talk to us</a>
+      <a href="contact.html" class="btn btn-ghost">Work with us now</a>
       <a href="pricing.html" class="btn btn-red">Build your quote</a>
       <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
     </div>
@@ -148,7 +206,7 @@ for fn,title,cur,secs in PAGES:
         body=body.replace('href="contact.html" class="btn btn-red" id="sendQuote"','href="#contact" class="btn btn-red" id="sendQuote"')
     if fn=='contact.html':body=body.replace('id="faq">','id="faq" style="padding-top:20px">')
     main='<main id="top"%s>\n%s</main>\n'%('' if fn=='index.html' else ' class="inner"',body)
-    page=h+'<body>\n'+svgdefs+nav(cur)+'\n'+main+'\n'+foot+'<script>\n'+js+'</script>\n</body>\n</html>\n'
+    page=h+'<body>\n'+svgdefs+nav(cur)+'\n'+main+'\n'+foot+POP+'<script>\n'+js+'</script>\n</body>\n</html>\n'
     if fn!='index.html':page=page.replace('<script type="application/ld+json">','<script type="application/ld+json" data-x>',1)
     open(os.path.join(OUT,fn),'w').write(page)
     print(fn,len(page))
