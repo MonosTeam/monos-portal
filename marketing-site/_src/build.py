@@ -170,8 +170,16 @@ def links(h):
     for k,v in MAP.items():h=h.replace('href="%s"'%k,'href="%s"'%v)
     return h.replace('href="/terms"','href="terms.html"').replace('href="/privacy"','href="privacy.html"')
 
+
+# ---- INDUSTRY SHOWCASES (16 concepts from showcase.py)
+import json as _json
+_SC=_json.load(open(os.path.join(OUT,'concepts','showcase.json'))) if os.path.exists(os.path.join(OUT,'concepts','showcase.json')) else []
+_cards=''.join('<a class="ind rv" href="concepts/%(slug)s.html"><div class="iv"><video data-src="work2/%(slug)s-reel.mp4" poster="work2/%(slug)s-reel.jpg" muted loop playsinline preload="none" aria-label="%(name)s concept website reel"></video><button class="snd" type="button" aria-label="Sound on">&#128263;</button></div><div class="im"><span>%(industry)s</span><b>%(name)s</b><i>View concept &rarr;</i></div></a>'%m for m in _SC)
+F['industries']=('<section class="sec inds" id="industries"><div class="wrap"><div class="sec-head"><h2 class="h2 rv">A website for<br><span class="r">every industry.</span></h2>'
+ '<p class="lead rv d1">Sixteen concept designs, one for each kind of business we build for. Tap any reel to see the full site in motion, sound on.</p></div>'
+ '<div class="ind-grid">'+_cards+'</div><p class="ind-note">Concept designs by MONOS. Want one for your business? <a href="pricing.html">Build your quote</a>.</p></div></section>')
 PAGES=[('index.html','MONOS Technology | Multi-award winning web design agency, Manchester',None,['hero','AWM','logos','work_home','wwu','results','final']),
- ('work.html','Our work | MONOS Technology','Work',['work','wwu']),
+ ('work.html','Our work | MONOS Technology','Work',['work','industries','wwu']),
  ('services.html','Services | MONOS Technology','Services',['services','process','wwu','awardsband']),
  ('pricing.html','Pricing and quote builder | MONOS Technology','Pricing',['quote','contact','faq']),
  ('about.html','About Aisha Ansari | MONOS Technology','About',['founder','awardsband','results','wwu']),

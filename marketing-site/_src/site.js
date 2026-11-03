@@ -171,3 +171,11 @@
     var r={p:label,c:code};store.set('monosSpinWon',JSON.stringify(r));
     setTimeout(function(){showRes(r,false)},5200)});
 })();
+
+/* industry reels: lazy play in view, sound toggle */
+(function(){var vs=document.querySelectorAll('.ind video');if(!vs.length)return;
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;var p=v.play();p&&p.catch(function(){})}else{v.pause()}})},{threshold:.35}):null;
+vs.forEach(function(v){io?io.observe(v):(v.src=v.dataset.src)});
+document.querySelectorAll('.ind .snd').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=b.parentNode.querySelector('video');var on=v.muted;
+vs.forEach(function(o){o.muted=true});document.querySelectorAll('.ind .snd').forEach(function(x){x.classList.remove('on');x.innerHTML='&#128263;'});
+if(on){v.muted=false;v.play();b.classList.add('on');b.innerHTML='&#128266;'}})});})();
