@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     return [{ source: "/festive-offer", destination: "/festive-offer.html" }];
   },
   async headers() {
-    return ["/festive-offer", "/festive-offer.html", "/festive-assets/:path*", "/book"].map((source) => ({
+    return ["/festive-offer", "/festive-offer.html", "/festive-assets/:path*", "/ig-media/:path*", "/book"].map((source) => ({
       source,
       headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
     }));

@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /ig-media/
+Disallow: /festive-offer
+Disallow: /festive-assets/
+Disallow: /book
+Disallow: /admin
+Disallow: /api/
