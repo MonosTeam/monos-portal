@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MONOS Technology | Award-winning web design agency, Manchester</title>
+<title>MONOS Technology | Multi-award winning web design agency, Manchester</title>
 <meta name="description" content="MONOS Technology is a multi-award winning Manchester agency designing websites, apps, content and social media for ambitious businesses. Build your quote online.">
 <meta property="og:title" content="MONOS Technology | Your brand. On air.">
 <meta property="og:description" content="Multi-award winning Manchester agency for websites, apps, content and social media.">
@@ -398,10 +398,115 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   .mask>span{transform:none}
   .laptop{transform:none!important}
 }
+/* ===== v3: multi-page + ON AIR hero ===== */
+.nav ul a.cur{color:#fff}
+.nav ul a.cur:after{content:"";display:block;height:2px;background:var(--red);border-radius:2px;margin-top:4px}
+.inner{padding-top:96px}
+.inner .sec:first-child{padding-top:80px}
+.crumb{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb i{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.more{display:flex;justify-content:center;margin-top:50px}
+
+/* ON AIR HERO */
+.ohero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#070708;isolation:isolate;--sp:0}
+.wall{position:absolute;left:50%;top:50%;width:1900px;height:1500px;margin:-750px 0 0 -950px;display:grid;grid-template-columns:repeat(6,1fr);gap:18px;transform:translate(var(--px,0),var(--py,0)) perspective(1600px) rotateX(30deg) rotateZ(-12deg) scale(calc(.82 + var(--sp)*.2));transition:transform .6s cubic-bezier(.2,.7,.1,1);z-index:-2;opacity:0;animation:wallIn 2.2s .2s cubic-bezier(.2,.7,.1,1) forwards}
+@keyframes wallIn{from{opacity:0;filter:blur(12px)}to{opacity:1;filter:none}}
+.wall .col{display:flex;flex-direction:column;gap:18px;animation:colUp 60s linear infinite}
+.wall .col:nth-child(even){animation-name:colDown;animation-duration:70s}
+@keyframes colUp{to{transform:translateY(-50%)}}
+@keyframes colDown{from{transform:translateY(-50%)}to{transform:none}}
+.wall .t{border-radius:16px;overflow:hidden;background:#151517;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);flex:none}
+.wall .t img,.wall .t video{display:block;width:100%;height:100%;object-fit:cover}
+.wall .w{aspect-ratio:16/10}.wall .v{aspect-ratio:9/16}.wall .a{aspect-ratio:4/5;background:#000}.wall .a img{object-fit:contain}
+.veil{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(7,7,8,.88) 0%,rgba(7,7,8,.72) 45%,rgba(7,7,8,.35) 75%,rgba(7,7,8,.2) 100%),linear-gradient(180deg,rgba(7,7,8,.75) 0%,transparent 22%,transparent 70%,#0B0B0C 100%)}
+.scan{position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+.ocenter{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;padding-top:120px;padding-bottom:140px}
+.onair{font-family:var(--display);font-size:clamp(22px,2.6vw,34px);letter-spacing:.14em;padding:10px 26px 10px 22px;border:2px solid #3a1714;border-radius:10px;color:#3a1714;background:#120706;display:inline-flex;align-items:center;gap:14px;transition:all .25s}
+.onair i{width:12px;height:12px;border-radius:50%;background:#3a1714;transition:all .25s}
+.ohero.live .onair{color:#fff;border-color:var(--red);background:var(--red);box-shadow:0 0 0 6px rgba(210,59,44,.15),0 0 60px 6px rgba(210,59,44,.55),inset 0 0 18px rgba(255,255,255,.25);text-shadow:0 0 12px rgba(255,255,255,.7);animation:flick 1.1s steps(1) 1}
+.ohero.live .onair i{background:#fff;box-shadow:0 0 12px #fff;animation:blink 1.4s 1.2s infinite}
+@keyframes flick{0%{opacity:1}8%{opacity:.25}14%{opacity:1}22%{opacity:.35}30%{opacity:1}}
+@keyframes blink{50%{opacity:.25}}
+.ohero h1{font-size:clamp(64px,11.5vw,180px);margin:26px 0 22px;text-shadow:0 10px 60px rgba(0,0,0,.6)}
+.ohero h1 .r{color:var(--red)}
+.ohero .lead{text-align:center;margin:0 auto;max-width:620px;color:#d6d6da}
+.ohero .ctas{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+.hud{position:absolute;z-index:2;font:700 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;gap:14px;align-items:center}
+.hud.tl{left:28px;top:96px}.hud.tr{right:28px;top:96px}.hud.bl{left:28px;bottom:120px}.hud.br{right:28px;bottom:120px}
+.hud .rec{display:inline-flex;align-items:center;gap:8px;color:#fff}.hud .rec i{width:9px;height:9px;border-radius:50%;background:var(--red);animation:blink 1.2s infinite}
+.hud b{color:var(--red)}
+#tc{font-variant-numeric:tabular-nums;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em}
+.corner{position:absolute;z-index:2;width:34px;height:34px;border:2px solid rgba(255,255,255,.35)}
+.corner.a{left:20px;top:84px;border-right:0;border-bottom:0}.corner.b{right:20px;top:84px;border-left:0;border-bottom:0}.corner.c{left:20px;bottom:108px;border-right:0;border-top:0}.corner.d{right:20px;bottom:108px;border-left:0;border-top:0}
+.lower{position:absolute;z-index:2;left:0;right:0;bottom:34px;display:flex;justify-content:center;pointer-events:none}
+.lower div{display:flex;align-items:stretch;transform:translateX(-30px);opacity:0;transition:all 1s 1.6s cubic-bezier(.2,.7,.1,1)}
+.ohero.live .lower div{transform:none;opacity:1}
+.lower span{padding:12px 18px;font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.lower .lr{background:var(--red);color:#fff;font-family:var(--display);font-weight:400;font-size:18px;letter-spacing:.08em}
+.lower .lw{background:rgba(245,243,238,.95);color:#0B0B0C}
+
+/* AWARDS MONTAGE */
+.amont{position:relative;padding:70px 0 80px;background:linear-gradient(180deg,#0B0B0C,#100d08 50%,#0B0B0C);border-top:1px solid rgba(214,172,90,.18);border-bottom:1px solid rgba(214,172,90,.18);overflow:hidden}
+.amont:before{content:"";position:absolute;left:50%;top:-200px;width:900px;height:400px;margin-left:-450px;background:radial-gradient(ellipse,rgba(230,182,90,.16),transparent 70%);pointer-events:none}
+.ahead{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:40px;text-align:center;flex-wrap:wrap}
+.gold{background:linear-gradient(100deg,#b8862b 0%,#f6e27a 25%,#fff6c9 38%,#d4a548 55%,#f3d68a 75%,#a8781f 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s linear infinite}
+@keyframes sheen{to{background-position:-200% 0}}
+.ahead h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(34px,4.6vw,60px);line-height:1;letter-spacing:.01em}
+.ahead .tro{width:54px;height:54px;flex:none}
+.amq{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.atrack{display:flex;gap:22px;width:max-content;animation:scroll 48s linear infinite}
+.amq:hover .atrack{animation-play-state:paused}
+.aw{width:300px;flex:none;border-radius:20px;overflow:hidden;background:#141210;border:1px solid rgba(214,172,90,.28);box-shadow:0 30px 60px -30px rgba(0,0,0,.9);transition:transform .5s var(--ease),border-color .4s}
+.aw:hover{transform:translateY(-6px);border-color:rgba(246,226,122,.6)}
+.aw .pic{height:300px;background:#000;display:grid;place-items:center;overflow:hidden;position:relative}
+.aw .pic img{width:100%;height:100%;object-fit:contain}
+.aw .pic img.cov{object-fit:cover;object-position:50% 20%}
+.aw .rib{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px 7px 9px;border-radius:999px;font-weight:900;font-size:11px;letter-spacing:.14em;color:#1a1204;background:linear-gradient(135deg,#f6e27a,#d4a548 55%,#f3d68a)}
+.aw .rib.fin{background:rgba(20,18,16,.85);color:#f3d68a;border:1px solid rgba(214,172,90,.5);backdrop-filter:blur(8px)}
+.aw .rib svg{width:14px;height:14px}
+.aw .cap{padding:18px 20px 20px}
+.aw .cap b{display:block;font-size:16px;line-height:1.3;color:#fff}
+.aw .cap span{display:block;margin-top:6px;color:#bfa36a;font-size:13px;font-weight:600}
+.trow{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap}
+.tpill{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;border:1px solid rgba(214,172,90,.3);background:rgba(20,18,16,.7);font-weight:800;font-size:14px}
+.tpill svg{width:22px;height:22px}
+
+/* real awards grid (about/services) */
+.agrid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:50px;text-align:left}
+.agrid .aw{width:auto}
+.agrid .aw .pic{height:260px}
+
+/* services: equal boxes */
+.svc{grid-auto-rows:1fr}
+.sv{min-height:280px}
+.sv .pr{margin-top:auto;padding-top:20px}
+.sv h3{margin-top:34px}
+
+/* Akon feature */
+.akon{display:none}
+
+@media(max-width:1100px){.agrid{grid-template-columns:repeat(3,1fr)}.wall{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:720px){
+  .hud.bl,.hud.br,.corner{display:none}.hud.tl{left:16px;top:84px}.hud.tr{right:16px;top:84px}
+  .wall{width:1200px;height:1400px;margin:-700px 0 0 -600px;grid-template-columns:repeat(4,1fr);gap:12px}
+  .wall .col{gap:12px}
+  .lower span{font-size:10px;padding:9px 11px}.lower .lr{font-size:14px}
+  .aw{width:240px}.aw .pic{height:250px}
+  .agrid{grid-template-columns:1fr 1fr}
+  .inner{padding-top:70px}
+}
+@media(prefers-reduced-motion:reduce){.wall,.wall .col,.atrack,.gold{animation:none!important;opacity:1}}
+.akonf{position:relative;margin:0 0 22px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
+.akonf img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 22%;transition:transform 1.2s var(--ease)}
+.akonf:hover img{transform:scale(1.03)}
+.akonf figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 34px 28px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;font-size:clamp(17px,2vw,24px);font-weight:600}
+.akonf figcaption span{font-weight:900;font-size:13px;letter-spacing:.18em;color:var(--red2,#ff6a5a)}
+.akonf figcaption b{font-weight:900}
+@media(max-width:720px){.akonf img{aspect-ratio:4/3}.akonf figcaption{padding:50px 20px 18px}}
+
 </style>
 </head>
 <body>
-
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="laurel" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M22 54C12 48 8 38 10 26M42 54c10-6 14-16 12-28"/><path d="M12 44c-5 0-8-3-9-6 4-1 8 1 9 6zM10 35c-5-1-7-5-7-8 4 0 7 3 7 8zM10 26c-4-2-5-6-4-9 4 1 5 5 4 9zM14 18c-3-3-3-7-1-10 3 2 3 6 1 10zM52 44c5 0 8-3 9-6-4-1-8 1-9 6zM54 35c5-1 7-5 7-8-4 0-7 3-7 8zM54 26c4-2 5-6 4-9-4 1-5 5-4 9zM50 18c3-3 3-7 1-10-3 2-3 6-1 10z" fill="currentColor" stroke="none"/></g><path d="M32 18l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9L32 36.1l-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" fill="currentColor"/></symbol>
@@ -413,73 +518,47 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="#top" class="logo" aria-label="MONOS home">MONOS<i></i></a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#quote">Pricing</a></li>
-      <li><a href="#aisha">About</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+    <a href="index.html" class="logo" aria-label="MONOS home">MONOS<i></i></a>
+    <ul><li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
     <div class="act">
-      <a href="#contact" class="btn btn-ghost">Contact</a>
-      <a href="#quote" class="btn btn-red">Build your quote</a>
+      <a href="contact.html" class="btn btn-ghost">Talk to us</a>
+      <a href="pricing.html" class="btn btn-red">Build your quote</a>
       <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
 </header>
-<nav class="mob" id="mob">
-  <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#quote">Pricing</a><a href="#aisha">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
-  <a href="#quote" class="btn btn-red">Build your quote</a>
-</nav>
+<nav class="mob" id="mob"><a href="index.html">Home</a><a href="work.html">Work</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="pricing.html" class="btn btn-red">Build your quote</a></nav>
 
 <main id="top">
 <!-- HERO -->
-<section class="hero">
-  <div class="glow g1"></div><div class="glow g2"></div>
-  <div class="wrap">
-    <div class="hero-top">
-      <span class="eyebrow rv in"><span class="dot"></span>Multi-award winning agency<span class="hide-m"> · Manchester</span></span>
-      <h1 class="h-display">
-        <span class="mask"><span>Your brand.</span></span>
-        <span class="mask"><span class="r">On air.</span></span>
-      </h1>
-      <p class="lead rv d2">Websites, apps, content and social media for businesses that want to look established from day one. Designed in Manchester, trusted by household names.</p>
-      <div class="ctas rv d3">
-        <a href="#quote" class="btn btn-red">Build your quote <svg><use href="#arrow"/></svg></a>
-        <a href="#work" class="btn btn-ghost">See our work</a>
-      </div>
-      <div class="awards rv d4">
-        <div class="award"><svg><use href="#laurel"/></svg><div><b>Award winner</b><small>2024</small></div></div>
-        <div class="award"><svg><use href="#laurel"/></svg><div><b>Award winner</b><small>2025</small></div></div>
-        <div class="award"><svg><use href="#laurel"/></svg><div><b>Finalist × 3</b><small>2026</small></div></div>
-      </div>
-    </div>
-
-    <div class="stage rv d2" id="stage">
-      <div class="laptop" id="laptop">
-        <div class="browser">
-          <div class="bar"><i></i><i></i><i></i><span id="url"><b class="px" aria-hidden="true">xxxxxxxxxxxx</b></span></div>
-          <div class="screen" id="screen">
-            <img src="work2/stackd.jpg" alt="Concept website for a burger restaurant" class="on" data-url="xxxxxxxxxxxx">
-            <img src="work2/fold.jpg" alt="Concept website for an artisan bakery" data-url="xxxxxxxxxxxxxxxxxx" loading="lazy">
-            <img src="work2/zepha.jpg" alt="Concept website for an eyewear brand" data-url="xxxxxxxxxxx" loading="lazy">
-            <img src="work2/brightwell.jpg" alt="Concept website for a cleaning company" data-url="xxxxxxxxxxxxxxxx" loading="lazy">
-          </div>
-        </div>
-      </div>
-      <div class="phone"><div class="ps" id="pscreen">
-        <img src="work2/aura1.png" alt="Concept health app design" class="on">
-        <img src="work2/aura2.png" alt="Concept health app design" loading="lazy">
-        <img src="work2/aura3.png" alt="Concept health app design" loading="lazy">
-      </div></div>
-      <div class="chip c1"><span class="ic" style="background:rgba(79,174,79,.18);color:var(--green)"><svg width="18" height="18"><use href="#check"/></svg></span><div>New booking<small>Table for 6 · Saturday 7pm</small></div></div>
-      <div class="chip c2"><span class="ic" style="background:rgba(210,59,44,.2);color:var(--red2)">▶</span><div>279K views<small>One video · Sofia Patisserie</small></div></div>
+<section class="ohero" id="ohero">
+  <div class="wall" id="wall" aria-hidden="true"><div class="col"><div class="t w"><img src="work2/stackd.jpg" alt="" loading="eager"></div><div class="t v"><video src="work2/stackd-reel.mp4" poster="work2/stackd-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/zepha.jpg" alt="" loading="lazy"></div><div class="t v"><img src="work2/aura1.png" alt="" loading="lazy"></div><div class="t w"><img src="work2/stackd.jpg" alt="" loading="eager"></div><div class="t v"><video src="work2/stackd-reel.mp4" poster="work2/stackd-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/zepha.jpg" alt="" loading="lazy"></div><div class="t v"><img src="work2/aura1.png" alt="" loading="lazy"></div></div><div class="col"><div class="t v"><video src="work2/fold-reel.mp4" poster="work2/fold-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/fold.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/zepha-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="lazy"></div><div class="t v"><video src="work2/fold-reel.mp4" poster="work2/fold-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/fold.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/zepha-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="lazy"></div></div><div class="col"><div class="t w"><img src="work2/zepha.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/aura2.png" alt="" loading="lazy"></div><div class="t v"><img src="work2/aura-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/stackd.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/zepha.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/aura2.png" alt="" loading="lazy"></div><div class="t v"><img src="work2/aura-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/stackd.jpg" alt="" loading="lazy"></div></div><div class="col"><div class="t v"><video src="work2/brightwell-reel.mp4" poster="work2/brightwell-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="eager"></div><div class="t w"><img src="work2/fold.jpg" alt="" loading="lazy"></div><div class="t v"><img src="work2/stackd-reel.jpg" alt="" loading="lazy"></div><div class="t v"><video src="work2/brightwell-reel.mp4" poster="work2/brightwell-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="eager"></div><div class="t w"><img src="work2/fold.jpg" alt="" loading="lazy"></div><div class="t v"><img src="work2/stackd-reel.jpg" alt="" loading="lazy"></div></div><div class="col"><div class="t w"><img src="work2/fold.jpg" alt="" loading="eager"></div><div class="t v"><video src="work2/aura-reel.mp4" poster="work2/aura-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t v"><img src="work2/aura3.png" alt="" loading="lazy"></div><div class="t w"><img src="work2/zepha.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/fold.jpg" alt="" loading="eager"></div><div class="t v"><video src="work2/aura-reel.mp4" poster="work2/aura-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t v"><img src="work2/aura3.png" alt="" loading="lazy"></div><div class="t w"><img src="work2/zepha.jpg" alt="" loading="lazy"></div></div><div class="col"><div class="t v"><video src="work2/zepha-reel.mp4" poster="work2/zepha-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/stackd.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/brightwell-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="lazy"></div><div class="t v"><video src="work2/zepha-reel.mp4" poster="work2/zepha-reel.jpg" muted loop playsinline autoplay preload="metadata"></video></div><div class="t w"><img src="work2/stackd.jpg" alt="" loading="eager"></div><div class="t v"><img src="work2/brightwell-reel.jpg" alt="" loading="lazy"></div><div class="t w"><img src="work2/brightwell.jpg" alt="" loading="lazy"></div></div></div>
+  <div class="veil"></div><div class="scan"></div>
+  <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+  <div class="hud tl"><span class="rec"><i></i>REC</span><span id="tc">00:00:00:00</span></div>
+  <div class="hud tr">MCR <b>●</b> LIVE</div>
+  <div class="hud bl">CAM 01 · 4K · 25FPS</div>
+  <div class="hud br">MULTI-AWARD WINNING</div>
+  <div class="wrap ocenter">
+    <div class="onair" aria-label="On air"><i></i>ON AIR</div>
+    <h1 class="h-display">
+      <span class="mask"><span>Your brand.</span></span>
+      <span class="mask"><span class="r">On air.</span></span>
+    </h1>
+    <p class="lead rv d2">Websites, apps, content and social media for businesses that want to look established from day one. Multi-award winning, Manchester made, trusted by household names.</p>
+    <div class="ctas rv d3">
+      <a href="pricing.html" class="btn btn-red">Build your quote <svg><use href="#arrow"/></svg></a>
+      <a href="work.html" class="btn btn-ghost">See our work</a>
     </div>
   </div>
+  <div class="lower"><div><span class="lr">MONOS TECHNOLOGY</span><span class="lw">Websites · Apps · Content · Social</span></div></div>
 </section>
-
+<!-- AWARDS MONTAGE -->
+<section class="amont" aria-label="Awards">
+  <div class="wrap"><div class="ahead"><svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset=".5" stop-color="#d4a548"/><stop offset="1" stop-color="#fff2b8"/></linearGradient></defs><path fill="url(#gg)" d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect fill="url(#gg)" x="7" y="20" width="10" height="2" rx="1"/></svg><h2><span class="gold">Multi-award winning</span></h2><svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset=".5" stop-color="#d4a548"/><stop offset="1" stop-color="#fff2b8"/></linearGradient></defs><path fill="url(#gg)" d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect fill="url(#gg)" x="7" y="20" width="10" height="2" rx="1"/></svg></div></div>
+  <div class="amq"><div class="atrack" id="atrack"><div class="aw"><div class="pic"><img src="img/awards/islam-channel-2025.jpg" alt="Start-Up Business of the Year, Islam Channel Business Awards 2025" loading="lazy" class="cov"><span class="rib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect x="7" y="20" width="10" height="2" rx="1"/></svg>WINNER</span></div><div class="cap"><b>Start-Up Business of the Year</b><span>Islam Channel Business Awards 2025</span></div></div><div class="aw"><div class="pic"><img src="img/awards/halal-food-festival-2025.jpg" alt="Festival Friend Appreciation Award, Halal Food Festival 2025" loading="lazy" class="cov"><span class="rib"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect x="7" y="20" width="10" height="2" rx="1"/></svg>WINNER</span></div><div class="cap"><b>Festival Friend Appreciation Award</b><span>Halal Food Festival 2025</span></div></div><div class="aw"><div class="pic"><img src="img/awards/womens-awards-2026.jpg" alt="Outstanding Female Entrepreneur, Women's Awards National 2026" loading="lazy"><span class="rib fin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect x="7" y="20" width="10" height="2" rx="1"/></svg>FINALIST</span></div><div class="cap"><b>Outstanding Female Entrepreneur</b><span>Women's Awards National 2026</span></div></div><div class="aw"><div class="pic"><img src="img/awards/mbcc-2026.jpg" alt="Entrepreneur of the Year, MBCC Awards 2026" loading="lazy"><span class="rib fin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect x="7" y="20" width="10" height="2" rx="1"/></svg>FINALIST</span></div><div class="cap"><b>Entrepreneur of the Year</b><span>MBCC Awards 2026</span></div></div><div class="aw"><div class="pic"><img src="img/awards/bpa-2026.jpg" alt="Empowering Women Awards, BPA Empowering Women Awards 2026" loading="lazy"><span class="rib fin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect x="7" y="20" width="10" height="2" rx="1"/></svg>FINALIST</span></div><div class="cap"><b>Empowering Women Awards</b><span>BPA Empowering Women Awards 2026</span></div></div></div></div>
+  <div class="wrap"><div class="trow"><span class="tpill"><svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset=".5" stop-color="#d4a548"/><stop offset="1" stop-color="#fff2b8"/></linearGradient></defs><path fill="url(#gg)" d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect fill="url(#gg)" x="7" y="20" width="10" height="2" rx="1"/></svg><span class="gold">2× Winner 2025</span></span><span class="tpill"><svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e27a"/><stop offset=".5" stop-color="#d4a548"/><stop offset="1" stop-color="#fff2b8"/></linearGradient></defs><path fill="url(#gg)" d="M7 3h10v2h3v3a4 4 0 01-4 4h-.3A5 5 0 0113 14.9V17h3v2H8v-2h3v-2.1A5 5 0 018.3 12H8a4 4 0 01-4-4V5h3zm0 4H6v1a2 2 0 001 1.7zm10 0v2.7A2 2 0 0018 8V7z"/><rect fill="url(#gg)" x="7" y="20" width="10" height="2" rx="1"/></svg><span class="gold">3× Finalist 2026</span></span></div></div>
+</section>
 <!-- LOGOS -->
 <section class="logos">
   <div class="wrap"><p class="rv">Trusted by brands you know</p></div>
@@ -530,31 +609,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
       </article>
     </div>
 
-    <div class="apps rv">
-      <div class="apps-head">
-        <h3>Apps people<br>actually open.</h3>
-        <p>Health, booking, ordering and membership apps for iPhone and Android, designed with the same care as our websites.</p>
-      </div>
-      <div class="phones">
-        <div class="ph"><div class="s"><img src="work2/aura1.png" alt="AURA health app concept, glucose dashboard" loading="lazy"></div><div class="ph-label">AURA Health <small>Dashboard</small></div></div>
-        <div class="ph"><div class="s"><img src="work2/aura2.png" alt="AURA health app concept, sleep routine" loading="lazy"></div><div class="ph-label">AURA Health <small>Routines</small></div></div>
-        <div class="ph"><div class="s"><img src="work2/aura3.png" alt="AURA health app concept, sensor pairing" loading="lazy"></div><div class="ph-label">AURA Health <small>Pairing</small></div></div>
-      </div>
-    </div>
-
-    <div class="films rv">
-      <div class="apps-head">
-        <h3>Every launch,<br>on air.</h3>
-        <p>Every site we build can come with promo films for Instagram and TikTok, so your launch looks as good as your website.</p>
-      </div>
-      <div class="reels">
-        <video src="work2/stackd-reel.mp4" poster="work2/stackd-reel.jpg" muted loop playsinline preload="none" aria-label="STACKD promo film"></video>
-        <video src="work2/fold-reel.mp4" poster="work2/fold-reel.jpg" muted loop playsinline preload="none" aria-label="Fold and Flour promo film"></video>
-        <video src="work2/aura-reel.mp4" poster="work2/aura-reel.jpg" muted loop playsinline preload="none" aria-label="AURA app promo film"></video>
-        <video src="work2/zepha-reel.mp4" poster="work2/zepha-reel.jpg" muted loop playsinline preload="none" aria-label="ZEPHA promo film"></video>
-        <video src="work2/brightwell-reel.mp4" poster="work2/brightwell-reel.jpg" muted loop playsinline preload="none" aria-label="Brightwell promo film"></video>
-      </div>
-    </div>
+    <div class="more"><a href="work.html" class="btn btn-ghost">See all work, apps and films <svg><use href="#arrow"/></svg></a></div>
     <p class="disclaim">Concept designs show our design range. Business names and products are fictional. Client work under NDA is available to view on a call.</p>
   </div>
 </section>
@@ -566,6 +621,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
       <h2 class="h2 rv">Real clients.<br><span class="r">Real results.</span></h2>
       <p class="lead rv d1">From a patisserie that sells out every day to a national home-improvement brand that's fully booked every month.</p>
     </div>
+    <figure class="akonf rv"><img src="img/sofia-akon.jpg" alt="Sofia Patisserie founder with Akon, holding a Sofia Patisserie cup" loading="lazy"><figcaption><span>CATERED FOR</span><div>Global icon <b>Akon</b>, by Sofia Patisserie, Manchester</div></figcaption></figure>
     <div class="results">
       <div class="case rv">
         <span class="live"><span class="dot" style="background:#fff"></span>CASE STUDY</span>
@@ -593,194 +649,13 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="sec" id="services" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2 rv">Everything<br>your brand <span class="r">needs.</span></h2>
-      <p class="lead rv d1">One team for your website, app, content and socials. Pick one service or build the full package below.</p>
-    </div>
-    <div class="svc">
-      <div class="sv feature rv">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3>Websites</h3>
-        <p>Custom-designed, mobile-first websites that load fast, rank well and turn visitors into enquiries. Booking, payments and e-commerce built in.</p>
-        <div class="pr">From £3,500</div>
-      </div>
-      <div class="sv rv d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
-        <h3>Apps</h3>
-        <p>iPhone and Android apps for booking, ordering, loyalty and memberships.</p>
-        <div class="pr">Quoted per project</div>
-      </div>
-      <div class="sv rv">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10l6-3v10l-6-3"/></svg></div>
-        <h3>Content days</h3>
-        <p>We film a month of content at your venue in one six-hour day.</p>
-        <div class="pr">£1,800 per day</div>
-      </div>
-      <div class="sv rv d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></div>
-        <h3>Social media</h3>
-        <p>Fully managed Instagram and TikTok, or individual posts on request.</p>
-        <div class="pr">From £5,000 per month</div>
-      </div>
-      <div class="sv rv d2">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 000 18M3 12h18"/></svg></div>
-        <h3>Brand identity</h3>
-        <p>Logos, colour, type and brand guidelines that look the part.</p>
-        <div class="pr">Logo from £280</div>
-      </div>
-      <div class="sv rv">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.6 6.3L21 9l-5 4.4 1.5 6.6L12 16.6 6.5 20 8 13.4 3 9l6.4-.7z"/></svg></div>
-        <h3>Events</h3>
-        <p>Launch nights, creator events and event management, start to finish.</p>
-        <div class="pr">From £2,800</div>
-      </div>
-      <div class="sv rv d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M5.6 5.6a9 9 0 000 12.8M18.4 5.6a9 9 0 010 12.8M8.5 8.5a5 5 0 000 7M15.5 8.5a5 5 0 010 7"/></svg></div>
-        <h3>TikTok Live</h3>
-        <p>Professional live hosts who sell your products and grow your audience.</p>
-        <div class="pr">From £45 per hour</div>
-      </div>
-      <div class="sv rv d2">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
-        <h3>Hosting &amp; care</h3>
-        <p>Secure hosting, updates and small changes, so your site is always looked after.</p>
-        <div class="pr">Hosting £25 · Care £100 per month</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="sec" id="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2 rv">Simple from<br><span class="r">day one.</span></h2>
-      <p class="lead rv d1">A clear, four-step process with your own client portal to track every stage, approve designs and pay securely.</p>
-    </div>
-    <div class="steps">
-      <div class="step rv"><b>01</b><h3>Consult</h3><p>A focused call with Aisha to understand your business, customers and goals.</p></div>
-      <div class="step rv d1"><b>02</b><h3>Design</h3><p>We design your site around what makes you different, and you review it in your portal.</p></div>
-      <div class="step rv d2"><b>03</b><h3>Build</h3><p>We build it fast, mobile-first and search-ready, with your revisions included.</p></div>
-      <div class="step rv d3"><b>04</b><h3>Launch</h3><p>We connect your domain, go live and stay on hand with hosting and care.</p></div>
-    </div>
-    <div class="pay rv" id="pay">
-      <div><strong>Fair payment terms</strong><br><span>75% on booking, 25% on delivery. No surprises.</span></div>
-      <div class="meter"><i></i><i></i></div>
-    </div>
-  </div>
-</section>
-
-<!-- AWARDS -->
-<section class="sec" style="padding-top:0">
-  <div class="wrap">
-    <div class="band rv">
-      <span class="eyebrow"><span class="dot"></span>Recognised by the industry</span>
-      <h2 class="h2" style="margin-top:26px">Multi-award<br><span class="r">winning.</span></h2>
-      <p class="lead" style="margin:22px auto 0">Award-winning in 2024 and 2025, and a finalist three times in 2026. The same team behind work for the BBC, Sky TV and Samsung builds your website.</p>
-      <div class="laurels">
-        <div class="laurel"><svg><use href="#laurel"/></svg><b>2024</b><span>Award winner</span></div>
-        <div class="laurel"><svg><use href="#laurel"/></svg><b>2025</b><span>Award winner</span></div>
-        <div class="laurel"><svg><use href="#laurel"/></svg><b>2026</b><span>Finalist × 3</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE BUILDER -->
-<section class="sec" id="quote" style="padding-top:40px">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2 rv">Build your<br><span class="r">quote.</span></h2>
-      <p class="lead rv d1">Start at £0. Tap anything you need and watch your estimate update. Send it to us and we'll reply within one working day.</p>
-    </div>
-    <div class="qb">
-      <div id="groups"></div>
-      <aside class="sum rv" aria-live="polite">
-        <h4>Your estimate</h4>
-        <div class="total" id="total">£0.00</div>
-        <div class="total-sub" id="totalSub">Add a package to get started</div>
-        <ul class="lines" id="lines"><li class="empty">Nothing added yet</li></ul>
-        <div class="split">
-          <div><small>75% ON BOOKING</small><b id="dep">£0.00</b></div>
-          <div><small>25% ON DELIVERY</small><b id="bal">£0.00</b></div>
-        </div>
-        <a href="#contact" class="btn btn-red" id="sendQuote">Send my quote <svg><use href="#arrow"/></svg></a>
-        <p class="fine">Estimates are a guide. Your final price is confirmed in a written proposal. Prices exclude VAT where applicable. Venue, travel and other third-party costs are extra.</p>
-        <button class="clear" id="clear" type="button">Start again</button>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section class="sec" id="aisha" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div class="wrap founder">
-    <div class="portrait rv"><img class="pimg" src="img/aisha.jpg" alt="Aisha Ansari, Founder and CEO of MONOS Group" loading="lazy" width="576" height="720"><img class="aa" src="img/aa-mark.png" alt="Aisha Ansari monogram" width="56" height="55"><div class="sig"><b>Aisha Ansari</b><span>Founder &amp; CEO, MONOS Group</span></div></div>
-    <div>
-      <span class="eyebrow rv"><span class="dot"></span>Meet the founder</span>
-      <h2 class="h2 rv d1" style="margin-top:22px">Work with<br><span class="r">Aisha.</span></h2>
-      <p class="lead rv d2" style="margin-top:20px">Aisha has spent 18 years building brands, from household names like the BBC, Sky TV and Samsung to Manchester's busiest independents. Every MONOS project starts with her.</p>
-      <ul class="rv d3">
-        <li><svg><use href="#check"/></svg>Multi-award winning agency, 2024 and 2025, finalist three times in 2026</li>
-        <li><svg><use href="#check"/></svg>One-to-one strategy sessions: 20 minutes (£45) or a full hour (£90)</li>
-        <li><svg><use href="#check"/></svg>Straight answers, clear prices and a team that picks up the phone</li>
-      </ul>
-      <div class="fbtns rv d4"><a href="#contact" class="btn btn-red">Book time with Aisha <svg><use href="#arrow"/></svg></a><a href="https://www.aishaansari.co.uk" target="_blank" rel="noopener" class="alink"><img src="img/aa-mark.png" alt="" width="28" height="28">aishaansari.co.uk <svg><use href="#arrow"/></svg></a></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="wrap">
-    <div class="sec-head" style="justify-content:center;text-align:center">
-      <h2 class="h2 rv">Good to<br><span class="r">know.</span></h2>
-    </div>
-    <div class="faq" id="faqList"></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="sec" id="contact" style="padding-top:40px">
-  <div class="wrap contact">
-    <div>
-      <span class="eyebrow rv"><span class="dot"></span>Start here</span>
-      <h2 class="h2 rv d1" style="margin-top:22px">Let's get<br>you <span class="r">on air.</span></h2>
-      <p class="lead rv d2" style="margin-top:20px">Tell us a little about your business. We reply within one working day with next steps and a clear proposal.</p>
-      <div class="cinfo rv d3">
-        <a href="mailto:info@monos.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 6l9 7 9-7"/></svg><span>info@monos.ai<small>Email us any time</small></span></a>
-      </div>
-    </div>
-    <div class="form rv d1" id="formBox">
-      <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="enq">
-        <input type="hidden" name="form-name" value="enquiry">
-        <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
-        <input type="hidden" name="services" id="fServices">
-        <input type="hidden" name="total" id="fTotal">
-        <input type="hidden" name="questionnaire" id="fQ" value="new-site-2026-11">
-        <div class="picked" id="picked">No quote added yet. <a href="#quote" style="text-decoration:underline">Build one</a> or just tell us what you need.</div>
-        <div class="field"><label for="n">Full name</label><input id="n" name="name" required autocomplete="name"></div>
-        <div class="field"><label for="b">Business name</label><input id="b" name="business" autocomplete="organization"></div>
-        <div class="field"><label for="e">Email</label><input id="e" name="email" type="email" required autocomplete="email"></div>
-        <div class="field"><label for="m">What do you need?</label><textarea id="m" name="message" placeholder="A few lines about your business and goals"></textarea></div>
-        <button class="btn btn-red" type="submit">Send my enquiry <svg><use href="#arrow"/></svg></button>
-        <p class="fine">By sending, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy policy</a>. We never sell your data.</p>
-      </form>
-      <div class="ok"><svg><use href="#check"/></svg><h3>You're on air.</h3><p style="color:var(--muted)">Thanks, we've got your enquiry and will reply within one working day.</p></div>
-    </div>
-  </div>
-</section>
-
 <section class="final">
   <div class="glow g1" style="top:auto;bottom:-300px;right:auto;left:50%;margin-left:-360px"></div>
   <div class="wrap" style="position:relative">
     <h2 class="h-display rv">Your brand.<br><span style="color:var(--red)">On air.</span></h2>
     <div class="ctas rv d1" style="display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap">
-      <a href="#quote" class="btn btn-red">Build your quote <svg><use href="#arrow"/></svg></a>
-      <a href="#contact" class="btn btn-ghost">Talk to us</a>
+      <a href="pricing.html" class="btn btn-red">Build your quote <svg><use href="#arrow"/></svg></a>
+      <a href="contact.html" class="btn btn-ghost">Talk to us</a>
     </div>
   </div>
 </section>
@@ -790,13 +665,13 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   <div class="wrap">
     <div class="ft">
       <div style="max-width:340px">
-        <a href="#top" class="logo">MONOS<i></i></a>
+        <a href="index.html" class="logo">MONOS<i></i></a>
         <p style="margin-top:16px">Multi-award winning agency for websites, apps, content and social media. Winner 2024 and 2025, finalist × 3 2026.</p>
       </div>
       <div class="cols">
-        <div><h5>Explore</h5><ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#quote">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div><h5>Explore</h5><ul><li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
         <div><h5>Contact</h5><ul><li><a href="mailto:info@monos.ai">info@monos.ai</a></li><li><a href="https://www.aishaansari.co.uk" target="_blank" rel="noopener">aishaansari.co.uk</a></li><li><a href="https://monos-portal.netlify.app/login">Client login</a></li></ul></div>
-        <div><h5>Legal</h5><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li></ul></div>
+        <div><h5>Legal</h5><ul><li><a href="terms.html">Terms</a></li><li><a href="privacy.html">Privacy</a></li></ul></div>
       </div>
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> MONOS Technology is a trading name of YVMC.AI LTD, registered in England and Wales, company no. 15066388.</span><span>Designed and built in Manchester.</span></div>
@@ -826,13 +701,21 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   document.querySelectorAll('.rv,.step,.pay').forEach(function(el){io.observe(el)});
 
   // hero device tilt on scroll
-  var lap=document.getElementById('laptop'),stage=document.getElementById('stage');
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var tilt=function(){if(reduce)return;var r=stage.getBoundingClientRect(),vh=innerHeight;var p=Math.min(Math.max((vh-r.top)/(vh*.9),0),1);lap.style.transform='rotateX('+(18*(1-p))+'deg) scale('+(.92+.08*p)+')'};
-  addEventListener('scroll',tilt,{passive:true});tilt();
+
+  // ON AIR hero: timecode, light, parallax
+  var tc=document.getElementById('tc');
+  if(tc){var t0=performance.now(),pad=function(n){return (n<10?'0':'')+n};
+    var tick=function(){var ms=performance.now()-t0,f=Math.floor(ms/40)%25,sec=Math.floor(ms/1000);tc.textContent='00:'+pad(Math.floor(sec/60)%60)+':'+pad(sec%60)+':'+pad(f);requestAnimationFrame(tick)};tick()}
+  var oh=document.getElementById('ohero');
+  if(oh){setTimeout(function(){oh.classList.add('live')},reduce?0:900);
+    var wall=document.getElementById('wall');
+    if(!reduce&&wall&&matchMedia('(pointer:fine)').matches){oh.addEventListener('pointermove',function(e){var r=oh.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;wall.style.setProperty('--px',(x*-30)+'px');wall.style.setProperty('--py',(y*-20)+'px')})}
+    addEventListener('scroll',function(){var p=Math.min(scrollY/innerHeight,1);oh.style.setProperty('--sp',p)},{passive:true});
+  }
 
   // slideshow
-  var cycle=function(id,ms,cb){var imgs=document.querySelectorAll('#'+id+' img'),i=0;setInterval(function(){imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on');cb&&cb(imgs[i])},ms)};
+  var cycle=function(id,ms,cb){var imgs=document.querySelectorAll('#'+id+' img'),i=0;if(!imgs.length)return;setInterval(function(){imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].classList.add('on');cb&&cb(imgs[i])},ms)};
   if(!reduce){cycle('screen',3800,function(im){document.querySelector('#url .px').textContent=im.dataset.url});cycle('pscreen',3000)}
 
   // play videos only while on screen
@@ -840,12 +723,15 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   if(!reduce)document.querySelectorAll('video').forEach(function(v){vio.observe(v)});
 
   // marquee duplicate
-  var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
+  ['track','atrack'].forEach(function(id){var tr=document.getElementById(id);if(tr)tr.innerHTML+=tr.innerHTML});
 
   // service spotlight
   document.querySelectorAll('.sv').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
 
   // QUOTE BUILDER
+  var setv=function(id,v,h){var el=document.getElementById(id);if(el){if(h)el.innerHTML=v;else if('value' in el&&el.tagName!=='DIV')el.value=v;else el.textContent=v}};
+  var groups=document.getElementById('groups');
+  if(groups){
   var G=[
     {t:'Websites & apps',items:[
       {id:'web',n:'Standard website',d:'Up to 5 custom pages, mobile-first, contact forms, SEO set-up and domain connection',p:3500,feat:1,badge:'MOST CHOSEN'},
@@ -878,7 +764,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
   var price=function(it){return it.quote?'Quote':(it.from?'from ':'')+'£'+it.p.toLocaleString('en-GB')+(it.mo?'/mo':'')};
   var html='';
   G.forEach(function(g){html+='<div class="grp rv"><h4>'+g.t+'</h4><div class="opts">';g.items.forEach(function(it){all[it.id]=it;html+='<button type="button" class="opt'+(it.feat?' feat':'')+'" aria-pressed="false" data-id="'+it.id+'"><span class="tg"><svg><use href="#plus"/></svg></span><span class="tx"><b>'+it.n+(it.badge?'<span class="badge">'+it.badge+'</span>':'')+'</b><small>'+it.d+'</small></span><span class="p">'+price(it)+'</span></button>'});html+='</div></div>'});
-  var groups=document.getElementById('groups');groups.innerHTML=html;
+  groups.innerHTML=html;
   groups.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   var shown=0,anim=null;
   var animate=function(to){var from=shown,st=null;cancelAnimationFrame(anim);var f=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/600,1),e=1-Math.pow(1-p,3);shown=from+(to-from)*e;document.getElementById('total').textContent=fmt(shown);if(p<1)anim=requestAnimationFrame(f)};anim=requestAnimationFrame(f)};
@@ -891,12 +777,13 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
     document.getElementById('lines').innerHTML=lines.length?lines.map(function(l){return '<li><span>'+l[0]+'</span><span>'+l[1]+'</span></li>'}).join(''):'<li class="empty">Nothing added yet</li>';
     document.getElementById('dep').textContent=fmt(one*.75);document.getElementById('bal').textContent=fmt(one*.25);
     var summary=lines.map(function(l){return l[0]+' ('+l[1]+')'}).join(', ');
-    document.getElementById('fServices').value=summary;
-    document.getElementById('fTotal').value=lines.length?fmt(one)+(mo?' + '+fmt(mo)+'/mo':''):'';
-    document.getElementById('picked').innerHTML=lines.length?'<b>Your quote:</b> '+summary+'<br><b>Estimate:</b> '+fmt(one)+(mo?' + '+fmt(mo)+' per month':''):'No quote added yet. <a href="#quote" style="text-decoration:underline">Build one</a> or just tell us what you need.';
+    setv('fServices',summary);
+    setv('fTotal',lines.length?fmt(one)+(mo?' + '+fmt(mo)+'/mo':''):'');
+    setv('picked',lines.length?'<b>Your quote:</b> '+summary+'<br><b>Estimate:</b> '+fmt(one)+(mo?' + '+fmt(mo)+' per month':''):'No quote added yet. <a href="pricing.html#quote" style="text-decoration:underline">Build one</a> or just tell us what you need.',1);
   };
   groups.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;var id=b.dataset.id;if(sel[id]){delete sel[id];b.setAttribute('aria-pressed','false')}else{sel[id]=1;b.setAttribute('aria-pressed','true')}update()});
   document.getElementById('clear').onclick=function(){sel={};groups.querySelectorAll('.opt').forEach(function(b){b.setAttribute('aria-pressed','false')});update()};
+  }
 
   // FAQ
   var F=[
@@ -912,12 +799,12 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
     ['What else can you help with?','Social media posts, event management, filming, TikTok Live and more. If it is not listed, just ask.'],
     ['Are the prices final?','Quote builder prices are estimates. Your final price is confirmed in a written proposal before any work starts.']
   ];
-  document.getElementById('faqList').innerHTML=F.map(function(f,i){return '<div class="fq rv'+(i===0?' open':'')+'"><button type="button" aria-expanded="'+(i===0)+'">'+f[0]+'<i></i></button><div class="a"><div><p>'+f[1]+'</p></div></div></div>'}).join('');
+  var fl=document.getElementById('faqList');if(fl)fl.innerHTML=F.map(function(f,i){return '<div class="fq rv'+(i===0?' open':'')+'"><button type="button" aria-expanded="'+(i===0)+'">'+f[0]+'<i></i></button><div class="a"><div><p>'+f[1]+'</p></div></div></div>'}).join('');
   document.querySelectorAll('.fq').forEach(function(q){io.observe(q);q.querySelector('button').onclick=function(){var o=q.classList.toggle('open');this.setAttribute('aria-expanded',o)}});
 
   // form submit (Netlify Forms)
   var form=document.getElementById('enq');
-  form.addEventListener('submit',function(e){
+  if(form)form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.firstChild.textContent='Sending… ';
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
