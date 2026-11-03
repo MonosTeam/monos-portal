@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Red+Hat+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MONOS Technology","url":"https://monostechnology.co.uk/","email":"info@monos.ai","telephone":"+447482511603","areaServed":"GB","founder":{"@type":"Person","name":"Aisha Ansari"},"legalName":"YVMC.AI LTD","description":"Multi-award winning Manchester agency for websites, apps, content and social media."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"MONOS Technology","url":"https://monostechnology.co.uk/","email":"info@monos.ai","telephone":"+447482511603","areaServed":"GB","founder":{"@type":"Person","name":"Aisha Ansari","url":"https://www.aishaansari.co.uk"},"legalName":"YVMC.AI LTD","description":"Multi-award winning Manchester agency for websites, apps, content and social media."}</script>
 <style>
 :root{
   color-scheme:dark;
@@ -281,7 +281,13 @@ section{position:relative}
 /* FOUNDER */
 .founder{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
 .portrait{aspect-ratio:4/5;border-radius:var(--r);background:radial-gradient(circle at 30% 20%,rgba(210,59,44,.5),transparent 55%),linear-gradient(160deg,#1e1e22,#0f0f11);border:1px solid var(--line);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:34px}
-.portrait .big{position:absolute;right:-30px;top:-10px;font-family:var(--display);font-size:340px;line-height:1;color:rgba(255,255,255,.04)}
+.portrait .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,11,12,.92))}
+.portrait .sig{position:relative;z-index:1}
+.portrait .aa{position:absolute;z-index:1;top:22px;right:22px;width:56px;height:auto;border-radius:10px}
+.fbtns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.alink{display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 12px;border:1px solid var(--line2);border-radius:999px;font-weight:700;color:var(--text);transition:border-color .3s}
+.alink:hover{border-color:#D23B2C}.alink img{width:28px;height:28px;border-radius:6px}.alink svg{width:16px;height:16px}
 .portrait .sig b{font-family:var(--display);font-size:52px;font-weight:400;text-transform:uppercase;display:block;line-height:1}
 .portrait .sig span{color:var(--soft);font-weight:600}
 .founder ul{list-style:none;margin:30px 0 34px;display:grid;gap:14px}
@@ -711,7 +717,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
 <!-- FOUNDER -->
 <section class="sec" id="aisha" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap founder">
-    <div class="portrait rv"><span class="big">A</span><div class="sig"><b>Aisha Ansari</b><span>Founder &amp; CEO, MONOS Group</span></div></div>
+    <div class="portrait rv"><img class="pimg" src="img/aisha.jpg" alt="Aisha Ansari, Founder and CEO of MONOS Group" loading="lazy" width="576" height="720"><img class="aa" src="img/aa-mark.png" alt="Aisha Ansari monogram" width="56" height="55"><div class="sig"><b>Aisha Ansari</b><span>Founder &amp; CEO, MONOS Group</span></div></div>
     <div>
       <span class="eyebrow rv"><span class="dot"></span>Meet the founder</span>
       <h2 class="h2 rv d1" style="margin-top:22px">Work with<br><span class="r">Aisha.</span></h2>
@@ -721,7 +727,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
         <li><svg><use href="#check"/></svg>One-to-one strategy sessions: 20 minutes (£45) or a full hour (£90)</li>
         <li><svg><use href="#check"/></svg>Straight answers, clear prices and a team that picks up the phone</li>
       </ul>
-      <a href="#contact" class="btn btn-red rv d4">Book time with Aisha <svg><use href="#arrow"/></svg></a>
+      <div class="fbtns rv d4"><a href="#contact" class="btn btn-red">Book time with Aisha <svg><use href="#arrow"/></svg></a><a href="https://www.aishaansari.co.uk" target="_blank" rel="noopener" class="alink"><img src="img/aa-mark.png" alt="" width="28" height="28">aishaansari.co.uk <svg><use href="#arrow"/></svg></a></div>
     </div>
   </div>
 </section>
@@ -789,7 +795,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
       </div>
       <div class="cols">
         <div><h5>Explore</h5><ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#quote">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-        <div><h5>Contact</h5><ul><li><a href="mailto:info@monos.ai">info@monos.ai</a></li><li><a href="tel:+447482511603">07482 511603</a></li><li><a href="https://monos-portal.netlify.app/login">Client login</a></li></ul></div>
+        <div><h5>Contact</h5><ul><li><a href="mailto:info@monos.ai">info@monos.ai</a></li><li><a href="tel:+447482511603">07482 511603</a></li><li><a href="https://www.aishaansari.co.uk" target="_blank" rel="noopener">aishaansari.co.uk</a></li><li><a href="https://monos-portal.netlify.app/login">Client login</a></li></ul></div>
         <div><h5>Legal</h5><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li></ul></div>
       </div>
     </div>
