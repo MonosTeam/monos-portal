@@ -1,0 +1,332 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Archivo:wght@400;600;800;900&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#333;font-family:Inter,sans-serif}
+.web{width:1440px;height:900px;position:relative;overflow:hidden;margin-bottom:40px}
+.app{width:390px;height:844px;position:relative;overflow:hidden;margin-bottom:40px;display:inline-block;margin-right:40px;vertical-align:top}
+.nav{z-index:3;position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:34px 72px;font-size:14px}
+.nav ul{display:flex;gap:36px;list-style:none}
+.sb{display:flex;justify-content:space-between;padding:16px 28px 0;font:600 15px Inter}
+/* ---------- W1 Northfold ---------- */
+#w1{background:#EEEBE5;color:#1b1a18}
+#w1 .logo{font:500 20px 'Space Grotesk';letter-spacing:.02em}
+#w1 .logo b{display:inline-block;width:10px;height:10px;background:#1b1a18;margin-right:10px}
+#w1 h1{position:absolute;left:72px;top:190px;font:300 128px/0.95 Fraunces;letter-spacing:-.04em}
+#w1 h1 i{font-style:italic;color:#8a7f70}
+#w1 .lede{position:absolute;left:76px;top:520px;width:380px;font-size:17px;line-height:1.6;color:#5b564e}
+#w1 .cta{position:absolute;left:76px;top:640px;display:flex;gap:14px}
+#w1 .btn{padding:16px 26px;border-radius:999px;background:#1b1a18;color:#eee;font-weight:600;font-size:15px}
+#w1 .btn.o{background:none;border:1px solid #1b1a18;color:#1b1a18}
+#w1 .art{position:absolute;right:0;top:110px;width:640px;height:900px;background:linear-gradient(180deg,#d9d3c7,#c9c0b0)}
+#w1 .sun{position:absolute;right:120px;top:150px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#f6d7a7,#e7a86a)}
+#w1 .b1{position:absolute;right:0;bottom:0;width:640px;height:420px;background:linear-gradient(90deg,#3a3631,#2a2723)}
+#w1 .b2{position:absolute;right:260px;bottom:420px;width:300px;height:180px;background:linear-gradient(90deg,#f3efe8,#ddd5c8);box-shadow:-30px 30px 60px rgba(0,0,0,.18)}
+#w1 .b3{position:absolute;right:60px;bottom:420px;width:200px;height:300px;background:linear-gradient(90deg,#b9ad99,#a19580)}
+#w1 .glass{position:absolute;right:300px;bottom:140px;width:340px;height:200px;background:linear-gradient(120deg,rgba(255,236,200,.55),rgba(255,236,200,.1));}
+#w1 .line{position:absolute;right:0;bottom:418px;width:640px;height:4px;background:#1b1a18}
+#w1 .tag{position:absolute;right:40px;bottom:40px;background:#EEEBE5;padding:18px 22px;width:300px;font-size:13px;line-height:1.5}
+#w1 .tag b{display:block;font:500 22px Fraunces;margin-bottom:4px}
+#w1 .idx{position:absolute;left:76px;bottom:48px;display:flex;gap:40px;font:500 13px 'Space Grotesk';color:#5b564e;letter-spacing:.06em;text-transform:uppercase}
+#w1 .idx span b{color:#1b1a18;font-size:28px;font-family:Fraunces;font-weight:300;display:block;letter-spacing:-.02em;text-transform:none}
+/* ---------- W2 Ember & Oak ---------- */
+#w2{background:radial-gradient(ellipse at 70% 40%,#3a1c0e 0%,#140b07 60%);color:#f3e6d6}
+#w2 .logo{font:500 26px Fraunces;font-style:italic}
+#w2 .nav ul{color:#cdb9a3}
+#w2 .bk{padding:12px 22px;border:1px solid #e9a464;border-radius:999px;color:#e9a464;font-weight:600}
+#w2 .ey{position:absolute;left:72px;top:210px;font:600 12px Inter;letter-spacing:.3em;color:#e9a464}
+#w2 h1{position:absolute;left:68px;top:240px;font:300 150px/0.9 Fraunces;letter-spacing:-.04em}
+#w2 h1 i{color:#e9a464}
+#w2 p{position:absolute;left:74px;top:580px;width:400px;font-size:17px;line-height:1.6;color:#cdb9a3}
+#w2 .plate{position:absolute;right:120px;top:130px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#2a2522 0 58%,#1a1714 59% 64%,#e8dccb 65% 99%);box-shadow:0 60px 120px rgba(0,0,0,.6)}
+#w2 .food{position:absolute;right:250px;top:260px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle at 45% 40%,#8b3a1a,#5a1f0c 55%,transparent 72%)}
+#w2 .f2{position:absolute;right:300px;top:330px;width:120px;height:60px;border-radius:50%;background:linear-gradient(#d9842f,#a1521c);transform:rotate(-20deg);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+#w2 .f3{position:absolute;right:420px;top:440px;width:150px;height:70px;border-radius:50%;background:linear-gradient(#6e8b3d,#3f5a1e);transform:rotate(25deg)}
+#w2 .f4{position:absolute;right:360px;top:410px;width:20px;height:20px;border-radius:50%;background:#e9c46a;box-shadow:40px 20px 0 #e9c46a,-30px 50px 0 #c84b2b,70px -40px 0 #c84b2b}
+#w2 .res{position:absolute;right:72px;bottom:60px;width:360px;background:rgba(30,18,12,.85);border:1px solid #4a3020;border-radius:20px;padding:22px;backdrop-filter:blur(10px)}
+#w2 .res h4{font:500 22px Fraunces;margin-bottom:14px}
+#w2 .row{display:flex;gap:8px;margin-bottom:10px}
+#w2 .row span{flex:1;padding:10px;border:1px solid #4a3020;border-radius:10px;font-size:13px;text-align:center;color:#cdb9a3}
+#w2 .row span.on{background:#e9a464;color:#140b07;border-color:#e9a464;font-weight:700}
+#w2 .go{margin-top:6px;padding:14px;border-radius:12px;background:#f3e6d6;color:#140b07;text-align:center;font-weight:700}
+#w2 .stars{position:absolute;left:74px;bottom:70px;font-size:14px;color:#cdb9a3}
+#w2 .stars b{color:#e9a464;letter-spacing:3px}
+/* ---------- W3 Lumen Dental ---------- */
+#w3{background:#F7F9FC;color:#0d1b2a}
+#w3 .logo{font:700 22px Inter;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+#w3 .logo i{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#5ab0ff,#2b6fff)}
+#w3 .nav ul{color:#51607a}
+#w3 .nb{padding:12px 22px;border-radius:999px;background:#0d1b2a;color:#fff;font-weight:600}
+#w3 .pill{position:absolute;left:72px;top:200px;padding:8px 14px;border-radius:999px;background:#e6efff;color:#2b6fff;font-weight:600;font-size:13px}
+#w3 h1{position:absolute;left:70px;top:250px;font:700 96px/1 Inter;letter-spacing:-.055em;width:700px}
+#w3 h1 span{color:#2b6fff}
+#w3 p{position:absolute;left:74px;top:470px;width:470px;font-size:19px;line-height:1.55;color:#51607a}
+#w3 .cta{position:absolute;left:74px;top:580px;display:flex;gap:12px}
+#w3 .cta b{padding:17px 28px;border-radius:999px;background:#2b6fff;color:#fff;box-shadow:0 12px 30px rgba(43,111,255,.35)}
+#w3 .cta s{text-decoration:none;padding:17px 28px;border-radius:999px;background:#fff;border:1px solid #dfe6f0;font-weight:600}
+#w3 .blob{position:absolute;right:-80px;top:80px;width:760px;height:760px;border-radius:44% 56% 52% 48%;background:radial-gradient(circle at 30% 30%,#d9e8ff,#a9c8ff 50%,#7aa7ff)}
+#w3 .card{position:absolute;right:150px;top:250px;width:400px;background:#fff;border-radius:28px;padding:28px;box-shadow:0 40px 80px rgba(13,27,42,.15)}
+#w3 .card h4{font-size:20px;letter-spacing:-.02em;margin-bottom:4px}
+#w3 .card small{color:#51607a;font-size:13px}
+#w3 .days{display:flex;gap:8px;margin:20px 0 14px}
+#w3 .days span{flex:1;text-align:center;padding:10px 0;border-radius:14px;background:#f2f5fa;font-size:12px;color:#51607a}
+#w3 .days span b{display:block;font-size:18px;color:#0d1b2a}
+#w3 .days span.on{background:#0d1b2a;color:#aab}
+#w3 .days span.on b{color:#fff}
+#w3 .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+#w3 .slots span{padding:12px 0;text-align:center;border:1px solid #e3e9f2;border-radius:12px;font-size:14px;font-weight:600}
+#w3 .slots span.on{border-color:#2b6fff;color:#2b6fff;background:#eef4ff}
+#w3 .conf{margin-top:16px;padding:16px;border-radius:14px;background:#2b6fff;color:#fff;text-align:center;font-weight:700}
+#w3 .chip{position:absolute;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px rgba(13,27,42,.12);font-size:14px;font-weight:600;display:flex;gap:10px;align-items:center}
+#w3 .chip i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal}
+#w3 .trust{position:absolute;left:74px;bottom:70px;display:flex;gap:44px;color:#51607a;font-size:14px}
+#w3 .trust b{display:block;color:#0d1b2a;font-size:30px;letter-spacing:-.04em}
+/* ---------- W4 Keystone ---------- */
+#w4{background:#0e0e0e;color:#fff}
+#w4 .logo{font:900 22px Archivo;letter-spacing:-.02em}
+#w4 .logo span{background:#FFC400;color:#0e0e0e;padding:2px 8px;margin-right:6px}
+#w4 .nav ul{color:#aaa;font-family:Archivo;font-weight:600;text-transform:uppercase;font-size:13px;letter-spacing:.08em}
+#w4 .q{background:#FFC400;color:#0e0e0e;padding:14px 22px;font:800 13px Archivo;text-transform:uppercase;letter-spacing:.08em}
+#w4 h1{position:absolute;left:66px;top:190px;font:900 190px/0.84 Archivo;letter-spacing:-.06em;text-transform:uppercase}
+#w4 h1 em{font-style:normal;color:#FFC400}
+#w4 .stripe{position:absolute;left:0;right:0;top:600px;height:46px;background:repeating-linear-gradient(-45deg,#FFC400 0 30px,#0e0e0e 30px 60px)}
+#w4 .cards{position:absolute;left:66px;right:66px;top:680px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+#w4 .cards div{height:170px;background:#1b1b1b;padding:22px;position:relative;overflow:hidden}
+#w4 .cards b{font:900 44px Archivo;letter-spacing:-.04em;display:block}
+#w4 .cards small{color:#aaa;font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+#w4 .cards div.y{background:#FFC400;color:#0e0e0e}
+#w4 .cards div.y small{color:#0e0e0e}
+#w4 .crane{position:absolute;right:60px;top:110px;width:440px;height:490px;transform:scaleX(-1)}
+#w4 .side{position:absolute;right:270px;top:440px;width:270px;font-size:16px;line-height:1.6;color:#bbb}
+/* ---------- W5 Verve ---------- */
+#w5{background:#E9E6DD;color:#283126}
+#w5 .logo{font:400 30px 'Instrument Serif'}
+#w5 .nav ul{color:#5d6a58}
+#w5 .nb{padding:12px 22px;border-radius:999px;background:#283126;color:#E9E6DD;font-weight:600}
+#w5 h1{position:absolute;left:72px;top:170px;font:400 150px/0.92 'Instrument Serif';letter-spacing:-.03em}
+#w5 h1 i{color:#7d8f6b}
+#w5 .arch{position:absolute;right:90px;top:120px;width:480px;height:680px;border-radius:240px 240px 24px 24px;background:linear-gradient(180deg,#c8cfb8,#9eab8a 60%,#7d8f6b);overflow:hidden}
+#w5 .arch .s{position:absolute;left:50%;top:120px;width:300px;height:300px;margin-left:-150px;border-radius:50%;background:radial-gradient(circle,#f4e7c9,#e9cf9c)}
+#w5 .arch .h1{position:absolute;bottom:0;left:-40px;width:600px;height:300px;border-radius:50% 50% 0 0;background:#6a7c59}
+#w5 .arch .h2{position:absolute;bottom:-60px;left:160px;width:500px;height:260px;border-radius:50% 50% 0 0;background:#4f5f42}
+#w5 .tt{position:absolute;left:72px;top:520px;width:640px;background:#f5f3ee;border-radius:24px;padding:24px}
+#w5 .tt h4{font:400 26px 'Instrument Serif';margin-bottom:12px;display:flex;justify-content:space-between}
+#w5 .tt h4 small{font:500 13px Inter;color:#7d8f6b}
+#w5 .cl{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid #e1ddd2;font-size:15px}
+#w5 .cl span{color:#5d6a58;width:90px}
+#w5 .cl b{flex:1;font-weight:600}
+#w5 .cl em{font-style:normal;font-size:13px;padding:8px 16px;border-radius:999px;background:#283126;color:#f5f3ee}
+#w5 .cl em.f{background:#e1ddd2;color:#8a9284}
+/* ---------- W6 Halden ---------- */
+#w6{background:#0f1a2e;color:#efe9dc}
+#w6 .logo{font:500 24px Fraunces;letter-spacing:.2em}
+#w6 .nav ul{color:#a9b2c3}
+#w6 .nb{padding:12px 22px;border:1px solid #c9a96a;color:#c9a96a;font-weight:600;border-radius:4px}
+#w6 .ey{position:absolute;left:72px;top:220px;color:#c9a96a;letter-spacing:.3em;font-size:12px;font-weight:600}
+#w6 h1{position:absolute;left:70px;top:250px;font:300 100px/1.0 Fraunces;letter-spacing:-.035em;width:800px}
+#w6 h1 i{color:#c9a96a}
+#w6 p{position:absolute;left:74px;top:580px;width:520px;font-size:18px;line-height:1.6;color:#a9b2c3}
+#w6 .col{position:absolute;right:72px;top:170px;width:430px;height:580px;background:linear-gradient(160deg,#1c2a45,#132038);border:1px solid #2a3a5a;padding:36px}
+#w6 .col h4{font:400 30px Fraunces;margin-bottom:6px}
+#w6 .col small{color:#a9b2c3}
+#w6 .f{margin-top:22px;border-bottom:1px solid #3a4a6a;padding:12px 0;color:#7d879a;font-size:15px}
+#w6 .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+#w6 .opts span{padding:9px 14px;border:1px solid #3a4a6a;font-size:13px;color:#a9b2c3}
+#w6 .opts span.on{border-color:#c9a96a;color:#c9a96a}
+#w6 .sub{margin-top:30px;background:#c9a96a;color:#0f1a2e;text-align:center;padding:17px;font-weight:700;letter-spacing:.06em}
+#w6 .acc{position:absolute;left:74px;bottom:66px;display:flex;gap:46px;color:#a9b2c3;font-size:13px;letter-spacing:.06em}
+#w6 .acc b{display:block;color:#efe9dc;font:300 34px Fraunces;letter-spacing:-.02em}
+/* ---------- APPS ---------- */
+#a1{background:#0b0d0c;color:#fff}
+#a1 h2{padding:22px 24px 0;font:800 30px Inter;letter-spacing:-.04em}
+#a1 .sub{padding:4px 24px;color:#8a908c;font-size:15px}
+#a1 .rings{position:relative;width:260px;height:260px;margin:26px auto}
+#a1 .rings svg{position:absolute;inset:0}
+#a1 .rings .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+#a1 .rings .c b{font:800 46px Inter;letter-spacing:-.05em;display:block}
+#a1 .rings .c small{color:#8a908c;font-size:13px}
+#a1 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+#a1 .tiles div{background:#161a18;border-radius:22px;padding:18px}
+#a1 .tiles small{color:#8a908c;font-size:12px}
+#a1 .tiles b{display:block;font:800 26px Inter;letter-spacing:-.04em;margin-top:6px}
+#a1 .bars{display:flex;gap:5px;align-items:flex-end;height:40px;margin-top:10px}
+#a1 .bars i{flex:1;display:block;align-self:flex-end;background:#C6FF3D;border-radius:3px}
+#a1 .next{margin:14px 20px;background:#C6FF3D;color:#0b0d0c;border-radius:22px;padding:18px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+#a1 .tab{position:absolute;bottom:0;left:0;right:0;height:84px;background:#111413;display:flex;justify-content:space-around;padding-top:16px;color:#5c625e;font-size:11px}
+#a1 .tab span.on{color:#C6FF3D}
+#a2{background:#F4EDE3;color:#2b1d14}
+#a2 .top{padding:18px 24px;display:flex;justify-content:space-between;align-items:center}
+#a2 .top b{font:500 24px Fraunces;font-style:italic}
+#a2 .hero{margin:0 20px;height:330px;border-radius:30px;background:radial-gradient(circle at 50% 120%,#c58b5a,#8a5532 60%,#5b3520);position:relative;overflow:hidden}
+#a2 .cup{position:absolute;left:50%;top:70px;width:170px;height:190px;margin-left:-85px;background:linear-gradient(90deg,#f7f1e8,#e3d6c4);border-radius:0 0 60px 60px;box-shadow:0 30px 50px rgba(0,0,0,.35)}
+#a2 .cup:before{content:"";position:absolute;top:-16px;left:-6px;right:-6px;height:34px;border-radius:50%;background:radial-gradient(ellipse,#c99566 0 30%,#8d5a35 32% 60%,#f7f1e8 62%)}
+#a2 .cup:after{content:"";position:absolute;right:-40px;top:40px;width:50px;height:70px;border:12px solid #e9dfd0;border-left:none;border-radius:0 40px 40px 0}
+#a2 .badge{position:absolute;left:18px;top:18px;background:rgba(255,255,255,.9);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700}
+#a2 h3{padding:22px 24px 4px;font:500 30px Fraunces;letter-spacing:-.02em}
+#a2 p{padding:0 24px;color:#7a6656;font-size:14px}
+#a2 .sz{display:flex;gap:10px;padding:18px 24px}
+#a2 .sz span{flex:1;text-align:center;padding:14px 0;border-radius:16px;background:#fff;font-weight:700;font-size:14px}
+#a2 .sz span.on{background:#2b1d14;color:#F4EDE3}
+#a2 .milk{display:flex;gap:8px;padding:0 24px;flex-wrap:wrap}
+#a2 .milk span{padding:9px 14px;border-radius:999px;border:1px solid #d9cbb8;font-size:13px}
+#a2 .milk span.on{background:#e9dccb;border-color:#2b1d14}
+#a2 .ord{position:absolute;left:20px;right:20px;bottom:34px;background:#2b1d14;color:#F4EDE3;border-radius:22px;padding:20px 22px;display:flex;justify-content:space-between;font-weight:700}
+#a3{background:#fff;color:#111}
+#a3 .search{margin:14px 20px;background:#f2f2f4;border-radius:16px;padding:15px 18px;color:#888;font-size:15px}
+#a3 .chips{display:flex;gap:8px;padding:0 20px;overflow:hidden}
+#a3 .chips span{white-space:nowrap;padding:9px 15px;border-radius:999px;background:#f2f2f4;font-size:13px;font-weight:600}
+#a3 .chips span.on{background:#111;color:#fff}
+#a3 .home{margin:18px 20px 0;height:300px;border-radius:26px;position:relative;overflow:hidden;background:linear-gradient(180deg,#9cc3e6 0%,#d9e9f5 55%,#7ba05b 56%,#5c8442)}
+#a3 .house{position:absolute;left:70px;bottom:60px;width:210px;height:120px;background:#f4efe6}
+#a3 .house:before{content:"";position:absolute;left:-20px;top:-80px;border-left:125px solid transparent;border-right:125px solid transparent;border-bottom:80px solid #3d3d44}
+#a3 .win{position:absolute;width:40px;height:44px;background:#2d4a63;bottom:100px;box-shadow:inset 0 0 0 3px #fff}
+#a3 .door{position:absolute;left:156px;bottom:60px;width:34px;height:62px;background:#7a3b2e}
+#a3 .heart{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+#a3 .price{position:absolute;left:16px;top:16px;background:#111;color:#fff;padding:8px 13px;border-radius:999px;font-weight:700;font-size:14px}
+#a3 h3{padding:18px 20px 2px;font-size:22px;letter-spacing:-.03em}
+#a3 .meta{padding:0 20px;color:#777;font-size:14px}
+#a3 .facts{display:flex;gap:10px;padding:16px 20px}
+#a3 .facts div{flex:1;background:#f6f6f8;border-radius:16px;padding:12px;font-size:12px;color:#777}
+#a3 .facts b{display:block;color:#111;font-size:18px}
+#a3 .bt{position:absolute;left:20px;right:20px;bottom:34px;display:flex;gap:10px}
+#a3 .bt span{flex:1;text-align:center;padding:18px;border-radius:18px;font-weight:700;background:#f2f2f4}
+#a3 .bt span.on{background:#ff4f3f;color:#fff}
+#a4{background:linear-gradient(180deg,#14112b,#0b0a17);color:#fff}
+#a4 .hi{padding:20px 24px 0;color:#9d98c4;font-size:14px}
+#a4 .bal{padding:4px 24px;font:800 46px Inter;letter-spacing:-.05em}
+#a4 .bal small{font-size:22px;color:#9d98c4}
+#a4 .up{margin:4px 24px;display:inline-block;padding:6px 11px;border-radius:999px;background:rgba(79,255,176,.12);color:#4fffb0;font-size:13px;font-weight:700}
+#a4 .chart{margin:20px 12px 0;height:200px}
+#a4 .acts{display:flex;justify-content:space-around;padding:10px 20px 18px}
+#a4 .acts div{text-align:center;font-size:12px;color:#9d98c4}
+#a4 .acts i{display:grid;place-items:center;width:58px;height:58px;border-radius:20px;background:#221e44;margin:0 auto 8px;font-style:normal;font-size:22px;color:#fff}
+#a4 .acts div:first-child i{background:#7c6cff}
+#a4 .tx{margin:0 16px;background:#1a1734;border-radius:24px;padding:8px 18px}
+#a4 .t{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #26224a;font-size:14px}
+#a4 .t:last-child{border:none}
+#a4 .t i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-style:normal;font-weight:800}
+#a4 .t div{flex:1}
+#a4 .t small{display:block;color:#9d98c4;font-size:12px}
+#a4 .t b.p{color:#4fffb0}
+</style></head><body>
+
+<!-- W1 -->
+<div class="web" id="w1">
+ <div class="nav"><div class="logo"><b></b>NORTHFOLD</div><ul><li>Projects</li><li>Studio</li><li>Process</li><li>Journal</li></ul><div>Start a project →</div></div>
+ <h1>Spaces that<br><i>hold still.</i></h1>
+ <div class="lede">An architecture studio designing calm homes and quiet workplaces across the North of England.</div>
+ <div class="cta"><span class="btn">View projects</span><span class="btn o">Our process</span></div>
+ <div class="art"><div class="sun"></div><div class="b3"></div><div class="b2"></div><div class="line"></div><div class="b1"></div><div class="glass"></div>
+  <div class="tag"><b>Hale Barns House</b>Residential · 2026 · Timber, lime and glass across three floors.</div></div>
+ <div class="idx"><span><b>48</b>Projects</span><span><b>12</b>Awards</span><span><b>2011</b>Founded</span></div>
+</div>
+
+<!-- W2 -->
+<div class="web" id="w2">
+ <div class="nav"><div class="logo">Ember &amp; Oak</div><ul><li>Menus</li><li>Private dining</li><li>Gift cards</li><li>Find us</li></ul><div class="bk">Book a table</div></div>
+ <div class="ey">WOOD-FIRED KITCHEN · ANCOATS</div>
+ <h1>Cooked<br><i>over fire.</i></h1>
+ <p>Seasonal plates from a ten-metre open grill. Northern produce, live flame, no shortcuts.</p>
+ <div class="plate"></div><div class="food"></div><div class="f3"></div><div class="f2"></div><div class="f4"></div>
+ <div class="res"><h4>Reserve your table</h4>
+  <div class="row"><span>Thu 12</span><span class="on">Fri 13</span><span>Sat 14</span></div>
+  <div class="row"><span>18:30</span><span class="on">19:45</span><span>21:00</span></div>
+  <div class="row"><span>2 guests</span><span class="on">4 guests</span><span>6+</span></div>
+  <div class="go">Confirm · Fri 19:45</div></div>
+ <div class="stars"><b>★★★★★</b>&nbsp; 4.9 from 2,140 diners</div>
+</div>
+
+<!-- W3 -->
+<div class="web" id="w3">
+ <div class="nav"><div class="logo"><i></i>Lumen Dental</div><ul><li>Treatments</li><li>Invisalign</li><li>Prices</li><li>Our team</li></ul><div class="nb">Book online</div></div>
+ <div class="pill">● New patients welcome this week</div>
+ <h1>A calmer kind of <span>dentist.</span></h1>
+ <p>Private and family dentistry in Didsbury. Gentle care, clear prices and same-week appointments.</p>
+ <div class="cta"><b>Book a check-up</b><s>See treatments</s></div>
+ <div class="blob"></div>
+ <div class="card"><h4>Book a check-up</h4><small>45 min · Dr. Patel · Didsbury</small>
+  <div class="days"><span>Mon<b>9</b></span><span class="on">Tue<b>10</b></span><span>Wed<b>11</b></span><span>Thu<b>12</b></span><span>Fri<b>13</b></span></div>
+  <div class="slots"><span>09:00</span><span class="on">10:30</span><span>11:15</span><span>13:00</span><span>14:30</span><span>16:00</span></div>
+  <div class="conf">Confirm Tue 10:30</div></div>
+ <div class="chip" style="right:520px;top:620px"><i style="background:#e7f8ee;color:#1a9d55">✓</i>Booked in 30 seconds</div>
+ <div class="chip" style="right:90px;top:170px"><i style="background:#fff4dc;color:#d99a00">★</i>4.9 · 860 reviews</div>
+ <div class="trust"><span><b>15 yrs</b>in Didsbury</span><span><b>12k+</b>happy patients</span><span><b>0%</b>finance available</span></div>
+</div>
+
+<!-- W4 -->
+<div class="web" id="w4">
+ <div class="nav"><div class="logo"><span>K</span>KEYSTONE</div><ul><li>Services</li><li>Projects</li><li>About</li><li>Careers</li></ul><div class="q">Get a quote</div></div>
+ <h1>We build<br><em>north.</em></h1>
+ <svg class="crane" viewBox="0 0 440 460"><g stroke="#FFC400" stroke-width="6" fill="none"><path d="M120 460V40M150 460V40M120 40h300M60 40h60M120 40l60-36 240 36"/><path d="M120 90l30 40M150 90l-30 40M120 170l30 40M150 170l-30 40M120 250l30 40M150 250l-30 40M120 330l30 40M150 330l-30 40"/><path d="M380 40v120"/></g><rect x="350" y="160" width="60" height="44" fill="#FFC400"/><rect x="40" y="30" width="40" height="40" fill="#333"/></svg>
+ <div class="side">Commercial fit-outs, extensions and new builds across Greater Manchester. On time, on budget, on site by 7am.</div>
+ <div class="stripe"></div>
+ <div class="cards"><div class="y"><b>320+</b><small>Projects delivered</small></div><div><b>£48m</b><small>Built since 2009</small></div><div><b>98%</b><small>On-time handover</small></div><div><b>10 yr</b><small>Structural guarantee</small></div></div>
+</div>
+
+<!-- W5 -->
+<div class="web" id="w5">
+ <div class="nav"><div class="logo">verve</div><ul><li>Classes</li><li>Timetable</li><li>Memberships</li><li>Studio</li></ul><div class="nb">Try a class £5</div></div>
+ <h1>Move slow.<br><i>Feel strong.</i></h1>
+ <div class="arch"><div class="s"></div><div class="h1"></div><div class="h2"></div></div>
+ <div class="tt"><h4>Today at Verve <small>Tuesday 10 Nov</small></h4>
+  <div class="cl"><span>07:00</span><b>Reformer Flow</b><em>Book</em></div>
+  <div class="cl"><span>09:30</span><b>Barre Sculpt</b><em class="f">Full</em></div>
+  <div class="cl"><span>12:15</span><b>Lunch Stretch</b><em>Book</em></div>
+  <div class="cl"><span>18:00</span><b>Slow Vinyasa</b><em>Book</em></div></div>
+</div>
+
+<!-- W6 -->
+<div class="web" id="w6">
+ <div class="nav"><div class="logo">HALDEN</div><ul><li>Expertise</li><li>People</li><li>Insights</li><li>Fees</li></ul><div class="nb">Free consultation</div></div>
+ <div class="ey">SOLICITORS · SPINNINGFIELDS</div>
+ <h1>Clear advice when it <i>matters most.</i></h1>
+ <p>Family, property and business law for people who want straight answers, fixed fees and a solicitor who calls back.</p>
+ <div class="col"><h4>Book a free call</h4><small>A solicitor will call you within 2 hours.</small>
+  <div class="f">Your name</div><div class="f">Phone number</div>
+  <div class="opts"><span class="on">Family</span><span>Conveyancing</span><span>Wills &amp; probate</span><span>Employment</span><span>Business</span></div>
+  <div class="f">Tell us briefly what happened</div>
+  <div class="sub">REQUEST A CALL</div></div>
+ <div class="acc"><span><b>4.9★</b>Client rating</span><span><b>Fixed</b>Transparent fees</span><span><b>2 hrs</b>Callback promise</span></div>
+</div>
+
+<!-- A1 -->
+<div class="app" id="a1"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <h2>Good morning, Sam</h2><div class="sub">Tuesday · 3 of 5 goals done</div>
+ <div class="rings"><svg viewBox="0 0 260 260"><circle cx="130" cy="130" r="115" stroke="#232825" stroke-width="18" fill="none"/><circle cx="130" cy="130" r="115" stroke="#C6FF3D" stroke-width="18" fill="none" stroke-linecap="round" stroke-dasharray="540 723" transform="rotate(-90 130 130)"/><circle cx="130" cy="130" r="88" stroke="#232825" stroke-width="18" fill="none"/><circle cx="130" cy="130" r="88" stroke="#3DDCFF" stroke-width="18" fill="none" stroke-linecap="round" stroke-dasharray="380 553" transform="rotate(-90 130 130)"/><circle cx="130" cy="130" r="61" stroke="#232825" stroke-width="18" fill="none"/><circle cx="130" cy="130" r="61" stroke="#FF5A8A" stroke-width="18" fill="none" stroke-linecap="round" stroke-dasharray="300 383" transform="rotate(-90 130 130)"/></svg><div class="c"><div><b>74%</b><small>Daily goal</small></div></div></div>
+ <div class="tiles"><div><small>Steps</small><b>8,412</b><div class="bars"><i style="height:16px"></i><i style="height:28px"></i><i style="height:22px"></i><i style="height:36px"></i><i style="height:26px"></i><i style="height:40px"></i><i style="height:18px"></i></div></div><div><small>Heart rate</small><b>62 bpm</b><svg viewBox="0 0 120 40" style="margin-top:10px;width:100%"><path d="M0 25h30l6-15 8 28 8-20 6 7h62" stroke="#FF5A8A" stroke-width="3" fill="none"/></svg></div></div>
+ <div class="next"><span>Next: HIIT Express · 18:00</span><span>→</span></div>
+ <div class="tab"><span class="on">● Today</span><span>Workouts</span><span>Coach</span><span>Profile</span></div>
+</div>
+
+<!-- A2 -->
+<div class="app" id="a2"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="top"><b>Bean &amp; Batch</b><span>🛍 2</span></div>
+ <div class="hero"><div class="badge">Ready in 4 min</div><div class="cup"></div></div>
+ <h3>Oat flat white</h3><p>Our house espresso, silky oat milk. Northern Quarter.</p>
+ <div class="sz"><span>Small</span><span class="on">Regular</span><span>Large</span></div>
+ <div class="milk"><span class="on">Oat</span><span>Whole</span><span>Almond</span><span>Extra shot +50p</span></div>
+ <div class="ord"><span>Order ahead</span><span>£3.60</span></div>
+</div>
+
+<!-- A3 -->
+<div class="app" id="a3"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="search">🔍 Chorlton, Manchester</div>
+ <div class="chips"><span class="on">For sale</span><span>To rent</span><span>3+ beds</span><span>Garden</span><span>Parking</span></div>
+ <div class="home"><div class="price">£425,000</div><div class="heart">♥</div><div class="house"></div><div class="win" style="left:96px"></div><div class="win" style="left:214px"></div><div class="door"></div></div>
+ <h3>3 bed semi-detached</h3><div class="meta">Beech Road, Chorlton · Added today</div>
+ <div class="facts"><div><b>3</b>Bedrooms</div><div><b>2</b>Bathrooms</div><div><b>1,140</b>sq ft</div></div>
+ <div class="bt"><span>Message</span><span class="on">Book a viewing</span></div>
+</div>
+
+<!-- A4 -->
+<div class="app" id="a4"><div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+ <div class="hi">Business account · Ledgr</div>
+ <div class="bal">£48,920<small>.40</small></div><span class="up">▲ 12.4% this month</span>
+ <svg class="chart" viewBox="0 0 366 200"><defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7c6cff" stop-opacity=".55"/><stop offset="1" stop-color="#7c6cff" stop-opacity="0"/></linearGradient></defs><path d="M0 160 C40 150 50 120 90 125 S150 90 180 100 S240 40 280 55 S340 20 366 15 V200 H0Z" fill="url(#g)"/><path d="M0 160 C40 150 50 120 90 125 S150 90 180 100 S240 40 280 55 S340 20 366 15" stroke="#a99dff" stroke-width="3" fill="none"/><circle cx="280" cy="55" r="7" fill="#fff" stroke="#7c6cff" stroke-width="4"/></svg>
+ <div class="acts"><div><i>↑</i>Send</div><div><i>↓</i>Request</div><div><i>⇄</i>Invoice</div><div><i>⋯</i>More</div></div>
+ <div class="tx"><div class="t"><i style="background:#2b2a55;color:#a99dff">S</i><div>Stripe payout<small>Today · 09:12</small></div><b class="p">+£2,340</b></div>
+ <div class="t"><i style="background:#3a2230;color:#ff7aa2">A</i><div>Adobe CC<small>Yesterday</small></div><b>−£56.98</b></div>
+ <div class="t"><i style="background:#1f3a33;color:#4fffb0">I</i><div>Invoice #1042 paid<small>Mon</small></div><b class="p">+£1,200</b></div></div>
+</div>
+</body></html>
