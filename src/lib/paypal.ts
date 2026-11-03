@@ -27,7 +27,7 @@ export async function createOrder(o: { paymentId: string; amountPence: number; d
     body: JSON.stringify({
       intent: "CAPTURE",
       purchase_units: [{ custom_id: o.paymentId, description: o.description.slice(0, 127), amount: { currency_code: "GBP", value: pounds(o.amountPence) } }],
-      payment_source: { paypal: { experience_context: { brand_name: "MONOS Technology", user_action: "PAY_NOW", shipping_preference: "NO_SHIPPING", return_url: o.returnUrl, cancel_url: o.cancelUrl } } },
+      payment_source: { paypal: { experience_context: { brand_name: "MONOS Technology", landing_page: "GUEST_CHECKOUT", user_action: "PAY_NOW", shipping_preference: "NO_SHIPPING", return_url: o.returnUrl, cancel_url: o.cancelUrl } } },
     }),
     cache: "no-store",
   });
