@@ -114,7 +114,7 @@
     ['Do you offer hosting and maintenance?','Yes. Hosting is £25 per month and basic maintenance is £100 per month, so your site stays secure, fast and up to date.'],
     ['Can I use my existing domain?','Yes. We connect your new site to your existing domain at no extra cost, or help you register a new one.'],
     ['Do you work outside Manchester?','Yes. We are based in Manchester and work with businesses across the UK and internationally.'],
-    ['Will you sign an NDA?','Of course. Much of our client work is under NDA, which is why our portfolio includes concept designs with fictional names.'],
+    ['Will you sign an NDA?','Of course. Much of our client work is under NDA, which is why our portfolio shows concept designs.'],
     ['What else can you help with?','Social media posts, event management, filming, TikTok Live and more. If it is not listed, just ask.'],
     ['Are the prices final?','Quote builder prices are estimates. Your final price is confirmed in a written proposal before any work starts.']
   ];

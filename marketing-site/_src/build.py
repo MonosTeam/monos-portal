@@ -105,6 +105,8 @@ i=w.index('<div class="apps rv">');j=w.index('<p class="disclaim">')
 F['work_home']=w[:i]+'<div class="more"><a href="work.html" class="btn btn-ghost">See all work, apps and films <svg><use href="#arrow"/></svg></a></div>\n    '+w[j:]
 
 # ---- wording
+F['results']=F['results'].replace('<section class="sec" style="padding-top:0">','<section class="sec">',1)
+for k in ('work','work_home'):F[k]=F[k].replace(' Business names and products are fictional.','')
 for k in F:
     F[k]=F[k].replace('Multi-award winning agency, 2024 and 2025, finalist three times in 2026','Multi-award winning agency, with three more 2026 awards to be announced')
 footer=footer.replace('Winner 2024 and 2025, finalist × 3 2026.','Award winner 2024 and 2025, with three 2026 awards to be announced.')
@@ -122,7 +124,7 @@ F['logos']=F['logos'].replace('<span class="lg uom">The University<br>of Manches
 # ---- work with us CTA
 WWU='''<!-- WORK WITH US -->
 <section class="wwu">
-  <div class="wwu-mq" aria-hidden="true"><div>WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● WORK WITH US NOW ● </div></div>
+  <div class="wwu-mq" aria-hidden="true"><div><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span><span>WORK WITH US NOW ●&nbsp;</span></div></div>
   <div class="wrap wwu-in">
     <div><h2 class="h-display rv">Work with<br>us <span>now.</span></h2>
     <p class="rv d1">Places each month are limited so every client gets Aisha's full attention. Tell us about your business today and we'll reply within one working day.</p></div>
