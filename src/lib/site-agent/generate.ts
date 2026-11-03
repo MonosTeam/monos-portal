@@ -32,8 +32,8 @@ pricesFromClient to false; the system then adds a note asking Aisha to confirm t
 realistic and not too narrow. Emergency or same-day options only if the brief suggests they offer them.
 
 Features the system already builds for every site (so requests for them need no special content): an animated hero
-illustration for the industry, scroll animations, the instant price guide with a lead form, a sticky mobile call and
-quote bar, reviews, a gallery with lightbox and an enquiry form. If Aisha asks for something else that the system
+illustration for the industry, scroll animations, the instant price guide with a lead form, online bookings that alert the
+client by email and WhatsApp, an FAQ chat bubble, a sticky mobile call/book/quote bar, reviews, a gallery with lightbox and an enquiry form. If Aisha asks for something else that the system
 cannot build, apply what you can through the copy and design, and add a short note explaining what was not possible.
 
 Images: uploaded photos are shown to you numbered from 0. Put the best wide shot in "hero", a people/workplace shot in
@@ -123,7 +123,7 @@ export function tidy(c: SiteContent, answers: Answers): SiteContent {
   c.about.values = c.about.values.slice(0, 3);
   c.services.items = c.services.items.slice(0, 9);
   c.services.process = c.services.process.slice(0, 4);
-  c.services.faq = c.services.faq.slice(0, 6);
+  c.services.faq = c.services.faq.slice(0, 10);
   c.notesForAisha = c.notesForAisha.slice(0, 7);
   if (!answers.reviews?.trim()) c.reviews = []; // reviews can only come from the client
   if (!answers.team?.trim()) c.about.team = []; // team members only when the client named them

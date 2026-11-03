@@ -1,6 +1,7 @@
 // One stylesheet per site: shared layout plus a theme skin (bold, clean, warm) and the client's colours.
 import type { SiteContent } from "../schema";
 import { SCENE_CSS } from "./scene";
+import { EXTRAS_CSS } from "./extras";
 
 type RGB = [number, number, number];
 const rgb = (h: string): RGB => { const x = h.length === 4 ? "#" + [...h.slice(1)].map((c) => c + c).join("") : h; return [1, 3, 5].map((i) => parseInt(x.slice(i, i + 2), 16)) as RGB; };
@@ -194,7 +195,7 @@ form.enq h2{font-size:1.7rem;margin-bottom:4px}
 .ftr a:hover{color:var(--link)}
 .ftr .base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
 .ftr .base a{color:var(--muted)}.ftr .base a:hover{color:var(--ink)}
-.float-call{display:none}
+
 @media(max-width:900px){.hero .wrap,.split,.svc,.contact-grid,.band{grid-template-columns:1fr}.split.rev .media,.svc:nth-child(even) .media{order:0}.g3,.g4{grid-template-columns:1fr 1fr}.ftr .cols{grid-template-columns:1fr 1fr}.hero .media{aspect-ratio:4/3.4}
 .float-call{display:flex;position:fixed;right:16px;bottom:16px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--btn);color:var(--on-btn);place-items:center;justify-content:center;align-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.5)}.float-call svg{width:24px;height:24px}}
 @media(max-width:600px){body{font-size:16px}.g2,.g3,.g4,.two{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr}.ftr .cols{grid-template-columns:1fr}.card{padding:26px}.btn{width:100%}.ctas{flex-direction:column}}
@@ -281,7 +282,8 @@ body{padding-bottom:84px}}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 ${theme(t)}
-${SCENE_CSS}`;
+${SCENE_CSS}
+${EXTRAS_CSS}`;
 }
 
 function theme(t: SiteContent["design"]["theme"]) {
