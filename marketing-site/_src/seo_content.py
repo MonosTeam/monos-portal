@@ -31,7 +31,7 @@ dict(
 
 <h2>Why Manchester businesses choose MONOS</h2>
 <ul>
-<li><b>Multi-award winning.</b> Winner of Start-Up Business of the Year at the Islam Channel Business Awards 2025 and the Festival Friend Appreciation Award at the Halal Food Festival 2025, with three more 2026 awards to be announced.</li>
+<li><b>Multi-award winning.</b> Winner of Start-Up Business of the Year at the Islam Channel Business Awards 2025 and the Festival Friend Appreciation Award 2025, with three more 2026 awards to be announced.</li>
 <li><b>Trusted by household names.</b> Our team has worked with brands including the BBC, Sky TV, Samsung, Deliveroo, P&amp;O Cruises and The University of Manchester.</li>
 <li><b>Real results for local businesses.</b> Sofia Patisserie now sells out of table bookings and catered for Akon. EHEA is fully booked every month across the UK.</li>
 <li><b>Fair payment terms.</b> 75% on booking and 25% on delivery, on every package.</li>
@@ -244,7 +244,7 @@ dict(
 </ul>
 
 <h2>How MONOS measures up</h2>
-<p>MONOS Technology is a multi-award winning agency in Manchester led by founder Aisha Ansari. We won Start-Up Business of the Year at the Islam Channel Business Awards 2025 and the Festival Friend Appreciation Award at the Halal Food Festival 2025, with three 2026 awards to be announced. Our team has worked with the BBC, Sky TV, Samsung and Deliveroo, our prices are <a href="pricing.html">published</a>, and every package is paid 75% on booking and 25% on delivery. <a href="work.html">See our work</a> or <a href="about.html">meet Aisha</a>.</p>
+<p>MONOS Technology is a multi-award winning agency in Manchester led by founder Aisha Ansari. We won Start-Up Business of the Year at the Islam Channel Business Awards 2025 and the Festival Friend Appreciation Award 2025, with three 2026 awards to be announced. Our team has worked with the BBC, Sky TV, Samsung and Deliveroo, our prices are <a href="pricing.html">published</a>, and every package is paid 75% on booking and 25% on delivery. <a href="work.html">See our work</a> or <a href="about.html">meet Aisha</a>.</p>
 ''',
  faq=[
   ('How do I find the best web designer near me?','Shortlist two or three designers, compare their mobile portfolios and real client results, check reviews and awards, and ask each one for a written quote that lists what is included, the timeline and the payment terms.'),

@@ -26,7 +26,7 @@ F['services']=F['services'].replace('''        <div class="pr">Hosting £25 · C
 
 # ---- real awards
 AW=[('islam-channel-2025','Winner','Start-Up Business of the Year','Islam Channel Business Awards 2025',1),
-    ('halal-food-festival-2025','Winner','Festival Friend Appreciation Award','Halal Food Festival 2025',1),
+    ('festival-friend-2025','Winner','Festival Friend Appreciation Award','Winner',1),
     ('womens-awards-2026','Finalist','Outstanding Female Entrepreneur','Women\'s Awards National 2026',0),
     ('mbcc-2026','Finalist','Entrepreneur of the Year','MBCC Awards 2026',1),
     ('bpa-2026','Finalist','Empowering Women Awards','BPA Empowering Women Awards 2026',1)]
@@ -35,7 +35,7 @@ GOLDT='''<svg class="tro" viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="
 def awcard(a):
     f,k,t,o,cov=a
     return ('<div class="aw"><div class="pic"><img src="img/awards/%s.jpg" alt="%s, %s" loading="lazy"%s><span class="rib%s">%s%s</span></div><div class="cap"><b>%s</b><span>%s</span></div></div>'
-            %(f,t,o,' class="cov"' if cov and f in('islam-channel-2025','halal-food-festival-2025') else '',' fin' if k=='Finalist' else '',TROPHY,'WINNER' if k=='Winner' else 'TO BE ANNOUNCED',t,o))
+            %(f,t,o,' class="cov"' if cov and f in('islam-channel-2025','festival-friend-2025') else '',' fin' if k=='Finalist' else '',TROPHY,'WINNER' if k=='Winner' else 'TO BE ANNOUNCED',t,o))
 montage='''<!-- AWARDS MONTAGE -->
 <section class="amont" aria-label="Awards">
   <div class="wrap"><div class="ahead">%s<h2><span class="gold">Multi-award winning</span></h2>%s</div></div>
