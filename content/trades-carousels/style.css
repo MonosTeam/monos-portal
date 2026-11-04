@@ -1,0 +1,41 @@
+:root{--bk:#0B0B0C;--red:#D23B2C;--gold:#E2B857;--amb:#F2A93B;--grn:#2EBD6B;--pw:#F4F1EA}
+*{box-sizing:border-box;margin:0;padding:0}body{background:#222}
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,#1c1c1f 0%,var(--bk) 60%);color:var(--pw);font-family:'Red Hat Display',sans-serif;padding:90px 80px}
+.s+.s{margin-top:20px}
+.logo{position:absolute;top:56px;left:80px;font:400 44px Anton;letter-spacing:2px;z-index:5}
+.logo i{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--red);vertical-align:top;margin:6px 0 0 4px;box-shadow:0 0 18px var(--red)}
+.pg{position:absolute;top:66px;right:80px;font:700 22px 'Red Hat Display';letter-spacing:4px;color:#cfcfcf;z-index:5}
+.bg{position:absolute;inset:0;background:#333 center/cover no-repeat}
+.bg.cold{filter:grayscale(.85) contrast(.95) brightness(.75)}
+.bg.warm{filter:saturate(1.15) brightness(1.05)}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55) 0%,rgba(11,11,12,.05) 30%,rgba(11,11,12,.55) 55%,rgba(11,11,12,.97) 80%)}
+.bot{position:absolute;left:80px;right:80px;bottom:90px;z-index:3}
+.k{font:700 24px 'Red Hat Display';letter-spacing:6px;text-transform:uppercase;color:var(--amb)}
+.k.g{color:var(--grn)}
+h1{font:400 128px/0.92 Anton;text-transform:uppercase;margin-top:18px}
+h2{font:400 104px/0.95 Anton;text-transform:uppercase;margin-top:18px}
+p.l{font-size:36px;line-height:1.4;color:#e4dfd4;margin-top:26px;max-width:880px}
+.swipe{margin-top:34px;font:700 24px 'Red Hat Display';letter-spacing:5px;text-transform:uppercase;color:#bbb}
+.tag{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:#fff;font:700 24px 'Red Hat Display';letter-spacing:5px;text-transform:uppercase;padding:12px 22px;border-radius:999px;box-shadow:0 10px 40px rgba(210,59,44,.5)}
+.time{font:400 64px Anton;letter-spacing:2px}
+.time.red{color:var(--red)} .time.g{color:var(--grn)} .red{color:var(--red)}
+.side{position:absolute;left:0;right:0;top:0;height:470px;background:#333 center 30%/cover no-repeat}
+.side:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.5),rgba(11,11,12,0) 30%,var(--bk) 100%)}
+.fixw{position:absolute;left:80px;right:80px;top:400px}
+.ticks{list-style:none;margin-top:30px}
+.ticks li{display:flex;align-items:center;gap:24px;font:700 38px 'Red Hat Display';padding:18px 0;border-bottom:1px solid #26262a}
+.ticks li b{flex:none;width:52px;height:52px;border-radius:50%;background:var(--grn);color:#0B0B0C;display:flex;align-items:center;justify-content:center;font:900 30px 'Red Hat Display';box-shadow:0 0 30px rgba(46,189,107,.45)}
+.ctaw{position:absolute;left:80px;right:80px;top:260px}
+.gtag2{display:inline-block;background:linear-gradient(90deg,#b88a2c,#f2d27a,#b88a2c);color:#111;font:900 24px 'Red Hat Display';letter-spacing:5px;padding:12px 26px;border-radius:999px;text-transform:uppercase}
+.cta{display:inline-block;margin-top:50px;background:var(--red);color:#fff;font:400 56px Anton;letter-spacing:3px;padding:26px 54px;border-radius:999px;box-shadow:0 20px 60px rgba(210,59,44,.55)}
+.small{margin-top:30px;font:700 24px 'Red Hat Display';letter-spacing:4px;color:#9a9a9a;text-transform:uppercase}
+.foot{position:absolute;bottom:60px;left:80px;right:80px;display:flex;justify-content:space-between;font:700 20px 'Red Hat Display';letter-spacing:4px;color:#777;text-transform:uppercase}
+.half{position:absolute;left:0;right:0;height:675px;overflow:hidden}
+.half.top{top:0}.half.btm{top:675px}
+.shade2{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,12,.88) 0%,rgba(11,11,12,.35) 70%)}
+.lab{position:absolute;left:80px;top:170px;font:700 26px 'Red Hat Display';letter-spacing:6px;padding:12px 24px;border-radius:999px;color:#fff;z-index:2}
+.half.btm .lab{top:120px}
+.lab.bad{background:var(--red)} .lab.good{background:var(--grn);color:#0B0B0C}
+.htxt{position:absolute;left:80px;bottom:90px;font:400 86px/0.95 Anton;text-transform:uppercase;z-index:2}
+.half.top .htxt{color:#d9d6cf}
+.vs{position:absolute;left:50%;top:675px;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:var(--bk);border:4px solid var(--pw);display:flex;align-items:center;justify-content:center;font:400 46px Anton;z-index:6}
