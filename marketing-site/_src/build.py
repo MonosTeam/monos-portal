@@ -184,6 +184,12 @@ PAGES=[('index.html','MONOS Technology | Multi-award winning web design agency, 
  ('pricing.html','Pricing and quote builder | MONOS Technology','Pricing',['quote','contact','faq']),
  ('about.html','About Aisha Ansari | MONOS Technology','About',['founder','awardsband','results','wwu']),
  ('contact.html','Contact | MONOS Technology','Contact',['contact','faq'])]
+import sys as _sys;_sys.path.insert(0,D)
+import book as _book
+F['founder']=F['founder'].replace('<a href="#contact" class="btn btn-red">Book time with Aisha','<a href="book-aisha.html" class="btn btn-red">Book a 1-1 with Aisha')
+F['wwu']=F['wwu'].replace('<button type="button" class="btn btn-outline-w" data-spin>','<a href="book-aisha.html" class="btn btn-outline-w">Book 1-1 with Aisha</a><button type="button" class="btn btn-outline-w" data-spin>')
+F.update(_book.SECTIONS);css+=_book.CSS
+PAGES+=_book.PAGES
 NAV=[('work.html','Work'),('services.html','Services'),('pricing.html','Pricing'),('about.html','About'),('contact.html','Contact')]
 def nav(cur):
     lis=''.join('<li><a href="%s"%s>%s</a></li>'%(h,' class="cur" aria-current="page"' if t==cur else '',t) for h,t in NAV)
@@ -193,13 +199,14 @@ def nav(cur):
     <a href="index.html" class="logo" aria-label="MONOS home">MONOS<i></i></a>
     <ul>%s</ul>
     <div class="act">
+      <a href="book-aisha.html" class="btn btn-amber"><i></i>Book 1-1<span class="lg-only">&nbsp;with Aisha</span></a>
       <a href="contact.html" class="btn btn-ghost">Work with us now</a>
       <a href="pricing.html" class="btn btn-red">Build your quote</a>
       <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
 </header>
-<nav class="mob" id="mob"><a href="index.html">Home</a>%s<a href="pricing.html" class="btn btn-red">Build your quote</a></nav>
+<nav class="mob" id="mob"><a href="index.html">Home</a>%s<a href="book-aisha.html">Book 1-1 with Aisha</a><a href="pricing.html" class="btn btn-red">Build your quote</a></nav>
 '''%(lis,mob)
 foot=links(footer).replace('<li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="contact.html#faq">FAQ</a></li>',
  '<li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>')

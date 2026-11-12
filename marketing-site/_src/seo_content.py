@@ -257,6 +257,11 @@ dict(
 
 # Per existing page: title, description, crumb label
 PAGES = {
+ 'book-aisha.html': ('Book a 1-1 with Aisha Ansari | MONOS Technology, Manchester',
+   'Book a private 1-1 with award-winning founder Aisha Ansari. 20 minutes for £45 or 1 hour for £90. Bring your agenda, pay securely by PayPal, pick your time.', 'Book a 1-1'),
+ 'book-aisha-clients.html': ('Book a 1-1 with Aisha (MONOS clients) | MONOS Technology',
+   'Existing MONOS clients: book a block of 3 weekly 1-hour sessions with Aisha for £220, or single hours at £90.', 'Book a 1-1'),
+ 'book-aisha-confirmed.html': ('You are booked in | MONOS Technology', 'Your 1-1 with Aisha is paid. Pick your time.', 'Book a 1-1'),
  'index.html': ('Web Design Agency Manchester | Multi-Award Winning | MONOS Technology',
    'Multi-award winning web design agency in Manchester. Custom websites, apps, content and social media for small businesses. Build your quote online.', None),
  'work.html': ('Website Design Portfolio | MONOS Technology, Manchester',

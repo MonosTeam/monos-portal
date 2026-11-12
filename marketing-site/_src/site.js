@@ -151,7 +151,7 @@
   box.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
   addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)close()});
   setTimeout(function(){fab&&fab.classList.add('show')},2500);
-  var seen=+(store.get('monosSpinSeen')||0),auto=Date.now()-seen>3*864e5&&!store.get('monosSpinWon');
+  var seen=+(store.get('monosSpinSeen')||0),auto=Date.now()-seen>3*864e5&&!store.get('monosSpinWon')&&!/book-aisha/.test(location.pathname);
   if(auto){var fired=false,fire=function(){if(fired)return;fired=true;open()};
     setTimeout(fire,18000);
     document.addEventListener('mouseout',function(e){if(!e.relatedTarget&&e.clientY<10)fire()});

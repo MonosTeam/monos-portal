@@ -158,6 +158,7 @@ def common(page):
     # descriptive alt text on the hero wall images (decorative alt="" is fine, but named work helps image search)
     return page
 
+NOINDEX = {'book-aisha-clients.html', 'book-aisha-confirmed.html'}
 F = faq_from_js()
 done = []
 for fn, (title, desc, label) in PAGES.items():
@@ -183,6 +184,9 @@ for fn, (title, desc, label) in PAGES.items():
             if re.search(r'<div class="faq" id="faqList"></div>', page) is None else \
             page.replace('<div class="faq" id="faqList"></div>', '<div class="faq" id="faqList">%s</div>' % faq_html(F), 1)
         if fn == 'contact.html': graph.append(faq_ld(F, url))
+    if fn in NOINDEX:
+        page = set_head(page, fn, title, desc, graph, robots='noindex,follow')
+        open(p, 'w').write(page); continue
     page = set_head(page, fn, title, desc, graph)
     open(p, 'w').write(page); done.append(fn)
 
