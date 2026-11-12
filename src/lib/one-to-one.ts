@@ -4,9 +4,9 @@ import "server-only";
 // and /book-aisha-clients (existing clients). Prices live here, on the server, so a
 // visitor can't change what they pay by editing the form.
 
-// Where the booking pages live. The portal hosts them for now (public/book-aisha*.html);
-// set BOOK_PAGES_URL=https://monostechnology.co.uk once the main site serves them too.
-export const SITE = (process.env.BOOK_PAGES_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://monos-portal.netlify.app").replace(/\/$/, "");
+// Where the booking pages live: monostechnology.co.uk/book-aisha (live since 12 Nov 2026).
+// The portal keeps a copy at /book-aisha too (public/book-aisha*.html).
+export const SITE = (process.env.BOOK_PAGES_URL || "https://monostechnology.co.uk").replace(/\/$/, "");
 export const CAL = (process.env.CAL_BASE_URL || "https://cal.com/aisha-monos-rv64et").replace(/\/$/, "");
 export const EXPRESS_PENCE = 2500;
 
