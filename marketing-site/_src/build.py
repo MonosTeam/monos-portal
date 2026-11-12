@@ -199,7 +199,7 @@ def nav(cur):
     <a href="index.html" class="logo" aria-label="MONOS home">MONOS<i></i></a>
     <ul>%s</ul>
     <div class="act">
-      <a href="book-aisha.html" class="btn btn-amber"><i></i>Book 1-1<span class="lg-only">&nbsp;with Aisha</span></a>
+      <a href="book-aisha.html" class="btn btn-amber"><i></i><span>Book 1-1<span class="lg-only">&nbsp;with Aisha</span></span></a>
       <a href="contact.html" class="btn btn-ghost">Work with us now</a>
       <a href="pricing.html" class="btn btn-red">Build your quote</a>
       <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
