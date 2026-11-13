@@ -12,10 +12,10 @@ export const EXPRESS_PENCE = 2500;
 
 export type ProductId = "new_20" | "new_60" | "client_block" | "client_60";
 export const PRODUCTS: Record<ProductId, { audience: "new" | "existing"; label: string; short: string; pence: number; cal: string; page: string }> = {
-  new_20: { audience: "new", label: "20-minute 1-1 with Aisha", short: "20 min 1-1", pence: 4500, cal: "1-1-with-aisha?duration=20", page: "book-aisha" },
-  new_60: { audience: "new", label: "1-hour 1-1 with Aisha", short: "1 hour 1-1", pence: 9000, cal: "1-1-with-aisha?duration=60", page: "book-aisha" },
-  client_block: { audience: "existing", label: "Block of 3 weekly 1-hour sessions with Aisha", short: "Block of 3", pence: 22000, cal: "1-1-block", page: "book-aisha-clients" },
-  client_60: { audience: "existing", label: "Single 1-hour session with Aisha", short: "1 hour session", pence: 9000, cal: "1-1-with-aisha?duration=60", page: "book-aisha-clients" },
+  new_20: { audience: "new", label: "20-minute 1-1 with Aisha", short: "20 min 1-1", pence: 4500, cal: "20-min-consultation-session", page: "book-aisha" },
+  new_60: { audience: "new", label: "1-hour 1-1 with Aisha", short: "1 hour 1-1", pence: 9000, cal: "1-hour-session-with-aisha", page: "book-aisha" },
+  client_block: { audience: "existing", label: "Block of 3 weekly 1-hour sessions with Aisha", short: "Block of 3", pence: 22000, cal: "1-1-block-of-3-sessions", page: "book-aisha-clients" },
+  client_60: { audience: "existing", label: "Single 1-hour session with Aisha", short: "1 hour session", pence: 9000, cal: "1-hour-session-with-aisha", page: "book-aisha-clients" },
 };
 export const isProduct = (p: string): p is ProductId => p in PRODUCTS;
 export const totalPence = (p: ProductId, express: boolean) => PRODUCTS[p].pence + (express ? EXPRESS_PENCE : 0);
