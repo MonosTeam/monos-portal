@@ -793,7 +793,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
     <p class="lead" id="dnLead">Thank you. Your payment is confirmed and Aisha has your agenda. Choose your slot below. We've also emailed you the link.</p>
     <div class="bk-ref" id="dnRef" hidden>Booking ref <b></b></div>
     <div id="dnTest"></div>
-    <div class="ctas"><a class="btn btn-red" id="dnCal" href="https://cal.com/aisha-monos-rv64et/1-1-with-aisha" target="_blank" rel="noopener">Choose your time <svg><use href="#arrow"/></svg></a><a class="btn btn-ghost" href="index.html">Back to MONOS</a></div>
+    <div class="ctas"><a class="btn btn-red" id="dnCal" href="https://cal.com/aisha-monos-rv64et/1-hour-session-with-aisha" target="_blank" rel="noopener">Choose your time <svg><use href="#arrow"/></svg></a><a class="btn btn-ghost" href="index.html">Back to MONOS</a></div>
     <div class="bk-note info bk-exp-note" id="dnX" hidden>Priority express: our team will email you today to fit you in at the earliest possible slot. You can also pick any open slot below.</div>
     <div class="bk-cal" id="dnFrame" hidden></div>
   </div>
@@ -801,7 +801,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);f
 <script>
 (function(){
   var q=new URLSearchParams(location.search),CAL='https://cal.com/aisha-monos-rv64et';
-  var P={new_20:['1-1-with-aisha','20'],new_60:['1-1-with-aisha','60'],client_60:['1-1-with-aisha','60'],client_block:['1-1-block','']};
+  var P={new_20:['20-min-consultation-session',''],new_60:['1-hour-session-with-aisha',''],client_60:['1-hour-session-with-aisha',''],client_block:['1-1-block-of-3-sessions','']};
   var p=P[q.get('p')];if(!p)return;
   var ref=(q.get('ref')||'').replace(/[^A-Z0-9]/gi,'').slice(0,12),u=new URL(CAL+'/'+p[0]);
   if(p[1])u.searchParams.set('duration',p[1]);

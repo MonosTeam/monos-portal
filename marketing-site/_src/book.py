@@ -297,7 +297,7 @@ DONE = '''<section class="bk-done">
 <script>
 (function(){
   var q=new URLSearchParams(location.search),CAL=%r;
-  var P={new_20:['1-1-with-aisha','20'],new_60:['1-1-with-aisha','60'],client_60:['1-1-with-aisha','60'],client_block:['1-1-block','']};
+  var P={new_20:['20-min-consultation-session',''],new_60:['1-hour-session-with-aisha',''],client_60:['1-hour-session-with-aisha',''],client_block:['1-1-block-of-3-sessions','']};
   var p=P[q.get('p')];if(!p)return;
   var ref=(q.get('ref')||'').replace(/[^A-Z0-9]/gi,'').slice(0,12),u=new URL(CAL+'/'+p[0]);
   if(p[1])u.searchParams.set('duration',p[1]);
@@ -313,7 +313,7 @@ DONE = '''<section class="bk-done">
   var fr=document.getElementById('dnFrame');fr.hidden=false;fr.innerHTML='<iframe title="Choose your time with Aisha" loading="lazy"></iframe>';fr.firstChild.src=e.toString();
 })();
 </script>
-''' % (CHECK, CAL + '/1-1-with-aisha', ARROW, CAL)
+''' % (CHECK, CAL + '/1-hour-session-with-aisha', ARROW, CAL)
 
 SECTIONS = {
     'book_new': hero(False) + form(False) + faq(False) + JS,
