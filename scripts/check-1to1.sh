@@ -28,9 +28,13 @@ done
 
 # 3. Cal.com links the portal sends people to after payment (from the live code on main)
 curl -sS -m 30 https://raw.githubusercontent.com/MonosTeam/monos-portal/main/src/lib/one-to-one.ts | grep -o 'cal: "[^"?]*' | cut -d'"' -f2 >> /tmp/slugs
+# Cal.com answers 404 for an event that doesn't exist (its "page does not exist" screen).
+# Its pages always contain that text in their scripts, so the status code is what we check;
+# a made-up slug must still give 404, proving the check can tell the difference.
+c=$(get "$CAL/monos-healthcheck-no-such-event"); [ "$c" = 404 ] && ok "Cal.com reports missing events as 404" || bad "Cal.com check unreliable: unknown event gave $c"
 for s in $(sort -u /tmp/slugs); do
   c=$(get "$CAL/$s")
-  if [ "$c" = 200 ] && ! grep -qi 'page does not exist\|This page could not be found' /tmp/body; then ok "Cal.com $s"; else bad "Cal.com $CAL/$s is broken ($c)"; fi
+  [ "$c" = 200 ] && ok "Cal.com $s" || bad "Cal.com $CAL/$s is broken ($c)"
 done
 
 # 4. Portal payment routes answer without a login
