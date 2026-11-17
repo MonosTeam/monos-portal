@@ -53,6 +53,7 @@ ${cap.express ? "<p>As a Priority express booking, our team will email you today
     }).catch((e) => console.error("[1to1] client email failed", e));
   }
 
-  const q = new URLSearchParams({ ref: cap.ref, p: cap.product, n: name, e: email, ...(cap.express ? { x: "1" } : {}), ...(sandbox ? { test: "1" } : {}) });
-  return NextResponse.redirect(`${SITE}/book-aisha-confirmed?${q}`, 303);
+  // Send them straight to Aisha's Cal.com booking page (name, email and ref filled in).
+  // The confirmation email carries the same link in case they close the tab.
+  return NextResponse.redirect(cal, 303);
 }
