@@ -1,0 +1,30 @@
+name: Daily 1-1 booking check
+on:
+  schedule:
+    - cron: "0 7 * * *"   # every day 07:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check booking pages, Cal.com links and PayPal routes
+        id: run
+        run: |
+          set -o pipefail
+          bash scripts/check-1to1.sh | tee result.txt
+      - name: Alert Aisha (GitHub issue, emailed to the repo owner)
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = require('fs').readFileSync('result.txt', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: `URGENT: 1-1 booking flow broken (${new Date().toISOString().slice(0,10)})`,
+              body: "The daily check of the Book a 1-1 with Aisha flow failed. Clients may not be able to pay or book.\n\n```\n" + body + "\n```\n\nRun log: " + `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              assignees: [context.repo.owner],
+            });
